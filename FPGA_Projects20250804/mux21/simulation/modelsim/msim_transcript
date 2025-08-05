@@ -1,0 +1,53 @@
+# Reading D:/intelFPGA/18.1/modelsim_ase/tcl/vsim/pref.tcl
+# do mux21_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work rtl_work 
+# Copying D:/intelFPGA/18.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+F:/FPGA/FPGA_Projects20250804/mux21 {F:/FPGA/FPGA_Projects20250804/mux21/mux21.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 17:40:17 on Aug 04,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+F:/FPGA/FPGA_Projects20250804/mux21" F:/FPGA/FPGA_Projects20250804/mux21/mux21.v 
+# -- Compiling module mux21
+# 
+# Top level modules:
+# 	mux21
+# End time: 17:40:18 on Aug 04,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# 
+# vlog -vlog01compat -work work +incdir+F:/FPGA/FPGA_Projects20250804/mux21/simulation/modelsim {F:/FPGA/FPGA_Projects20250804/mux21/simulation/modelsim/mux21.vt}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 17:40:18 on Aug 04,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+F:/FPGA/FPGA_Projects20250804/mux21/simulation/modelsim" F:/FPGA/FPGA_Projects20250804/mux21/simulation/modelsim/mux21.vt 
+# -- Compiling module mux21_vlg_tst
+# 
+# Top level modules:
+# 	mux21_vlg_tst
+# End time: 17:40:18 on Aug 04,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs="+acc"  mux21_tb
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs=""+acc"" mux21_tb 
+# Start time: 17:40:18 on Aug 04,2025
+# ** Error: (vsim-3170) Could not find 'mux21_tb'.
+#         Searched libraries:
+#             D:/intelFPGA/18.1/modelsim_ase/altera/verilog/altera
+#             D:/intelFPGA/18.1/modelsim_ase/altera/verilog/220model
+#             D:/intelFPGA/18.1/modelsim_ase/altera/verilog/sgate
+#             D:/intelFPGA/18.1/modelsim_ase/altera/verilog/altera_mf
+#             D:/intelFPGA/18.1/modelsim_ase/altera/verilog/altera_lnsim
+#             D:/intelFPGA/18.1/modelsim_ase/altera/verilog/cycloneive
+#             F:/FPGA/FPGA_Projects20250804/mux21/simulation/modelsim/rtl_work
+#             F:/FPGA/FPGA_Projects20250804/mux21/simulation/modelsim/rtl_work
+# Error loading design
+# Error: Error loading design
+#        Pausing macro execution
+# MACRO ./mux21_run_msim_rtl_verilog.do PAUSED at line 12
+# End time: 17:40:48 on Aug 04,2025, Elapsed time: 0:00:30
+# Errors: 1, Warnings: 0

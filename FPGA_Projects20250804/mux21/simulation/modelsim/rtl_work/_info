@@ -1,0 +1,54 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dF:/FPGA/FPGA_Projects20250804/mux21/simulation/modelsim
+vmux21
+Z1 !s110 1754300418
+!i10b 1
+!s100 R<Q^7F^4fSQki[aVK=OC71
+IWK4lh[Q0B9m@`Ua6?52gG0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1754298034
+8F:/FPGA/FPGA_Projects20250804/mux21/mux21.v
+FF:/FPGA/FPGA_Projects20250804/mux21/mux21.v
+L0 1
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1754300417.000000
+!s107 F:/FPGA/FPGA_Projects20250804/mux21/mux21.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+F:/FPGA/FPGA_Projects20250804/mux21|F:/FPGA/FPGA_Projects20250804/mux21/mux21.v|
+!i113 1
+Z4 o-vlog01compat -work work
+!s92 -vlog01compat -work work +incdir+F:/FPGA/FPGA_Projects20250804/mux21
+Z5 tCvgOpt 0
+vmux21_vlg_tst
+R1
+!i10b 1
+!s100 F=43Yb<E3ehnCX^Jg29>23
+IU=<3jD4>N1EfRk1Z7>Dh62
+R2
+R0
+w1754299109
+8F:/FPGA/FPGA_Projects20250804/mux21/simulation/modelsim/mux21.vt
+FF:/FPGA/FPGA_Projects20250804/mux21/simulation/modelsim/mux21.vt
+L0 28
+R3
+r1
+!s85 0
+31
+!s108 1754300418.000000
+!s107 F:/FPGA/FPGA_Projects20250804/mux21/simulation/modelsim/mux21.vt|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+F:/FPGA/FPGA_Projects20250804/mux21/simulation/modelsim|F:/FPGA/FPGA_Projects20250804/mux21/simulation/modelsim/mux21.vt|
+!i113 1
+R4
+!s92 -vlog01compat -work work +incdir+F:/FPGA/FPGA_Projects20250804/mux21/simulation/modelsim
+R5

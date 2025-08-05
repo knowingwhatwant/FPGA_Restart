@@ -1,0 +1,13 @@
+vendor_name = ModelSim
+source_file = 1, F:/FPGA/FPGA_Projects20250804/mux21/mux21.v
+source_file = 1, F:/FPGA/FPGA_Projects20250804/mux21/db/mux21.cbx.xml
+design_name = mux21
+instance = comp, \out~output , out~output, mux21, 1
+instance = comp, \b~input , b~input, mux21, 1
+instance = comp, \sel~input , sel~input, mux21, 1
+instance = comp, \a~input , a~input, mux21, 1
+instance = comp, \out~0 , out~0, mux21, 1
+design_name = hard_block
+instance = comp, \~ALTERA_ASDO_DATA1~~ibuf , ~ALTERA_ASDO_DATA1~~ibuf, hard_block, 1
+instance = comp, \~ALTERA_FLASH_nCE_nCSO~~ibuf , ~ALTERA_FLASH_nCE_nCSO~~ibuf, hard_block, 1
+instance = comp, \~ALTERA_DATA0~~ibuf , ~ALTERA_DATA0~~ibuf, hard_block, 1
