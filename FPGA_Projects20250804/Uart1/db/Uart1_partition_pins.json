@@ -1,0 +1,73 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "uart_tx",
+					"strict" : false
+				},
+				{
+					"name" : "Send_done",
+					"strict" : false
+				},
+				{
+					"name" : "byte_in[7]",
+					"strict" : false
+				},
+				{
+					"name" : "byte_in[4]",
+					"strict" : false
+				},
+				{
+					"name" : "byte_in[3]",
+					"strict" : false
+				},
+				{
+					"name" : "byte_in[2]",
+					"strict" : false
+				},
+				{
+					"name" : "byte_in[5]",
+					"strict" : false
+				},
+				{
+					"name" : "byte_in[1]",
+					"strict" : false
+				},
+				{
+					"name" : "byte_in[6]",
+					"strict" : false
+				},
+				{
+					"name" : "byte_in[0]",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				},
+				{
+					"name" : "rst_n",
+					"strict" : false
+				},
+				{
+					"name" : "Buad_set[0]",
+					"strict" : false
+				},
+				{
+					"name" : "Buad_set[1]",
+					"strict" : false
+				},
+				{
+					"name" : "Buad_set[2]",
+					"strict" : false
+				},
+				{
+					"name" : "Send_en",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

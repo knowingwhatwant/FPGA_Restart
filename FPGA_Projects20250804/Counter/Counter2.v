@@ -1,16 +1,28 @@
 module Counter2(
     input clk,
     input rst_n,
-    input enable,
-    output reg [3:0] count
+	 output reg led
 );
+
+	reg [24:0] counter;
+
 
 // 纯时序逻辑实现计数器
 always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
-        count <= 4'b0000;  
-    end else if (enable) begin
-        count <= count + 1'b1;  
+        counter <= 0;  
+    end else if(counter == 25000000-1) begin
+         counter <= 0;
+    end else begin
+         counter <= counter + 1'b1; 
+    end
+end
+
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        led <= 0;  
+    end else if(count == 25000000-1) begin
+         led <= ~led;
     end
 end
 
