@@ -8,11 +8,19 @@
 					"strict" : false
 				},
 				{
-					"name" : "Send_done",
+					"name" : "uart_tx_done",
 					"strict" : false
 				},
 				{
-					"name" : "byte_in[7]",
+					"name" : "byte_in[1]",
+					"strict" : false
+				},
+				{
+					"name" : "byte_in[6]",
+					"strict" : false
+				},
+				{
+					"name" : "byte_in[0]",
 					"strict" : false
 				},
 				{
@@ -32,15 +40,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "byte_in[1]",
+					"name" : "send_en",
 					"strict" : false
 				},
 				{
-					"name" : "byte_in[6]",
-					"strict" : false
-				},
-				{
-					"name" : "byte_in[0]",
+					"name" : "byte_in[7]",
 					"strict" : false
 				},
 				{
@@ -52,19 +56,15 @@
 					"strict" : false
 				},
 				{
-					"name" : "Buad_set[0]",
+					"name" : "baud_set[1]",
 					"strict" : false
 				},
 				{
-					"name" : "Buad_set[1]",
+					"name" : "baud_set[2]",
 					"strict" : false
 				},
 				{
-					"name" : "Buad_set[2]",
-					"strict" : false
-				},
-				{
-					"name" : "Send_en",
+					"name" : "baud_set[0]",
 					"strict" : false
 				}
 			]

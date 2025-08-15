@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Uart1
-Thu Aug 07 16:16:27 2025
+Fri Aug 15 16:40:37 2025
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
 
 
@@ -44,15 +44,15 @@ refer to the applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Aug 07 16:16:27 2025           ;
+; Analysis & Synthesis Status        ; Successful - Fri Aug 15 16:40:37 2025           ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Standard Edition ;
 ; Revision Name                      ; Uart1                                           ;
 ; Top-level Entity Name              ; uart_tx_byte                                    ;
 ; Family                             ; Cyclone IV E                                    ;
-; Total logic elements               ; 64                                              ;
-;     Total combinational functions  ; 64                                              ;
-;     Dedicated logic registers      ; 24                                              ;
-; Total registers                    ; 24                                              ;
+; Total logic elements               ; 94                                              ;
+;     Total combinational functions  ; 94                                              ;
+;     Dedicated logic registers      ; 27                                              ;
+; Total registers                    ; 27                                              ;
 ; Total pins                         ; 16                                              ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
@@ -152,7 +152,7 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 16          ;
+; Number detected on machine ; 24          ;
 ; Maximum allowed            ; 16          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
@@ -169,7 +169,7 @@ refer to the applicable agreement for further details.
 +----------------------------------+-----------------+------------------------+------------------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                               ; Library ;
 +----------------------------------+-----------------+------------------------+------------------------------------------------------------+---------+
-; uart_tx_byte.v                   ; yes             ; User Verilog HDL File  ; D:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v ;         ;
+; uart_tx_byte.v                   ; yes             ; User Verilog HDL File  ; F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v ;         ;
 +----------------------------------+-----------------+------------------------+------------------------------------------------------------+---------+
 
 
@@ -178,20 +178,20 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 64        ;
+; Estimated Total logic elements              ; 94        ;
 ;                                             ;           ;
-; Total combinational functions               ; 64        ;
+; Total combinational functions               ; 94        ;
 ; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 21        ;
-;     -- 3 input functions                    ; 11        ;
-;     -- <=2 input functions                  ; 32        ;
+;     -- 4 input functions                    ; 32        ;
+;     -- 3 input functions                    ; 21        ;
+;     -- <=2 input functions                  ; 41        ;
 ;                                             ;           ;
 ; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 34        ;
-;     -- arithmetic mode                      ; 30        ;
+;     -- normal mode                          ; 55        ;
+;     -- arithmetic mode                      ; 39        ;
 ;                                             ;           ;
-; Total registers                             ; 24        ;
-;     -- Dedicated logic registers            ; 24        ;
+; Total registers                             ; 27        ;
+;     -- Dedicated logic registers            ; 27        ;
 ;     -- I/O registers                        ; 0         ;
 ;                                             ;           ;
 ; I/O pins                                    ; 16        ;
@@ -199,9 +199,9 @@ refer to the applicable agreement for further details.
 ; Embedded Multiplier 9-bit elements          ; 0         ;
 ;                                             ;           ;
 ; Maximum fan-out node                        ; clk~input ;
-; Maximum fan-out                             ; 24        ;
-; Total fan-out                               ; 288       ;
-; Average fan-out                             ; 2.40      ;
+; Maximum fan-out                             ; 27        ;
+; Total fan-out                               ; 392       ;
+; Average fan-out                             ; 2.56      ;
 +---------------------------------------------+-----------+
 
 
@@ -210,7 +210,7 @@ refer to the applicable agreement for further details.
 +----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name  ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+--------------+
-; |uart_tx_byte              ; 64 (64)             ; 24 (24)                   ; 0           ; 0            ; 0       ; 0         ; 16   ; 0            ; |uart_tx_byte       ; uart_tx_byte ; work         ;
+; |uart_tx_byte              ; 94 (94)             ; 27 (27)                   ; 0           ; 0            ; 0       ; 0         ; 16   ; 0            ; |uart_tx_byte       ; uart_tx_byte ; work         ;
 +----------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -220,12 +220,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 24    ;
-; Number of registers using Synchronous Clear  ; 18    ;
+; Total registers                              ; 27    ;
+; Number of registers using Synchronous Clear  ; 21    ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 24    ;
+; Number of registers using Asynchronous Clear ; 27    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 3     ;
+; Number of registers using Clock Enable       ; 4     ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -245,7 +245,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 3:1                ; 18 bits   ; 36 LEs        ; 18 LEs               ; 18 LEs                 ; Yes        ; |uart_tx_byte|clk_div[0]   ;
+; 3:1                ; 21 bits   ; 42 LEs        ; 21 LEs               ; 21 LEs                 ; Yes        ; |uart_tx_byte|clk_div[8]   ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |uart_tx_byte|bps_cnt[3]   ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 
 
@@ -255,24 +256,24 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 16                          ;
-; cycloneiii_ff         ; 24                          ;
-;     CLR               ; 3                           ;
-;     CLR SCLR          ; 18                          ;
-;     ENA CLR           ; 3                           ;
-; cycloneiii_lcell_comb ; 65                          ;
-;     arith             ; 30                          ;
-;         1 data inputs ; 1                           ;
-;         2 data inputs ; 24                          ;
-;         3 data inputs ; 5                           ;
-;     normal            ; 35                          ;
+; cycloneiii_ff         ; 27                          ;
+;     CLR               ; 2                           ;
+;     CLR SCLR          ; 21                          ;
+;     ENA CLR           ; 4                           ;
+; cycloneiii_lcell_comb ; 95                          ;
+;     arith             ; 39                          ;
+;         1 data inputs ; 2                           ;
+;         2 data inputs ; 30                          ;
+;         3 data inputs ; 7                           ;
+;     normal            ; 56                          ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 2                           ;
-;         2 data inputs ; 5                           ;
-;         3 data inputs ; 6                           ;
-;         4 data inputs ; 21                          ;
+;         2 data inputs ; 7                           ;
+;         3 data inputs ; 14                          ;
+;         4 data inputs ; 32                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 6.30                        ;
-; Average LUT depth     ; 3.71                        ;
+; Max LUT depth         ; 6.80                        ;
+; Average LUT depth     ; 4.07                        ;
 +-----------------------+-----------------------------+
 
 
@@ -291,35 +292,38 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
-    Info: Processing started: Thu Aug 07 16:16:14 2025
+    Info: Processing started: Fri Aug 15 16:40:32 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Uart1 -c Uart1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file uart_tx_byte.v
-    Info (12023): Found entity 1: uart_tx_byte File: D:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 1
+    Info (12023): Found entity 1: uart_tx_byte File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file uart_tx_byte_tb.v
-    Info (12023): Found entity 1: uart_tx_byte_tb File: D:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte_tb.v Line: 3
+    Info (12023): Found entity 1: uart_tx_byte_tb File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte_tb.v Line: 3
 Info (12127): Elaborating entity "uart_tx_byte" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(23): truncated value with size 32 to match size of target (18) File: D:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 23
-Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(24): truncated value with size 32 to match size of target (18) File: D:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 24
-Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(25): truncated value with size 32 to match size of target (18) File: D:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 25
-Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(26): truncated value with size 32 to match size of target (18) File: D:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 26
-Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(27): truncated value with size 32 to match size of target (18) File: D:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 27
-Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(28): truncated value with size 32 to match size of target (18) File: D:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 28
-Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(41): truncated value with size 32 to match size of target (18) File: D:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 41
-Info (13000): Registers with preset signals will power-up high File: D:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 7
+Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(27): truncated value with size 32 to match size of target (21) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 27
+Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(28): truncated value with size 32 to match size of target (21) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 28
+Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(29): truncated value with size 32 to match size of target (21) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 29
+Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(30): truncated value with size 32 to match size of target (21) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 30
+Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(31): truncated value with size 32 to match size of target (21) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 31
+Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(32): truncated value with size 32 to match size of target (21) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 32
+Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(33): truncated value with size 32 to match size of target (21) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 33
+Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(34): truncated value with size 32 to match size of target (21) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 34
+Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(49): truncated value with size 32 to match size of target (21) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 49
+Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(73): truncated value with size 32 to match size of target (4) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 73
+Info (13000): Registers with preset signals will power-up high File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 7
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 80 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 110 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 14 input pins
     Info (21059): Implemented 2 output pins
-    Info (21061): Implemented 64 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 8 warnings
-    Info: Peak virtual memory: 4842 megabytes
-    Info: Processing ended: Thu Aug 07 16:16:27 2025
-    Info: Elapsed time: 00:00:13
-    Info: Total CPU time (on all processors): 00:00:24
+    Info (21061): Implemented 94 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 11 warnings
+    Info: Peak virtual memory: 4841 megabytes
+    Info: Processing ended: Fri Aug 15 16:40:37 2025
+    Info: Elapsed time: 00:00:05
+    Info: Total CPU time (on all processors): 00:00:11
 
 

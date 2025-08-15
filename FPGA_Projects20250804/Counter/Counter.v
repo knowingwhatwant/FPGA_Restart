@@ -21,7 +21,7 @@ generate
             .q(count_reg[i])
         );
     end
-    endgenerate
+    endgenerate 
 
 // 组合逻辑：计算下一个计数值
 always @(*) begin
