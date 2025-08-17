@@ -7,9 +7,9 @@ vmap work gate_work
 
 vlog -vlog01compat -work work +incdir+. {Uart1_7_1200mv_85c_slow.vo}
 
-vlog -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1 {F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte_tb.v}
+vlog -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1 {F:/FPGA_Restart/FPGA_Projects20250804/Uart1/UartSend_tb.v}
 
-vsim -t 1ps +transport_int_delays +transport_path_delays -L altera_ver -L cycloneive_ver -L gate_work -L work -voptargs="+acc"  uart_tx_byte_tb
+vsim -t 1ps +transport_int_delays +transport_path_delays -L altera_ver -L cycloneive_ver -L gate_work -L work -voptargs="+acc"  UartSend_tb
 
 add wave *
 view structure

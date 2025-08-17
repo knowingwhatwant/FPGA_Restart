@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Sat Aug 16 22:18:15 2025
+Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+Revision Name : ModesimTest
+Top-level Entity Name : simple_top
+Family : Cyclone IV E
+Total logic elements : 4
+    Total combinational functions : 4
+    Dedicated logic registers : 4
+Total registers : 4
+Total pins : 6
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

@@ -1,0 +1,36 @@
+`timescale 1ns / 1ps
+
+module simple_top_tb;
+
+// 激励信号定义
+reg clk;       // 测试时钟
+reg rst_n;     // 测试复位
+wire [3:0] led_out;  // 观测顶层输出
+
+// 实例化顶层模块
+simple_top uut (
+    .clk      (clk),
+    .rst_n    (rst_n),
+    .led_out  (led_out)
+);
+
+// 生成时钟（50MHz，周期20ns）
+initial begin
+    clk = 0;
+    forever #10 clk = ~clk;  // 每10ns翻转一次，周期20ns
+end
+
+// 生成复位信号
+initial begin
+    rst_n = 0;               // 初始复位
+    #200 rst_n = 1;          // 200ns后释放复位
+    #2000 $stop;           // 仿真2000ns后结束
+end
+
+// 可选：添加波形文件生成（若ModelSim未自动生成）
+initial begin
+    $dumpfile("waveform.vcd");  // 生成VCD波形文件
+    $dumpvars(0, simple_top_tb); // 记录所有信号
+end
+
+endmodule

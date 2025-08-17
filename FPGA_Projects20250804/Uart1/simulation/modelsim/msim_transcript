@@ -12,32 +12,32 @@
 # 
 # vlog -vlog01compat -work work +incdir+. {Uart1_7_1200mv_85c_slow.vo}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:42:08 on Aug 15,2025
+# Start time: 21:24:21 on Aug 16,2025
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+." Uart1_7_1200mv_85c_slow.vo 
-# -- Compiling module uart_tx_byte
+# -- Compiling module UartSend
 # -- Compiling module hard_block
 # 
 # Top level modules:
-# 	uart_tx_byte
-# End time: 16:42:08 on Aug 15,2025, Elapsed time: 0:00:00
+# 	UartSend
+# End time: 21:24:21 on Aug 16,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
-# vlog -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1 {F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte_tb.v}
+# vlog -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1 {F:/FPGA_Restart/FPGA_Projects20250804/Uart1/UartSend_tb.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:42:08 on Aug 15,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1" F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte_tb.v 
-# -- Compiling module uart_tx_byte_tb
+# Start time: 21:24:21 on Aug 16,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1" F:/FPGA_Restart/FPGA_Projects20250804/Uart1/UartSend_tb.v 
+# -- Compiling module UartSend_tb
 # 
 # Top level modules:
-# 	uart_tx_byte_tb
-# End time: 16:42:08 on Aug 15,2025, Elapsed time: 0:00:00
+# 	UartSend_tb
+# End time: 21:24:21 on Aug 16,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
-# vsim -t 1ps +transport_int_delays +transport_path_delays -L altera_ver -L cycloneive_ver -L gate_work -L work -voptargs="+acc"  uart_tx_byte_tb
-# vsim -t 1ps "+transport_int_delays" "+transport_path_delays" -L altera_ver -L cycloneive_ver -L gate_work -L work -voptargs=""+acc"" uart_tx_byte_tb 
-# Start time: 16:42:08 on Aug 15,2025
-# Loading work.uart_tx_byte_tb
-# Loading work.uart_tx_byte
+# vsim -t 1ps +transport_int_delays +transport_path_delays -L altera_ver -L cycloneive_ver -L gate_work -L work -voptargs="+acc"  UartSend_tb
+# vsim -t 1ps "+transport_int_delays" "+transport_path_delays" -L altera_ver -L cycloneive_ver -L gate_work -L work -voptargs=""+acc"" UartSend_tb 
+# Start time: 21:24:21 on Aug 16,2025
+# Loading work.UartSend_tb
+# Loading work.UartSend
 # Loading work.hard_block
 # Loading cycloneive_ver.cycloneive_io_obuf
 # Loading cycloneive_ver.cycloneive_io_ibuf
@@ -46,13 +46,11 @@
 # Loading cycloneive_ver.cycloneive_ena_reg
 # Loading cycloneive_ver.cycloneive_lcell_comb
 # Loading altera_ver.dffeas
-# SDF 10.5b Compiler 2016.10 Oct  5 2016
-# 
 # Loading instances from Uart1_7_1200mv_85c_v_slow.sdo
 # Loading altera_ver.PRIM_GDFF_LOW
 # Loading timing data from Uart1_7_1200mv_85c_v_slow.sdo
 # ** Note: (vsim-3587) SDF Backannotation Successfully Completed.
-#    Time: 0 ps  Iteration: 0  Instance: /uart_tx_byte_tb File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte_tb.v
+#    Time: 0 ps  Iteration: 0  Instance: /UartSend_tb File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/UartSend_tb.v
 # 
 # add wave *
 # view structure
@@ -60,23 +58,8 @@
 # view signals
 # .main_pane.objects.interior.cs.body.tree
 # run -all
-# ** Note: $stop    : F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte_tb.v(45)
-#    Time: 176226743 ps  Iteration: 0  Instance: /uart_tx_byte_tb
-# Break in Module uart_tx_byte_tb at F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte_tb.v line 45
-add wave -position insertpoint  \
-{sim:/uart_tx_byte_tb/uut/\Add0~19 }
-add wave -position insertpoint  \
-sim:/uart_tx_byte_tb/uut/bps_cnt
-restart
-# SDF 10.5b Compiler 2016.10 Oct  5 2016
-# 
-# Loading instances from Uart1_7_1200mv_85c_v_slow.sdo
-# Loading timing data from Uart1_7_1200mv_85c_v_slow.sdo
-# ** Note: (vsim-3587) SDF Backannotation Successfully Completed.
-#    Time: 0 ps  Iteration: 0  Instance: /uart_tx_byte_tb File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte_tb.v
-run -all
-# ** Note: $stop    : F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte_tb.v(45)
-#    Time: 176226743 ps  Iteration: 0  Instance: /uart_tx_byte_tb
-# Break in Module uart_tx_byte_tb at F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte_tb.v line 45
-# End time: 16:44:43 on Aug 15,2025, Elapsed time: 0:02:35
+# ** Note: $stop    : F:/FPGA_Restart/FPGA_Projects20250804/Uart1/UartSend_tb.v(27)
+#    Time: 5000301 ns  Iteration: 0  Instance: /UartSend_tb
+# Break in Module UartSend_tb at F:/FPGA_Restart/FPGA_Projects20250804/Uart1/UartSend_tb.v line 27
+# End time: 21:36:11 on Aug 16,2025, Elapsed time: 0:11:50
 # Errors: 0, Warnings: 0

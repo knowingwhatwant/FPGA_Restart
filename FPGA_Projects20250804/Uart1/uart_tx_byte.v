@@ -3,10 +3,13 @@ module uart_tx_byte(
     input rst_n,
     input [7:0] byte_in,
     input [2:0] baud_set,
-    input send_en,
-    output reg uart_tx,
-    output reg uart_tx_done
+    input send_go,
+    output  reg uart_tx,
+    output  reg uart_tx_done
 );
+
+
+
 
 
     // 波特率设置
@@ -35,7 +38,7 @@ module uart_tx_byte(
         endcase
     end
 
-
+    reg send_en;
     // 波特率计时器
     reg [20:0] clk_div;
 
@@ -46,13 +49,16 @@ module uart_tx_byte(
             if(clk_div == Baud_cnt-1) begin
                 clk_div <= 0;
             end else begin
-                clk_div <= clk_div + 1;
+                clk_div <= clk_div + 1'b1;
             end
         end else begin
             clk_div <= 0;
         end
 
     end
+
+    wire bps_clk;
+    assign bps_clk = (clk_div == 1);
 
     // 发送时序控制
     reg [3:0] bps_cnt; //状态指示，一共10个状态，
@@ -63,48 +69,68 @@ module uart_tx_byte(
         end 
         else if (send_en) 
         begin // 使能够开始遍历发送状态
-            if(clk_div == 1) 
+            if(bps_clk) 
             begin
-                if(bps_cnt == 12) 
-                begin
+                if(bps_cnt == 11) begin
                     bps_cnt <= 0;
                 end else 
-                begin
-                    bps_cnt <= bps_cnt + 1;
-                end
+                    bps_cnt <= bps_cnt + 1'b1;
             end    
         end else begin          // 0是idle状态
             bps_cnt <= 0;
         end 
     end
 
+    
+	 
+    // send_en 使能由
+    always@(posedge clk) begin
+        if(rst_n == 0)
+            send_en <= 0;
+        else if(send_go)
+            send_en <= 1;
+        else if(uart_tx_done)
+            send_en <= 0;
+        end
+
+    reg [7:0] r_data_byte;
+    always@(posedge clk) begin
+        if(send_go)
+            r_data_byte <= byte_in;
+        else 
+            r_data_byte <= r_data_byte;
+    end
 
 
     always@(posedge clk or negedge rst_n) begin
         if(!rst_n) begin
             uart_tx <= 1; // idle state
-            uart_tx_done <= 0;
-        end else if (send_en)begin
-            case(bps_cnt) 
-            1: begin uart_tx <= 0;uart_tx_done <= 0; end// start bit
-            2: uart_tx <= byte_in[0];
-            3: uart_tx <= byte_in[1];
-            4: uart_tx <= byte_in[2];
-            5: uart_tx <= byte_in[3];
-            6: uart_tx <= byte_in[4];
-            7: uart_tx <= byte_in[5];
-            8: uart_tx <= byte_in[6];
-            9: uart_tx <= byte_in[7];
-            10: uart_tx <= 1; // stop bit
-            11: begin uart_tx <= 1; uart_tx_done <= 1; end // ensure stop bit is stable before marking done
-            default: begin uart_tx <= 1; uart_tx_done <= 0; end// idle state
-            endcase
+
         end else begin
-            uart_tx <= 1; // idle state
-        end     
+            case(bps_cnt) 
+            1: uart_tx <= 0;
+            2: uart_tx <= r_data_byte[0];
+            3: uart_tx <= r_data_byte[1];
+            4: uart_tx <= r_data_byte[2];
+            5: uart_tx <= r_data_byte[3];
+            6: uart_tx <= r_data_byte[4];
+            7: uart_tx <= r_data_byte[5];
+            8: uart_tx <= r_data_byte[6];
+            9: uart_tx <= r_data_byte[7];
+            10: uart_tx <= 1; // stop bit
+            11: uart_tx <= 1;  // ensure stop bit is stable before marking done
+            default: uart_tx <= 1;// idle state
+            endcase
+        end  
     end
-
-
-
+     always@(posedge clk or negedge rst_n) begin
+        if(!rst_n) 
+            uart_tx_done <= 0;
+        else if((bps_cnt == 10)&& (clk_div==1))
+            uart_tx_done <= 1; // Set done signal when stop bit is sent
+        else
+            uart_tx_done <= 0; // Reset done signal when in idle state
+  
+	end
 
 endmodule

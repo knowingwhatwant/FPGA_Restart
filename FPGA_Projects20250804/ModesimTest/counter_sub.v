@@ -1,0 +1,22 @@
+module counter_sub (
+    input        clk,      // 时钟输入（50MHz）
+    input        rst_n,    // 复位输入（低电平有效）
+    output  [3:0] count_out  // 4位计数器输出
+);
+
+// 内部信号：计数器寄存器（可在ModelSim中观测）
+reg [3:0] count_reg;
+
+// 计数器逻辑
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        count_reg <= 4'd0;       // 复位时清零
+    end else begin
+        count_reg <= count_reg + 1'b1;  // 时钟上升沿计数递增
+    end
+end
+
+// 输出赋值
+assign count_out = count_reg;
+
+endmodule

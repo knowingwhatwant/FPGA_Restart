@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Fri Aug 15 16:40:37 2025
-Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Standard Edition
+Analysis & Synthesis Status : Successful - Sun Aug 17 15:18:35 2025
+Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 Revision Name : Uart1
-Top-level Entity Name : uart_tx_byte
+Top-level Entity Name : UartSend
 Family : Cyclone IV E
-Total logic elements : 94
-    Total combinational functions : 94
-    Dedicated logic registers : 27
-Total registers : 27
-Total pins : 16
+Total logic elements : 99
+    Total combinational functions : 91
+    Dedicated logic registers : 64
+Total registers : 64
+Total pins : 3
 Total virtual pins : 0
 Total memory bits : 0
 Embedded Multiplier 9-bit elements : 0
