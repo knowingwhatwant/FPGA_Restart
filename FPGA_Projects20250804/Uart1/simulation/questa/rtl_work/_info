@@ -10,76 +10,76 @@ z2
 cModel Technology
 Z0 dF:/FPGA_Restart/FPGA_Projects20250804/Uart1/simulation/questa
 vuart_tx_byte
-!s110 1755414049
+Z1 !s110 1757489686
 !i10b 1
 !s100 F@CDa9cDd]U6Kn`5KcQki1
-Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
 IAeSQ7Pj[4BEOF5Q5;@izM0
-Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 VDg1SIo80bB@j0V0VzS_@n1
 R0
-w1755414017
+w1757485130
 8F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v
 FF:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v
 !i122 0
 L0 1 136
-Z3 OV;L;2020.1;71
+Z4 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z4 !s108 1755414049.000000
+Z5 !s108 1757489686.000000
 !s107 F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1|F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v|
 !i113 1
-Z5 o-vlog01compat -work work
-Z6 !s92 -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1
-Z7 tCvgOpt 0
-vUartSend
-Z8 !s110 1755414050
-!i10b 1
-!s100 _5i38<a]HRZQ5SPo41nL51
+Z6 o-vlog01compat -work work
+Z7 !s92 -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1
+Z8 tCvgOpt 0
+vUart_tx_data
 R1
-IE:c<BjfVl`HJ5k;Xc<d6H1
+!i10b 1
+!s100 ]NLMoLaaiTS4`BM<kEZ:W0
 R2
+IGo@cBiDBK?RYnV8JU=3Bm1
+R3
 R0
-w1755413850
-8F:/FPGA_Restart/FPGA_Projects20250804/Uart1/UartSend.v
-FF:/FPGA_Restart/FPGA_Projects20250804/Uart1/UartSend.v
+w1757489619
+8F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data.v
+FF:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data.v
 !i122 1
-L0 1 67
-R3
-r1
-!s85 0
-31
+L0 1 108
 R4
-!s107 F:/FPGA_Restart/FPGA_Projects20250804/Uart1/UartSend.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1|F:/FPGA_Restart/FPGA_Projects20250804/Uart1/UartSend.v|
-!i113 1
-R5
-R6
-R7
-n@uart@send
-vUartSend_tb
-R8
-!i10b 1
-!s100 1>PE^JT7@a@S2hcf06HXE1
-R1
-I>3m[I_ZGMmJ:EY:0<eQCA3
-R2
-R0
-w1755413964
-8F:/FPGA_Restart/FPGA_Projects20250804/Uart1/UartSend_tb.v
-FF:/FPGA_Restart/FPGA_Projects20250804/Uart1/UartSend_tb.v
-!i122 2
-L0 3 34
-R3
 r1
 !s85 0
 31
-!s108 1755414050.000000
-!s107 F:/FPGA_Restart/FPGA_Projects20250804/Uart1/UartSend_tb.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1|F:/FPGA_Restart/FPGA_Projects20250804/Uart1/UartSend_tb.v|
-!i113 1
 R5
+!s107 F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1|F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data.v|
+!i113 1
 R6
 R7
-n@uart@send_tb
+R8
+n@uart_tx_data
+vUart_tx_data_tb
+R1
+!i10b 1
+!s100 UlUPJdPKPX=@WZ81HWZLc3
+R2
+ILmXbbZ@_iBzYETf?^m1X>2
+R3
+R0
+w1757488386
+8F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data_tb.v
+FF:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data_tb.v
+!i122 2
+L0 2 47
+R4
+r1
+!s85 0
+31
+R5
+!s107 F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1|F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data_tb.v|
+!i113 1
+R6
+R7
+R8
+n@uart_tx_data_tb

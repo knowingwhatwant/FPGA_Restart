@@ -13,7 +13,7 @@
 # Modifying modelsim.ini
 # vlog -vlog01compat -work altera_ver {d:/intelfpga_lite/24.1std/quartus/eda/sim_lib/altera_primitives.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:00:46 on Aug 17,2025
+# Start time: 15:34:42 on Sep 10,2025
 # vlog -reportprogress 300 -vlog01compat -work altera_ver d:/intelfpga_lite/24.1std/quartus/eda/sim_lib/altera_primitives.v 
 # -- Compiling module global
 # -- Compiling module carry
@@ -95,7 +95,7 @@
 # 	alt_iobuf_diff
 # 	alt_bidir_diff
 # 	alt_bidir_buf
-# End time: 15:00:46 on Aug 17,2025, Elapsed time: 0:00:00
+# End time: 15:34:43 on Sep 10,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # 
 # vlib verilog_libs/lpm_ver
@@ -106,7 +106,7 @@
 # Modifying modelsim.ini
 # vlog -vlog01compat -work lpm_ver {d:/intelfpga_lite/24.1std/quartus/eda/sim_lib/220model.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:00:47 on Aug 17,2025
+# Start time: 15:34:43 on Sep 10,2025
 # vlog -reportprogress 300 -vlog01compat -work lpm_ver d:/intelfpga_lite/24.1std/quartus/eda/sim_lib/220model.v 
 # -- Compiling module LPM_MEMORY_INITIALIZATION
 # -- Compiling module LPM_HINT_EVALUATION
@@ -170,7 +170,7 @@
 # 	lpm_inpad
 # 	lpm_outpad
 # 	lpm_bipad
-# End time: 15:00:47 on Aug 17,2025, Elapsed time: 0:00:00
+# End time: 15:34:43 on Sep 10,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vlib verilog_libs/sgate_ver
@@ -181,7 +181,7 @@
 # Modifying modelsim.ini
 # vlog -vlog01compat -work sgate_ver {d:/intelfpga_lite/24.1std/quartus/eda/sim_lib/sgate.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:00:47 on Aug 17,2025
+# Start time: 15:34:43 on Sep 10,2025
 # vlog -reportprogress 300 -vlog01compat -work sgate_ver d:/intelfpga_lite/24.1std/quartus/eda/sim_lib/sgate.v 
 # -- Compiling module oper_add
 # -- Compiling module oper_addsub
@@ -223,7 +223,7 @@
 # 	oper_decoder
 # 	oper_bus_mux
 # 	oper_latch
-# End time: 15:00:47 on Aug 17,2025, Elapsed time: 0:00:00
+# End time: 15:34:44 on Sep 10,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # 
 # vlib verilog_libs/altera_mf_ver
@@ -234,7 +234,7 @@
 # Modifying modelsim.ini
 # vlog -vlog01compat -work altera_mf_ver {d:/intelfpga_lite/24.1std/quartus/eda/sim_lib/altera_mf.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:00:47 on Aug 17,2025
+# Start time: 15:34:44 on Sep 10,2025
 # vlog -reportprogress 300 -vlog01compat -work altera_mf_ver d:/intelfpga_lite/24.1std/quartus/eda/sim_lib/altera_mf.v 
 # -- Compiling module lcell
 # -- Compiling module ALTERA_MF_MEMORY_INITIALIZATION
@@ -364,7 +364,7 @@
 # 	alt_fault_injection
 # 	sld_virtual_jtag_basic
 # 	altsource_probe
-# End time: 15:00:48 on Aug 17,2025, Elapsed time: 0:00:01
+# End time: 15:34:44 on Sep 10,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vlib verilog_libs/altera_lnsim_ver
@@ -375,7 +375,7 @@
 # Modifying modelsim.ini
 # vlog -sv -work altera_lnsim_ver {d:/intelfpga_lite/24.1std/quartus/eda/sim_lib/altera_lnsim.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:00:48 on Aug 17,2025
+# Start time: 15:34:45 on Sep 10,2025
 # vlog -reportprogress 300 -sv -work altera_lnsim_ver d:/intelfpga_lite/24.1std/quartus/eda/sim_lib/altera_lnsim.sv 
 # -- Compiling package altera_lnsim_functions
 # -- Compiling package altera_generic_pll_functions
@@ -458,7 +458,7 @@
 # 	altera_iopll
 # 	fourteennm_altera_iopll
 # 	fourteennm_simple_iopll
-# End time: 15:00:49 on Aug 17,2025, Elapsed time: 0:00:01
+# End time: 15:34:45 on Sep 10,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vlib verilog_libs/cycloneive_ver
@@ -469,7 +469,7 @@
 # Modifying modelsim.ini
 # vlog -vlog01compat -work cycloneive_ver {d:/intelfpga_lite/24.1std/quartus/eda/sim_lib/cycloneive_atoms.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:00:49 on Aug 17,2025
+# Start time: 15:34:45 on Sep 10,2025
 # vlog -reportprogress 300 -vlog01compat -work cycloneive_ver d:/intelfpga_lite/24.1std/quartus/eda/sim_lib/cycloneive_atoms.v 
 # -- Compiling UDP CYCLONEIVE_PRIM_DFFE
 # -- Compiling UDP CYCLONEIVE_PRIM_DFFEAS
@@ -547,7 +547,7 @@
 # 	cycloneive_jtag
 # 	cycloneive_crcblock
 # 	cycloneive_oscillator
-# End time: 15:00:49 on Aug 17,2025, Elapsed time: 0:00:00
+# End time: 15:34:46 on Sep 10,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # 
 # if {[file exists rtl_work]} {
@@ -561,41 +561,41 @@
 # 
 # vlog -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1 {F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:00:49 on Aug 17,2025
+# Start time: 15:34:46 on Sep 10,2025
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1" F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v 
 # -- Compiling module uart_tx_byte
 # 
 # Top level modules:
 # 	uart_tx_byte
-# End time: 15:00:49 on Aug 17,2025, Elapsed time: 0:00:00
+# End time: 15:34:46 on Sep 10,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1 {F:/FPGA_Restart/FPGA_Projects20250804/Uart1/UartSend.v}
+# vlog -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1 {F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:00:49 on Aug 17,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1" F:/FPGA_Restart/FPGA_Projects20250804/Uart1/UartSend.v 
-# -- Compiling module UartSend
+# Start time: 15:34:46 on Sep 10,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1" F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data.v 
+# -- Compiling module Uart_tx_data
 # 
 # Top level modules:
-# 	UartSend
-# End time: 15:00:50 on Aug 17,2025, Elapsed time: 0:00:01
+# 	Uart_tx_data
+# End time: 15:34:46 on Sep 10,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
-# vlog -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1 {F:/FPGA_Restart/FPGA_Projects20250804/Uart1/UartSend_tb.v}
+# vlog -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1 {F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data_tb.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:00:50 on Aug 17,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1" F:/FPGA_Restart/FPGA_Projects20250804/Uart1/UartSend_tb.v 
-# -- Compiling module UartSend_tb
+# Start time: 15:34:46 on Sep 10,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1" F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data_tb.v 
+# -- Compiling module Uart_tx_data_tb
 # 
 # Top level modules:
-# 	UartSend_tb
-# End time: 15:00:50 on Aug 17,2025, Elapsed time: 0:00:00
+# 	Uart_tx_data_tb
+# End time: 15:34:46 on Sep 10,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
-# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs="+acc"  UartSend_tb
-# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs=""+acc"" UartSend_tb 
-# Start time: 15:00:50 on Aug 17,2025
-# Loading work.UartSend_tb
-# Loading work.UartSend
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs="+acc"  Uart_tx_data_tb
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs=""+acc"" Uart_tx_data_tb 
+# Start time: 15:34:46 on Sep 10,2025
+# Loading work.Uart_tx_data_tb
+# Loading work.Uart_tx_data
 # Loading work.uart_tx_byte
 # 
 # add wave *
@@ -604,30 +604,33 @@
 # view signals
 # .main_pane.objects.interior.cs.body.tree
 # run -all
-# ** Note: $stop    : F:/FPGA_Restart/FPGA_Projects20250804/Uart1/UartSend_tb.v(27)
-#    Time: 50000301 ns  Iteration: 0  Instance: /UartSend_tb
-# Break in Module UartSend_tb at F:/FPGA_Restart/FPGA_Projects20250804/Uart1/UartSend_tb.v line 27
-# unknown encoding "GB2312"
+# ** Note: $stop    : F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data_tb.v(46)
+#    Time: 873220 ns  Iteration: 0  Instance: /Uart_tx_data_tb
+# Break in Module Uart_tx_data_tb at F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data_tb.v line 46
 add wave -position insertpoint  \
-sim:/UartSend_tb/UartSend_inst/uart_tx \
-sim:/UartSend_tb/UartSend_inst/uart_tx_done
+sim:/Uart_tx_data_tb/uart_tx_data_inst/state
 add wave -position insertpoint  \
-sim:/UartSend_tb/UartSend_inst/data_send_cnt
+sim:/Uart_tx_data_tb/uart_tx_data_inst/send_go
 add wave -position insertpoint  \
-sim:/UartSend_tb/UartSend_inst/send_go
+sim:/Uart_tx_data_tb/uart_tx_data_inst/uart_tx_byte_inst3/bps_clk
+restart
+run
+# GetModuleFileName: 找不到指定的模块。
+# 
+# 
+run -all
+# ** Note: $stop    : F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data_tb.v(46)
+#    Time: 873220 ns  Iteration: 0  Instance: /Uart_tx_data_tb
+# Break in Module Uart_tx_data_tb at F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data_tb.v line 46
 add wave -position insertpoint  \
-sim:/UartSend_tb/UartSend_inst/uart_tx_byte_inst2/send_en
-add wave -position insertpoint  \
-sim:/UartSend_tb/UartSend_inst/uart_tx_byte_inst2/bps_clk
-add wave -position insertpoint  \
-sim:/UartSend_tb/UartSend_inst/uart_tx_byte_inst2/r_data_byte
+sim:/Uart_tx_data_tb/uart_tx_data_inst/data_byte
 restart
 run -all
 # GetModuleFileName: 找不到指定的模块。
 # 
 # 
-# ** Note: $stop    : F:/FPGA_Restart/FPGA_Projects20250804/Uart1/UartSend_tb.v(27)
-#    Time: 50000301 ns  Iteration: 0  Instance: /UartSend_tb
-# Break in Module UartSend_tb at F:/FPGA_Restart/FPGA_Projects20250804/Uart1/UartSend_tb.v line 27
-# End time: 15:27:04 on Aug 17,2025, Elapsed time: 0:26:14
+# ** Note: $stop    : F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data_tb.v(46)
+#    Time: 873220 ns  Iteration: 0  Instance: /Uart_tx_data_tb
+# Break in Module Uart_tx_data_tb at F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data_tb.v line 46
+# End time: 15:39:43 on Sep 10,2025, Elapsed time: 0:04:57
 # Errors: 0, Warnings: 0

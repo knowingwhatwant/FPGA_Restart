@@ -1,0 +1,10 @@
+`timescale 1ns/1ns
+module Uart_tx_data_tb();
+
+
+
+
+
+
+
+endmodule

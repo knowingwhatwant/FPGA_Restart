@@ -1,10 +1,62 @@
-|UartSend
+|Uart_tx_data
 clk => clk.IN1
 rst_n => rst_n.IN1
-uart_tx << uart_tx_byte:uart_tx_byte_inst2.uart_tx
+Data40[0] => data_byte.DATAB
+Data40[1] => data_byte.DATAB
+Data40[2] => data_byte.DATAB
+Data40[3] => data_byte.DATAB
+Data40[4] => data_byte.DATAB
+Data40[5] => data_byte.DATAB
+Data40[6] => data_byte.DATAB
+Data40[7] => data_byte.DATAB
+Data40[8] => data_byte.DATAB
+Data40[9] => data_byte.DATAB
+Data40[10] => data_byte.DATAB
+Data40[11] => data_byte.DATAB
+Data40[12] => data_byte.DATAB
+Data40[13] => data_byte.DATAB
+Data40[14] => data_byte.DATAB
+Data40[15] => data_byte.DATAB
+Data40[16] => data_byte.DATAB
+Data40[17] => data_byte.DATAB
+Data40[18] => data_byte.DATAB
+Data40[19] => data_byte.DATAB
+Data40[20] => data_byte.DATAB
+Data40[21] => data_byte.DATAB
+Data40[22] => data_byte.DATAB
+Data40[23] => data_byte.DATAB
+Data40[24] => data_byte.DATAB
+Data40[25] => data_byte.DATAB
+Data40[26] => data_byte.DATAB
+Data40[27] => data_byte.DATAB
+Data40[28] => data_byte.DATAB
+Data40[29] => data_byte.DATAB
+Data40[30] => data_byte.DATAB
+Data40[31] => data_byte.DATAB
+Data40[32] => data_byte.DATAB
+Data40[33] => data_byte.DATAB
+Data40[34] => data_byte.DATAB
+Data40[35] => data_byte.DATAB
+Data40[36] => data_byte.DATAB
+Data40[37] => data_byte.DATAB
+Data40[38] => data_byte.DATAB
+Data40[39] => data_byte.DATAB
+trans_go => data_byte.OUTPUTSELECT
+trans_go => data_byte.OUTPUTSELECT
+trans_go => data_byte.OUTPUTSELECT
+trans_go => data_byte.OUTPUTSELECT
+trans_go => data_byte.OUTPUTSELECT
+trans_go => data_byte.OUTPUTSELECT
+trans_go => data_byte.OUTPUTSELECT
+trans_go => data_byte.OUTPUTSELECT
+trans_go => Selector2.IN3
+trans_go => Selector15.IN1
+trans_go => Selector1.IN1
+uart_tx <= uart_tx_byte:uart_tx_byte_inst3.uart_tx
+trans_done <= trans_done~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|UartSend|uart_tx_byte:uart_tx_byte_inst2
+|Uart_tx_data|uart_tx_byte:uart_tx_byte_inst3
 clk => uart_tx_done~reg0.CLK
 clk => uart_tx~reg0.CLK
 clk => r_data_byte[0].CLK

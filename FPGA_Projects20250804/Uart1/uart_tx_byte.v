@@ -4,8 +4,8 @@ module uart_tx_byte(
     input [7:0] byte_in,
     input [2:0] baud_set,
     input send_go,
-    output  reg uart_tx,
-    output  reg uart_tx_done
+    output reg uart_tx,
+    output reg uart_tx_done
 );
 
 
