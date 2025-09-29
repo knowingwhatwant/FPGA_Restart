@@ -1,5 +1,5 @@
-Analysis & Synthesis report for Uart1
-Wed Sep 10 15:33:48 2025
+Analysis & Elaboration report for Uart1
+Wed Sep 17 15:34:27 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -7,22 +7,10 @@ Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 ; Table of Contents ;
 ---------------------
   1. Legal Notice
-  2. Analysis & Synthesis Summary
-  3. Analysis & Synthesis Settings
-  4. Parallel Compilation
-  5. Analysis & Synthesis Source Files Read
-  6. Analysis & Synthesis Resource Usage Summary
-  7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |Uart_tx_data|state
-  9. Registers Removed During Synthesis
- 10. General Register Statistics
- 11. Inverted Register Statistics
- 12. Multiplexer Restructuring Statistics (Restructuring Performed)
- 13. Parameter Settings for User Entity Instance: Top-level Entity: |Uart_tx_data
- 14. Port Connectivity Checks: "uart_tx_byte:uart_tx_byte_inst3"
- 15. Post-Synthesis Netlist Statistics for Top Partition
- 16. Elapsed Time Per Partition
- 17. Analysis & Synthesis Messages
+  2. Analysis & Elaboration Summary
+  3. Parallel Compilation
+  4. Analysis & Elaboration Settings
+  5. Analysis & Elaboration Messages
 
 
 
@@ -47,32 +35,48 @@ on the Quartus Prime software download page.
 
 
 +--------------------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                                         ;
+; Analysis & Elaboration Summary                                                       ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Sep 10 15:33:48 2025           ;
+; Analysis & Elaboration Status      ; Failed - Wed Sep 17 15:34:27 2025               ;
 ; Quartus Prime Version              ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                      ; Uart1                                           ;
-; Top-level Entity Name              ; Uart_tx_data                                    ;
+; Top-level Entity Name              ; uart_rx_byte                                    ;
 ; Family                             ; Cyclone IV E                                    ;
-; Total logic elements               ; 88                                              ;
-;     Total combinational functions  ; 76                                              ;
-;     Dedicated logic registers      ; 52                                              ;
-; Total registers                    ; 52                                              ;
-; Total pins                         ; 45                                              ;
-; Total virtual pins                 ; 0                                               ;
-; Total memory bits                  ; 0                                               ;
-; Embedded Multiplier 9-bit elements ; 0                                               ;
-; Total PLLs                         ; 0                                               ;
+; Total logic elements               ; N/A until Partition Merge                       ;
+;     Total combinational functions  ; N/A until Partition Merge                       ;
+;     Dedicated logic registers      ; N/A until Partition Merge                       ;
+; Total registers                    ; N/A until Partition Merge                       ;
+; Total pins                         ; N/A until Partition Merge                       ;
+; Total virtual pins                 ; N/A until Partition Merge                       ;
+; Total memory bits                  ; N/A until Partition Merge                       ;
+; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                       ;
+; Total PLLs                         ; N/A until Partition Merge                       ;
 +------------------------------------+-------------------------------------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 24          ;
+; Maximum allowed            ; 16          ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
 
 
 +------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Settings                                                                              ;
+; Analysis & Elaboration Settings                                                                            ;
 +------------------------------------------------------------------+--------------------+--------------------+
 ; Option                                                           ; Setting            ; Default Value      ;
 +------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                           ; EP4CE115F29C7      ;                    ;
-; Top-level entity name                                            ; Uart_tx_data       ; Uart1              ;
+; Top-level entity name                                            ; uart_rx_byte       ; Uart1              ;
 ; Family name                                                      ; Cyclone IV E       ; Cyclone V          ;
 ; Use smart compilation                                            ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
@@ -152,204 +156,33 @@ on the Quartus Prime software download page.
 +------------------------------------------------------------------+--------------------+--------------------+
 
 
-+------------------------------------------+
-; Parallel Compilation                     ;
-+----------------------------+-------------+
-; Processors                 ; Number      ;
-+----------------------------+-------------+
-; Number detected on machine ; 24          ;
-; Maximum allowed            ; 16          ;
-;                            ;             ;
-; Average used               ; 1.00        ;
-; Maximum used               ; 16          ;
-;                            ;             ;
-; Usage by Processor         ; % Time Used ;
-;     Processor 1            ; 100.0%      ;
-;     Processors 2-16        ;   0.0%      ;
-+----------------------------+-------------+
-
-
-+----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                             ;
-+----------------------------------+-----------------+------------------------+------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                               ; Library ;
-+----------------------------------+-----------------+------------------------+------------------------------------------------------------+---------+
-; uart_tx_byte.v                   ; yes             ; User Verilog HDL File  ; F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v ;         ;
-; Uart_tx_data.v                   ; yes             ; User Verilog HDL File  ; F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data.v ;         ;
-+----------------------------------+-----------------+------------------------+------------------------------------------------------------+---------+
-
-
-+---------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary             ;
-+---------------------------------------------+-----------+
-; Resource                                    ; Usage     ;
-+---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 88        ;
-;                                             ;           ;
-; Total combinational functions               ; 76        ;
-; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 49        ;
-;     -- 3 input functions                    ; 5         ;
-;     -- <=2 input functions                  ; 22        ;
-;                                             ;           ;
-; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 56        ;
-;     -- arithmetic mode                      ; 20        ;
-;                                             ;           ;
-; Total registers                             ; 52        ;
-;     -- Dedicated logic registers            ; 52        ;
-;     -- I/O registers                        ; 0         ;
-;                                             ;           ;
-; I/O pins                                    ; 45        ;
-;                                             ;           ;
-; Embedded Multiplier 9-bit elements          ; 0         ;
-;                                             ;           ;
-; Maximum fan-out node                        ; clk~input ;
-; Maximum fan-out                             ; 52        ;
-; Total fan-out                               ; 494       ;
-; Average fan-out                             ; 2.27      ;
-+---------------------------------------------+-----------+
-
-
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                           ;
-+--------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------+--------------+--------------+
-; Compilation Hierarchy Node           ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                           ; Entity Name  ; Library Name ;
-+--------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------+--------------+--------------+
-; |Uart_tx_data                        ; 76 (29)             ; 52 (16)                   ; 0           ; 0            ; 0       ; 0         ; 45   ; 0            ; |Uart_tx_data                                 ; Uart_tx_data ; work         ;
-;    |uart_tx_byte:uart_tx_byte_inst3| ; 47 (47)             ; 36 (36)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |Uart_tx_data|uart_tx_byte:uart_tx_byte_inst3 ; uart_tx_byte ; work         ;
-+--------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------+--------------+--------------+
-Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
-
-
-Encoding Type:  One-Hot
-+-----------------------------------------------------------------------------------+
-; State Machine - |Uart_tx_data|state                                               ;
-+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
-; Name      ; state.101 ; state.100 ; state.011 ; state.010 ; state.001 ; state.000 ;
-+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
-; state.000 ; 0         ; 0         ; 0         ; 0         ; 0         ; 0         ;
-; state.001 ; 0         ; 0         ; 0         ; 0         ; 1         ; 1         ;
-; state.010 ; 0         ; 0         ; 0         ; 1         ; 0         ; 1         ;
-; state.011 ; 0         ; 0         ; 1         ; 0         ; 0         ; 1         ;
-; state.100 ; 0         ; 1         ; 0         ; 0         ; 0         ; 1         ;
-; state.101 ; 1         ; 0         ; 0         ; 0         ; 0         ; 1         ;
-+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
-
-
-+------------------------------------------------------------+
-; Registers Removed During Synthesis                         ;
-+---------------------------------------+--------------------+
-; Register name                         ; Reason for Removal ;
-+---------------------------------------+--------------------+
-; state~4                               ; Lost fanout        ;
-; state~5                               ; Lost fanout        ;
-; state~6                               ; Lost fanout        ;
-; Total Number of Removed Registers = 3 ;                    ;
-+---------------------------------------+--------------------+
-
-
-+------------------------------------------------------+
-; General Register Statistics                          ;
-+----------------------------------------------+-------+
-; Statistic                                    ; Value ;
-+----------------------------------------------+-------+
-; Total registers                              ; 52    ;
-; Number of registers using Synchronous Clear  ; 22    ;
-; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 43    ;
-; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 24    ;
-; Number of registers using Preset             ; 0     ;
-+----------------------------------------------+-------+
-
-
-+---------------------------------------------------+
-; Inverted Register Statistics                      ;
-+-----------------------------------------+---------+
-; Inverted Register                       ; Fan out ;
-+-----------------------------------------+---------+
-; uart_tx_byte:uart_tx_byte_inst3|uart_tx ; 1       ;
-; Total number of inverted registers = 1  ;         ;
-+-----------------------------------------+---------+
-
-
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                          ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------+
-; 3:1                ; 21 bits   ; 42 LEs        ; 21 LEs               ; 21 LEs                 ; Yes        ; |Uart_tx_data|uart_tx_byte:uart_tx_byte_inst3|clk_div[10] ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |Uart_tx_data|uart_tx_byte:uart_tx_byte_inst3|bps_cnt[3]  ;
-; 11:1               ; 8 bits    ; 56 LEs        ; 32 LEs               ; 24 LEs                 ; Yes        ; |Uart_tx_data|data_byte[7]                                ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------+
-
-
-+------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: Top-level Entity: |Uart_tx_data ;
-+----------------+-------+-----------------------------------------------------+
-; Parameter Name ; Value ; Type                                                ;
-+----------------+-------+-----------------------------------------------------+
-; BUAD_SET       ; 110   ; Unsigned Binary                                     ;
-+----------------+-------+-----------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-------------------------------------------------------------+
-; Port Connectivity Checks: "uart_tx_byte:uart_tx_byte_inst3" ;
-+----------------+-------+----------+-------------------------+
-; Port           ; Type  ; Severity ; Details                 ;
-+----------------+-------+----------+-------------------------+
-; baud_set[2..1] ; Input ; Info     ; Stuck at VCC            ;
-; baud_set[0]    ; Input ; Info     ; Stuck at GND            ;
-+----------------+-------+----------+-------------------------+
-
-
-+-----------------------------------------------------+
-; Post-Synthesis Netlist Statistics for Top Partition ;
-+-----------------------+-----------------------------+
-; Type                  ; Count                       ;
-+-----------------------+-----------------------------+
-; boundary_port         ; 45                          ;
-; cycloneiii_ff         ; 52                          ;
-;     CLR               ; 6                           ;
-;     CLR SCLR          ; 21                          ;
-;     ENA               ; 8                           ;
-;     ENA CLR           ; 16                          ;
-;     SCLR              ; 1                           ;
-; cycloneiii_lcell_comb ; 77                          ;
-;     arith             ; 20                          ;
-;         2 data inputs ; 20                          ;
-;     normal            ; 57                          ;
-;         1 data inputs ; 2                           ;
-;         2 data inputs ; 1                           ;
-;         3 data inputs ; 5                           ;
-;         4 data inputs ; 49                          ;
-;                       ;                             ;
-; Max LUT depth         ; 4.00                        ;
-; Average LUT depth     ; 2.13                        ;
-+-----------------------+-----------------------------+
-
-
-+-------------------------------+
-; Elapsed Time Per Partition    ;
-+----------------+--------------+
-; Partition Name ; Elapsed Time ;
-+----------------+--------------+
-; Top            ; 00:00:00     ;
-+----------------+--------------+
-
-
-+-------------------------------+
-; Analysis & Synthesis Messages ;
-+-------------------------------+
++---------------------------------+
+; Analysis & Elaboration Messages ;
++---------------------------------+
 Info: *******************************************************************
-Info: Running Quartus Prime Analysis & Synthesis
+Info: Running Quartus Prime Analysis & Elaboration
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Wed Sep 10 15:33:43 2025
-Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Uart1 -c Uart1
+    Info: Processing started: Wed Sep 17 15:34:23 2025
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Uart1 -c Uart1 --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file uart_test.v
+    Info (12023): Found entity 1: uart_test File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_test.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file uart_rx_byte_tb.v
+    Info (12023): Found entity 1: uart_rx_byte_tb File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte_tb.v Line: 3
+Error (10170): Verilog HDL syntax error at uart_rx_byte.v(79) near text: "else";  expecting "end". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 79
+Error (10170): Verilog HDL syntax error at uart_rx_byte.v(84) near text: "reg";  expecting "end". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 84
+Error (10170): Verilog HDL syntax error at uart_rx_byte.v(84) near text: ";";  expecting "<=", or "=". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 84
+Error (10170): Verilog HDL syntax error at uart_rx_byte.v(113) near text: "end";  expecting "endcase". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 113
+Error (10170): Verilog HDL syntax error at uart_rx_byte.v(121) near text: ";";  expecting ":", or ",". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 121
+Error (10170): Verilog HDL syntax error at uart_rx_byte.v(122) near text: ";";  expecting ":", or ",". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 122
+Error (10170): Verilog HDL syntax error at uart_rx_byte.v(123) near text: ";";  expecting ":", or ",". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 123
+Error (10170): Verilog HDL syntax error at uart_rx_byte.v(124) near text: ";";  expecting ":", or ",". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 124
+Error (10170): Verilog HDL syntax error at uart_rx_byte.v(125) near text: ";";  expecting ":", or ",". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 125
+Error (10170): Verilog HDL syntax error at uart_rx_byte.v(126) near text: ";";  expecting ":", or ",". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 126
+Error (10170): Verilog HDL syntax error at uart_rx_byte.v(127) near text: ";";  expecting ":", or ",". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 127
+Error (10170): Verilog HDL syntax error at uart_rx_byte.v(128) near text: ";";  expecting ":", or ",". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 128
+Info (12021): Found 0 design units, including 0 entities, in source file uart_rx_byte.v
 Info (12021): Found 1 design units, including 1 entities, in source file uart_tx_byte.v
     Info (12023): Found entity 1: uart_tx_byte File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file uart_tx_byte_tb.v
@@ -362,30 +195,10 @@ Info (12021): Found 1 design units, including 1 entities, in source file uart_tx
     Info (12023): Found entity 1: Uart_tx_data File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file uart_tx_data_tb.v
     Info (12023): Found entity 1: Uart_tx_data_tb File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data_tb.v Line: 2
-Info (12127): Elaborating entity "Uart_tx_data" for the top level hierarchy
-Info (12128): Elaborating entity "uart_tx_byte" for hierarchy "uart_tx_byte:uart_tx_byte_inst3" File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data.v Line: 27
-Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(30): truncated value with size 32 to match size of target (21) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 30
-Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(31): truncated value with size 32 to match size of target (21) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 31
-Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(32): truncated value with size 32 to match size of target (21) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 32
-Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(33): truncated value with size 32 to match size of target (21) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 33
-Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(34): truncated value with size 32 to match size of target (21) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 34
-Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(35): truncated value with size 32 to match size of target (21) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 35
-Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(36): truncated value with size 32 to match size of target (21) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 36
-Warning (10230): Verilog HDL assignment warning at uart_tx_byte.v(37): truncated value with size 32 to match size of target (21) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 37
-Info (13000): Registers with preset signals will power-up high File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 7
-Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
-Info (286030): Timing-Driven Synthesis is running
-Info (17049): 3 registers lost all their fanouts during netlist optimizations.
-Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
-    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 134 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 43 input pins
-    Info (21059): Implemented 2 output pins
-    Info (21061): Implemented 89 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 9 warnings
-    Info: Peak virtual memory: 4850 megabytes
-    Info: Processing ended: Wed Sep 10 15:33:48 2025
-    Info: Elapsed time: 00:00:05
-    Info: Total CPU time (on all processors): 00:00:11
+Error: Quartus Prime Analysis & Elaboration was unsuccessful. 12 errors, 1 warning
+    Error: Peak virtual memory: 4727 megabytes
+    Error: Processing ended: Wed Sep 17 15:34:27 2025
+    Error: Elapsed time: 00:00:04
+    Error: Total CPU time (on all processors): 00:00:10
 
 
