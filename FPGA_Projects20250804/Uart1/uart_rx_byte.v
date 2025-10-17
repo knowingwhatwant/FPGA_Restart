@@ -7,6 +7,12 @@ module uart_rx_byte(
     output reg rx_done
 );
 
+     // reg width name number
+    reg [2:0] r_data[7:0]; // 3位，10个
+    reg [2:0] sta_bit;
+    reg [2:0] sto_bit;
+
+
     // 边沿检测
     reg [1:0] uart_rx_r;
     always@(posedge clk) begin
@@ -14,15 +20,15 @@ module uart_rx_byte(
             uart_rx_r[1] <= uart_rx_r[0];
     end
     // 边沿检测，输出脉冲信号
-    wire pedge_uart_rxl; // 检测到下降沿
+    wire pedge_uart_rxl; // 检测到上升沿
     assign pedge_uart_rxl = (uart_rx_r[1] == 1'b0) && (uart_rx_r[0] == 1'b1);
 
-    wire nedge_uart_rxl; // 检测到上升沿
+    wire nedge_uart_rxl; // 检测到下降沿
     assign nedge_uart_rxl = (uart_rx_r[1] == 1'b1) && (uart_rx_r[0] == 1'b0);
 
     // 对数据进行采样，1bit分16个采样点，舍弃前5后4，取中7点
     // 采样点周期（速率）
-    reg [8:0] Bps_DR;
+    reg [8:0] Bps_DR;  // 1bit数据位的1/16采样点周期
     always@(*) begin
         case(baud_set)
         3'b000: Bps_DR = 1000000000/300/20/16-1;    // 1/300 second in clock cycles at 50MHz
@@ -36,20 +42,24 @@ module uart_rx_byte(
         endcase
     end
 
-    wire bps_clk_16x;
-    assign bps_clk_16x = (clk_div_16x = Bps_DR / 2);  // 采样点在周期中间
-    reg [8:0] clk_div_16x;
+    reg [8:0] clk_div_16x;   // 
+    wire bps_clk_16x;       // 采样点时刻
+    assign bps_clk_16x = (clk_div_16x == Bps_DR / 2);  // 采样点在周期中间
+    
+    
     // 脉冲信号转电平信号
     reg RX_EN;
     always@(posedge clk or negedge rst_n) begin
         if(!rst_n)
             RX_EN <= 0;
-        else if(pedge_uart_rxl) 
+        else if(nedge_uart_rxl) 
             RX_EN <= 1;
-        else if(rx_done || (sta_bit >= 4))
+        else if(rx_done || (sta_bit >= 4))//接收完成或者起始位为1
             RX_EN <= 0;
     end
 
+
+    // 单个采样周期计数器，用于确定采样点位置（采样周期中点）
     always@(posedge clk or negedge rst_n) begin
         if(!rst_n) begin
             clk_div_16x <= 0;
@@ -65,25 +75,27 @@ module uart_rx_byte(
     end
 
 
-
     reg [7:0] bps_cnt;   // 一共160个采样点
-    always@(posedge clk or negedge rst_n) begin
-        if(!rst_n) begin
+    always@(posedge clk or negedge rst_n) 
+	 begin
+        if(!rst_n) 
             bps_cnt <= 0;
-        end else if(bps_clk_16x) begin
-            if(bps_cnt == 160) begin
-                bps_cnt <= 0;
-            end else begin
+        else if(RX_EN) begin
+            if(bps_clk_16x) begin
+                if(bps_cnt == 159) 
+                    bps_cnt <= 0;
+                else 
                 bps_cnt <= bps_cnt + 1'b1;
             end
             else 
-                bps_cnt <= bps_cnt;
+            bps_cnt <= bps_cnt;
+		end
+        else 
+            bps_cnt <= 0;
     end
 
-
-    reg [2:0] r_data[7:0]; // 3位，10个
-    reg [2:0] sta_bit;
-    reg [2:0] sto_bit;
+   
+    // 采样结果累计
     always@(posedge clk or negedge rst_n) begin
         if(!rst_n)begin
             sta_bit <= 0;
@@ -99,6 +111,17 @@ module uart_rx_byte(
         end
         else if(bps_clk_16x)begin
             case(bps_cnt)
+                0:begin sta_bit <= 0;
+                        sto_bit <= 0;
+                        r_data[0] <= 0;
+                        r_data[1] <= 0;
+                        r_data[2] <= 0;
+                        r_data[3] <= 0;
+                        r_data[4] <= 0;
+                        r_data[5] <= 0;
+                        r_data[6] <= 0;
+                        r_data[7] <= 0;
+                    end
                 5,6,7,8,9,10,11: sta_bit <= sta_bit + uart_rx; // 起始位采样
                 21,22,23,24,25,26,27: r_data[0] <= r_data[0] + uart_rx; // 数据位0采样
                 37,38,39,40,41,42,43: r_data[1] <= r_data[1] + uart_rx; // 数据位1采样
@@ -110,33 +133,37 @@ module uart_rx_byte(
                 133,134,135,136,137,138,139: r_data[7] <= r_data[7] + uart_rx; // 数据位7采样
                 149,150,151,152,153,154,155: sto_bit <= sto_bit + uart_rx; // 停止位采样
                 default: ;
-        end
-    end
-
-     always@(posedge clk or negedge rst_n) begin
-        if(!rst_n)begin
+				endcase
+			end
+	 end
+    // 采样结果判定
+    always@(posedge clk or negedge rst_n)
+    begin
+        if(!rst_n) begin
             byte_out <= 0;
         end
+        // 判断条件：
         else if(bps_clk_16x && (bps_cnt == 159)) begin
-            byte_out[0] <= (r_data[0] > 4) ? 1'b1 : 1'b0;
-            byte_out[1] <= (r_data[1] > 4) ? 1'b1 : 1'b0;
-            byte_out[2] <= (r_data[2] > 4) ? 1'b1 : 1'b0;
-            byte_out[3] <= (r_data[3] > 4) ? 1'b1 : 1'b0;
-            byte_out[4] <= (r_data[4] > 4) ? 1'b1 : 1'b0;
-            byte_out[5] <= (r_data[5] > 4) ? 1'b1 : 1'b0;
-            byte_out[6] <= (r_data[6] > 4) ? 1'b1 : 1'b0;
-            byte_out[7] <= (r_data[7] > 4) ? 1'b1 : 1'b0;
+            byte_out[0] <= r_data[0][2];        // 直接区最高位
+            byte_out[1] <= r_data[1][2];
+            byte_out[2] <= r_data[2][2];
+            byte_out[3] <= r_data[3][2];
+            byte_out[4] <= r_data[4][2];
+            byte_out[5] <= r_data[5][2];
+            byte_out[6] <= r_data[6][2];
+            byte_out[7] <= r_data[7][2];
         end 
-     end
-    always@(posedge clk or negedge rst_n) begin
-        if(!rst_n)begin
+    end
+	 
+    always@(posedge clk or negedge rst_n) 
+	 begin
+        if(!rst_n)
             rx_done <= 0;
-        end
-        else if(bps_clk_16x && (bps_cnt == 159)) 
+        else if((clk_div_16x == Bps_DR/2) && (bps_cnt == 159)) 
             rx_done <= 1'b1;
         else 
             rx_done <= 1'b0;
-      
+	end
 
 
 

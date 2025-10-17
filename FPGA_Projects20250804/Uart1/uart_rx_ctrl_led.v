@@ -1,0 +1,42 @@
+module uart_rx_ctrl_led(
+    input clk,
+    input rst_n,
+    input uart_rx,
+    output  led_out
+); 
+    parameter baud_set = 3'b110; // 115200 baud
+    // 波特率设置
+    wire [7:0] ctrl;
+    wire [31:0] time_set;
+    wire rx_done;
+    wire [7:0] byte_out;
+
+    uart_rx_byte uart_rx_byte_inst (
+        .clk(clk),
+        .rst_n(rst_n),
+        .uart_rx(uart_rx),
+        .baud_set(baud_set),
+        .byte_out(byte_out),
+        .rx_done(rx_done)
+    );
+
+    uart_cmd uart_cmd_inst (
+        .clk(clk),
+        .rst_n(rst_n),
+        .rx_done(rx_done),
+        .rx_data(byte_out),
+        .ctrl(ctrl),
+		.time_set(time_set)
+    );
+
+    counter_led counter_led_inst (
+        .clk(clk),
+        .rst_n(rst_n),
+        .time_set(time_set),
+        .ctrl(ctrl),
+        .led_out(led_out)
+    );
+
+
+
+endmodule

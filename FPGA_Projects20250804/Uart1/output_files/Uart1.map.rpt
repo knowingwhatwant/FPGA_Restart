@@ -1,5 +1,5 @@
 Analysis & Elaboration report for Uart1
-Wed Sep 17 15:34:27 2025
+Fri Oct 17 14:00:09 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -9,8 +9,10 @@ Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
   1. Legal Notice
   2. Analysis & Elaboration Summary
   3. Parallel Compilation
-  4. Analysis & Elaboration Settings
-  5. Analysis & Elaboration Messages
+  4. Parameter Settings for User Entity Instance: Top-level Entity: |uart_rx_ctrl_led
+  5. Analysis & Elaboration Settings
+  6. Port Connectivity Checks: "uart_rx_byte:uart_rx_byte_inst"
+  7. Analysis & Elaboration Messages
 
 
 
@@ -37,10 +39,10 @@ on the Quartus Prime software download page.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Elaboration Summary                                                       ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Elaboration Status      ; Failed - Wed Sep 17 15:34:27 2025               ;
+; Analysis & Elaboration Status      ; Successful - Fri Oct 17 14:00:09 2025           ;
 ; Quartus Prime Version              ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                      ; Uart1                                           ;
-; Top-level Entity Name              ; uart_rx_byte                                    ;
+; Top-level Entity Name              ; uart_rx_ctrl_led                                ;
 ; Family                             ; Cyclone IV E                                    ;
 ; Total logic elements               ; N/A until Partition Merge                       ;
 ;     Total combinational functions  ; N/A until Partition Merge                       ;
@@ -70,13 +72,23 @@ on the Quartus Prime software download page.
 +----------------------------+-------------+
 
 
++----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |uart_rx_ctrl_led ;
++----------------+-------+---------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                    ;
++----------------+-------+---------------------------------------------------------+
+; baud_set       ; 110   ; Unsigned Binary                                         ;
++----------------+-------+---------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
 +------------------------------------------------------------------------------------------------------------+
 ; Analysis & Elaboration Settings                                                                            ;
 +------------------------------------------------------------------+--------------------+--------------------+
 ; Option                                                           ; Setting            ; Default Value      ;
 +------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                           ; EP4CE115F29C7      ;                    ;
-; Top-level entity name                                            ; uart_rx_byte       ; Uart1              ;
+; Top-level entity name                                            ; uart_rx_ctrl_led   ; Uart1              ;
 ; Family name                                                      ; Cyclone IV E       ; Cyclone V          ;
 ; Use smart compilation                                            ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
@@ -156,33 +168,40 @@ on the Quartus Prime software download page.
 +------------------------------------------------------------------+--------------------+--------------------+
 
 
++------------------------------------------------------------+
+; Port Connectivity Checks: "uart_rx_byte:uart_rx_byte_inst" ;
++----------------+-------+----------+------------------------+
+; Port           ; Type  ; Severity ; Details                ;
++----------------+-------+----------+------------------------+
+; baud_set[2..1] ; Input ; Info     ; Stuck at VCC           ;
+; baud_set[0]    ; Input ; Info     ; Stuck at GND           ;
++----------------+-------+----------+------------------------+
+
+
 +---------------------------------+
 ; Analysis & Elaboration Messages ;
 +---------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Elaboration
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Wed Sep 17 15:34:23 2025
+    Info: Processing started: Fri Oct 17 14:00:05 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Uart1 -c Uart1 --analysis_and_elaboration
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file uart_rx_ctrl_led_tb.v
+    Info (12023): Found entity 1: uart_rx_ctrl_led_tb File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_ctrl_led_tb.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file uart_rx_ctrl_led.v
+    Info (12023): Found entity 1: uart_rx_ctrl_led File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_ctrl_led.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file uart_cmd.v
+    Info (12023): Found entity 1: uart_cmd File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_cmd.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file counter_led.v
+    Info (12023): Found entity 1: counter_led File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/counter_led.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file uart_test.v
     Info (12023): Found entity 1: uart_test File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_test.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file uart_rx_byte_tb.v
     Info (12023): Found entity 1: uart_rx_byte_tb File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte_tb.v Line: 3
-Error (10170): Verilog HDL syntax error at uart_rx_byte.v(79) near text: "else";  expecting "end". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 79
-Error (10170): Verilog HDL syntax error at uart_rx_byte.v(84) near text: "reg";  expecting "end". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 84
-Error (10170): Verilog HDL syntax error at uart_rx_byte.v(84) near text: ";";  expecting "<=", or "=". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 84
-Error (10170): Verilog HDL syntax error at uart_rx_byte.v(113) near text: "end";  expecting "endcase". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 113
-Error (10170): Verilog HDL syntax error at uart_rx_byte.v(121) near text: ";";  expecting ":", or ",". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 121
-Error (10170): Verilog HDL syntax error at uart_rx_byte.v(122) near text: ";";  expecting ":", or ",". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 122
-Error (10170): Verilog HDL syntax error at uart_rx_byte.v(123) near text: ";";  expecting ":", or ",". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 123
-Error (10170): Verilog HDL syntax error at uart_rx_byte.v(124) near text: ";";  expecting ":", or ",". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 124
-Error (10170): Verilog HDL syntax error at uart_rx_byte.v(125) near text: ";";  expecting ":", or ",". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 125
-Error (10170): Verilog HDL syntax error at uart_rx_byte.v(126) near text: ";";  expecting ":", or ",". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 126
-Error (10170): Verilog HDL syntax error at uart_rx_byte.v(127) near text: ";";  expecting ":", or ",". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 127
-Error (10170): Verilog HDL syntax error at uart_rx_byte.v(128) near text: ";";  expecting ":", or ",". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 128
-Info (12021): Found 0 design units, including 0 entities, in source file uart_rx_byte.v
+Info (12021): Found 1 design units, including 1 entities, in source file uart_rx_byte.v
+    Info (12023): Found entity 1: uart_rx_byte File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file uart_tx_byte.v
     Info (12023): Found entity 1: uart_tx_byte File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file uart_tx_byte_tb.v
@@ -195,10 +214,23 @@ Info (12021): Found 1 design units, including 1 entities, in source file uart_tx
     Info (12023): Found entity 1: Uart_tx_data File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file uart_tx_data_tb.v
     Info (12023): Found entity 1: Uart_tx_data_tb File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data_tb.v Line: 2
-Error: Quartus Prime Analysis & Elaboration was unsuccessful. 12 errors, 1 warning
-    Error: Peak virtual memory: 4727 megabytes
-    Error: Processing ended: Wed Sep 17 15:34:27 2025
-    Error: Elapsed time: 00:00:04
-    Error: Total CPU time (on all processors): 00:00:10
+Info (12127): Elaborating entity "uart_rx_ctrl_led" for the top level hierarchy
+Info (12128): Elaborating entity "uart_rx_byte" for hierarchy "uart_rx_byte:uart_rx_byte_inst" File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_ctrl_led.v Line: 21
+Warning (10036): Verilog HDL or VHDL warning at uart_rx_byte.v(23): object "pedge_uart_rxl" assigned a value but never read File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 23
+Warning (10230): Verilog HDL assignment warning at uart_rx_byte.v(34): truncated value with size 32 to match size of target (9) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 34
+Warning (10230): Verilog HDL assignment warning at uart_rx_byte.v(35): truncated value with size 32 to match size of target (9) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 35
+Warning (10230): Verilog HDL assignment warning at uart_rx_byte.v(36): truncated value with size 32 to match size of target (9) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 36
+Warning (10230): Verilog HDL assignment warning at uart_rx_byte.v(37): truncated value with size 32 to match size of target (9) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 37
+Warning (10230): Verilog HDL assignment warning at uart_rx_byte.v(38): truncated value with size 32 to match size of target (9) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 38
+Warning (10230): Verilog HDL assignment warning at uart_rx_byte.v(39): truncated value with size 32 to match size of target (9) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 39
+Warning (10230): Verilog HDL assignment warning at uart_rx_byte.v(40): truncated value with size 32 to match size of target (9) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 40
+Warning (10230): Verilog HDL assignment warning at uart_rx_byte.v(41): truncated value with size 32 to match size of target (9) File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v Line: 41
+Info (12128): Elaborating entity "uart_cmd" for hierarchy "uart_cmd:uart_cmd_inst" File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_ctrl_led.v Line: 30
+Info (12128): Elaborating entity "counter_led" for hierarchy "counter_led:counter_led_inst" File: F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_ctrl_led.v Line: 38
+Info: Quartus Prime Analysis & Elaboration was successful. 0 errors, 10 warnings
+    Info: Peak virtual memory: 4731 megabytes
+    Info: Processing ended: Fri Oct 17 14:00:09 2025
+    Info: Elapsed time: 00:00:04
+    Info: Total CPU time (on all processors): 00:00:10
 
 

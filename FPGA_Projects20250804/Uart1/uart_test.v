@@ -4,8 +4,8 @@ module uart_test(
     input [7:0] byte_in,
     input [2:0] baud_set,
     input send_en,
-    output uart_tx,
-    output uart_tx_done
+    output reg uart_tx,
+    output reg uart_tx_done
 );
 
 

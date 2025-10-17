@@ -9,77 +9,123 @@ z2
 !i10f 100
 cModel Technology
 Z0 dF:/FPGA_Restart/FPGA_Projects20250804/Uart1/simulation/questa
-vuart_tx_byte
-Z1 !s110 1757489686
+vcounter_led
+Z1 !s110 1760680850
 !i10b 1
-!s100 F@CDa9cDd]U6Kn`5KcQki1
+!s100 dSX<Jmn`22;?e3WU6F=Yz3
 Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
-IAeSQ7Pj[4BEOF5Q5;@izM0
+IdSH`lFlmLc?NnHY4^<dDY3
 Z3 VDg1SIo80bB@j0V0VzS_@n1
 R0
-w1757485130
-8F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v
-FF:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v
-!i122 0
-L0 1 136
+w1760670520
+8F:/FPGA_Restart/FPGA_Projects20250804/Uart1/counter_led.v
+FF:/FPGA_Restart/FPGA_Projects20250804/Uart1/counter_led.v
+!i122 2
+L0 1 51
 Z4 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z5 !s108 1757489686.000000
-!s107 F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1|F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_tx_byte.v|
+Z5 !s108 1760680850.000000
+!s107 F:/FPGA_Restart/FPGA_Projects20250804/Uart1/counter_led.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1|F:/FPGA_Restart/FPGA_Projects20250804/Uart1/counter_led.v|
 !i113 1
 Z6 o-vlog01compat -work work
 Z7 !s92 -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1
 Z8 tCvgOpt 0
-vUart_tx_data
+vuart_cmd
 R1
 !i10b 1
-!s100 ]NLMoLaaiTS4`BM<kEZ:W0
+!s100 =]d^@KT4:loUOSkEEhM[F0
 R2
-IGo@cBiDBK?RYnV8JU=3Bm1
+I<6BBAzWV[ffW@ALbdjO6A3
 R3
 R0
-w1757489619
-8F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data.v
-FF:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data.v
+w1760680745
+8F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_cmd.v
+FF:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_cmd.v
 !i122 1
-L0 1 108
+L0 2 43
 R4
 r1
 !s85 0
 31
 R5
-!s107 F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1|F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data.v|
+!s107 F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_cmd.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1|F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_cmd.v|
 !i113 1
 R6
 R7
 R8
-n@uart_tx_data
-vUart_tx_data_tb
+vuart_rx_byte
 R1
 !i10b 1
-!s100 UlUPJdPKPX=@WZ81HWZLc3
+!s100 ^nQFYo3LI9Can151g>K`J2
 R2
-ILmXbbZ@_iBzYETf?^m1X>2
+I1I]K0c=P;1^CMM<K>N^300
 R3
 R0
-w1757488386
-8F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data_tb.v
-FF:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data_tb.v
-!i122 2
-L0 2 47
+w1760606302
+8F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v
+FF:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v
+!i122 3
+L0 1 170
 R4
 r1
 !s85 0
 31
 R5
-!s107 F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data_tb.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1|F:/FPGA_Restart/FPGA_Projects20250804/Uart1/Uart_tx_data_tb.v|
+!s107 F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1|F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_byte.v|
 !i113 1
 R6
 R7
 R8
-n@uart_tx_data_tb
+vuart_rx_ctrl_led
+R1
+!i10b 1
+!s100 U<zZVlJ`m81`Wha:L8FRZ2
+R2
+I8IDG]SfEMJkod4`ljZMMa2
+R3
+R0
+w1760680767
+8F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_ctrl_led.v
+FF:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_ctrl_led.v
+!i122 0
+L0 1 42
+R4
+r1
+!s85 0
+31
+R5
+!s107 F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_ctrl_led.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1|F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_ctrl_led.v|
+!i113 1
+R6
+R7
+R8
+vuart_rx_ctrl_led_tb
+R1
+!i10b 1
+!s100 8GH6T1KI1Zk@Po=j_>@Ad0
+R2
+IhlkPYm>4;E<:<QY5hWEC92
+R3
+R0
+w1760680082
+8F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_ctrl_led_tb.v
+FF:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_ctrl_led_tb.v
+!i122 4
+L0 3 76
+R4
+r1
+!s85 0
+31
+R5
+!s107 F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_ctrl_led_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+F:/FPGA_Restart/FPGA_Projects20250804/Uart1|F:/FPGA_Restart/FPGA_Projects20250804/Uart1/uart_rx_ctrl_led_tb.v|
+!i113 1
+R6
+R7
+R8

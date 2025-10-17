@@ -1,0 +1,45 @@
+module uart_cmd(
+    input clk,
+    input rst_n,
+    input rx_done,
+    input [7:0] rx_data,
+    output reg ctrl,
+    output reg[31:0] time_set
+);
+
+    reg [7:0] data_str [7:0];
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            data_str[0] <= 0;
+            data_str[1] <= 0;
+            data_str[3] <= 0;
+            data_str[4] <= 0;
+            data_str[5] <= 0;
+            data_str[6] <= 0;
+            data_str[7] <= 0;
+        end else if (rx_done) begin 
+            data_str[7] <= rx_data;
+            data_str[6] <= data_str[7];
+            data_str[5] <= data_str[6];
+            data_str[4] <= data_str[5];
+            data_str[3] <= data_str[4];
+            data_str[2] <= data_str[3];
+            data_str[1] <= data_str[2];
+            data_str[0] <= data_str[1];
+        end
+
+    always@(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            ctrl <= 0;
+            time_set <= 0;
+        end else if (rx_done) begin         // 接收到新数据才判断
+            if ((data_str[0] == 8'h55)&&(data_str[1]==8'hA5) &&(data_str[7]==8'hF0)) begin
+                time_set <= {data_str[5],data_str[4],data_str[3],data_str[2]};
+                ctrl <= data_str[6];
+            end
+        end
+    end
+
+
+endmodule

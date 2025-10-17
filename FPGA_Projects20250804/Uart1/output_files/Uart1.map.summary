@@ -1,7 +1,7 @@
-Analysis & Elaboration Status : Failed - Wed Sep 17 15:34:27 2025
+Analysis & Elaboration Status : Successful - Fri Oct 17 14:00:09 2025
 Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 Revision Name : Uart1
-Top-level Entity Name : uart_rx_byte
+Top-level Entity Name : uart_rx_ctrl_led
 Family : Cyclone IV E
 Total logic elements : N/A until Partition Merge
     Total combinational functions : N/A until Partition Merge

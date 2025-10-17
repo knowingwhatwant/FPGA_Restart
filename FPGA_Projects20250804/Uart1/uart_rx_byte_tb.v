@@ -27,15 +27,15 @@ module uart_rx_byte_tb();
             #201;
             rst_n = 1;
             #200;
-            uart_tx_byte(8'hA5); // Transmit 0xA5
-            @(posedge rx_done);
-            #5000;
-            uart_tx_byte(8'h5A); // Transmit 0x5A
-            @(posedge rx_done);
-            #5000;
-            uart_tx_byte(8'hAA); // Transmit 0x5A
-            @(posedge rx_done);
-            #5000;
+            uart_tx_byte(8'hEE); // Transmit 0xA5
+            
+            #90000;
+            uart_tx_byte(8'hFF); // Transmit 0x5A
+            
+            #90000;
+            uart_tx_byte(8'hAA); // Transmit 0xAA
+           
+            #90000;
             $stop;
         end
 

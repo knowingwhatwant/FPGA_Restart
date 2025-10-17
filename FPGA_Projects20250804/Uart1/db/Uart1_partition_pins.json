@@ -4,11 +4,39 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "uart_tx",
+					"name" : "byte_out[0]",
 					"strict" : false
 				},
 				{
-					"name" : "trans_done",
+					"name" : "byte_out[1]",
+					"strict" : false
+				},
+				{
+					"name" : "byte_out[2]",
+					"strict" : false
+				},
+				{
+					"name" : "byte_out[3]",
+					"strict" : false
+				},
+				{
+					"name" : "byte_out[4]",
+					"strict" : false
+				},
+				{
+					"name" : "byte_out[5]",
+					"strict" : false
+				},
+				{
+					"name" : "byte_out[6]",
+					"strict" : false
+				},
+				{
+					"name" : "byte_out[7]",
+					"strict" : false
+				},
+				{
+					"name" : "rx_done",
 					"strict" : false
 				},
 				{
@@ -20,167 +48,19 @@
 					"strict" : false
 				},
 				{
-					"name" : "trans_go",
+					"name" : "baud_set[1]",
 					"strict" : false
 				},
 				{
-					"name" : "Data40[25]",
+					"name" : "baud_set[2]",
 					"strict" : false
 				},
 				{
-					"name" : "Data40[33]",
+					"name" : "baud_set[0]",
 					"strict" : false
 				},
 				{
-					"name" : "Data40[9]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[17]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[1]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[30]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[38]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[14]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[22]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[6]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[24]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[32]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[16]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[8]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[0]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[31]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[39]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[15]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[23]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[7]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[28]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[36]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[12]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[20]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[4]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[27]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[35]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[11]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[19]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[3]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[26]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[34]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[10]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[18]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[2]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[29]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[37]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[13]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[21]",
-					"strict" : false
-				},
-				{
-					"name" : "Data40[5]",
+					"name" : "uart_rx",
 					"strict" : false
 				}
 			]
