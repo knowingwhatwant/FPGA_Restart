@@ -1,0 +1,9 @@
+module smg_disp_DE115(
+    output [6:0] smg_out
+)
+
+    assign smg_out = 7'b1000_0000; // 默认显示0
+
+
+
+endmodule

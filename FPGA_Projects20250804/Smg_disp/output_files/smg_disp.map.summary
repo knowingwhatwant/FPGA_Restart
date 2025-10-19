@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Sun Oct 19 22:53:29 2025
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Standard Edition
+Revision Name : smg_disp
+Top-level Entity Name : smg_disp_de115
+Family : Cyclone IV E
+Total logic elements : 623
+    Total combinational functions : 439
+    Dedicated logic registers : 445
+Total registers : 445
+Total pins : 8
+Total virtual pins : 0
+Total memory bits : 896
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

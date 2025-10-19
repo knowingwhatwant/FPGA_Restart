@@ -1,0 +1,17 @@
+|smg_disp_de115
+clk => smg_out[0]~reg0.CLK
+clk => smg_out[1]~reg0.CLK
+clk => smg_out[2]~reg0.CLK
+clk => smg_out[3]~reg0.CLK
+clk => smg_out[4]~reg0.CLK
+clk => smg_out[5]~reg0.CLK
+clk => smg_out[6]~reg0.CLK
+smg_out[0] <= smg_out[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+smg_out[1] <= smg_out[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+smg_out[2] <= smg_out[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+smg_out[3] <= smg_out[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+smg_out[4] <= smg_out[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+smg_out[5] <= smg_out[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+smg_out[6] <= smg_out[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+

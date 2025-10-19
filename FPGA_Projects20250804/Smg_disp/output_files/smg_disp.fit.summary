@@ -1,0 +1,16 @@
+Fitter Status : Successful - Sun Oct 19 22:53:39 2025
+Quartus Prime Version : 18.1.0 Build 625 09/12/2018 SJ Standard Edition
+Revision Name : smg_disp
+Top-level Entity Name : smg_disp_de115
+Family : Cyclone IV E
+Device : EP4CE115F29C7
+Timing Models : Final
+Total logic elements : 604 / 114,480 ( < 1 % )
+    Total combinational functions : 441 / 114,480 ( < 1 % )
+    Dedicated logic registers : 445 / 114,480 ( < 1 % )
+Total registers : 445
+Total pins : 8 / 529 ( 2 % )
+Total virtual pins : 0
+Total memory bits : 896 / 3,981,312 ( < 1 % )
+Embedded Multiplier 9-bit elements : 0 / 532 ( 0 % )
+Total PLLs : 0 / 4 ( 0 % )

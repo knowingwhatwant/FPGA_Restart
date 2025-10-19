@@ -1,0 +1,28 @@
+  module stabletest(
+input clk,
+input rst_n,
+input key,
+output reg reg_key_pre);
+
+
+
+ // 前后电平状态存储
+    reg [1:0] r_key_sync;
+    always @(posedge clk)
+        r_key_sync <= {r_key_sync[0], key};
+
+   
+    always @(posedge clk)
+        reg_key_pre <= r_key_sync[1];
+
+
+   wire nedge_key;
+   assign pedge_key = !reg_key_pre && r_key_sync[1];
+   assign nedge_key = reg_key_pre && !r_key_sync[1];
+
+
+
+
+
+
+endmodule

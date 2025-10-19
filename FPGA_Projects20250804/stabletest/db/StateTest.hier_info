@@ -1,0 +1,9 @@
+|stabletest
+clk => reg_key_pre~reg0.CLK
+clk => r_key_sync[0].CLK
+clk => r_key_sync[1].CLK
+rst_n => ~NO_FANOUT~
+key => r_key_sync[0].DATAIN
+reg_key_pre <= reg_key_pre~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+

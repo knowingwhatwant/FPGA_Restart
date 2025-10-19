@@ -1,0 +1,7 @@
+
+State Machine - |key_filter|state
+Name state.R_FILTER state.WAIT_R state.P_FILTER state.IDLE 
+state.IDLE 0 0 0 0 
+state.P_FILTER 0 0 1 1 
+state.WAIT_R 0 1 0 1 
+state.R_FILTER 1 0 0 1 

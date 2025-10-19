@@ -1,0 +1,1 @@
+Info (10281): Verilog HDL Declaration information at smg_disp.v(10): object "clk_10k" differs only in case from object "CLK_10K" in the same scope File: D:/FPGA_Restart/FPGA_Projects20250804/Smg_disp/smg_disp.v Line: 10
