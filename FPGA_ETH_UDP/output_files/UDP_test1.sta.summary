@@ -1,0 +1,185 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'mii_tx_clk'
+Slack : 2.034
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'sys_clk'
+Slack : 9.753
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Setup 'mii_rx_clk'
+Slack : 34.689
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'mii_rx_clk'
+Slack : 0.338
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'sys_clk'
+Slack : 0.338
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'mii_tx_clk'
+Slack : 0.351
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'sys_clk'
+Slack : 15.938
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'mii_rx_clk'
+Slack : 35.935
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'mii_tx_clk'
+Slack : 35.948
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'mii_tx_clk'
+Slack : 1.756
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'sys_clk'
+Slack : 2.995
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'mii_rx_clk'
+Slack : 3.042
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'sys_clk'
+Slack : 9.628
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'mii_rx_clk'
+Slack : 19.634
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'mii_tx_clk'
+Slack : 19.640
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'mii_tx_clk'
+Slack : 2.559
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'sys_clk'
+Slack : 10.662
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'mii_rx_clk'
+Slack : 35.133
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'mii_rx_clk'
+Slack : 0.337
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'sys_clk'
+Slack : 0.342
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'mii_tx_clk'
+Slack : 0.353
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'sys_clk'
+Slack : 16.329
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'mii_rx_clk'
+Slack : 36.337
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'mii_tx_clk'
+Slack : 36.339
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'mii_tx_clk'
+Slack : 1.589
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'sys_clk'
+Slack : 2.670
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'mii_rx_clk'
+Slack : 2.698
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'sys_clk'
+Slack : 9.646
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'mii_rx_clk'
+Slack : 19.651
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'mii_tx_clk'
+Slack : 19.659
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'mii_tx_clk'
+Slack : 5.047
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'sys_clk'
+Slack : 15.209
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'mii_rx_clk'
+Slack : 37.338
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'sys_clk'
+Slack : 0.130
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'mii_rx_clk'
+Slack : 0.136
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'mii_tx_clk'
+Slack : 0.143
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'sys_clk'
+Slack : 17.847
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'mii_rx_clk'
+Slack : 37.842
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'mii_tx_clk'
+Slack : 37.854
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'mii_tx_clk'
+Slack : 0.855
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'sys_clk'
+Slack : 1.552
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'mii_rx_clk'
+Slack : 1.575
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'sys_clk'
+Slack : 9.373
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'mii_rx_clk'
+Slack : 19.378
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'mii_tx_clk'
+Slack : 19.384
+TNS   : 0.000
+
+------------------------------------------------------------

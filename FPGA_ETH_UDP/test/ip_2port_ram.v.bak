@@ -1,0 +1,55 @@
+module  ip_2port_ram(
+    input     clk   ,
+    input     rst_n
+
+);
+
+
+wire locked;
+wire rst_n;
+
+wire       ram_wr_en  ;
+wire [10:0] ram_wr_addr;
+wire [7:0] ram_wr_data;
+
+wire       ram_rd_en  ;
+wire [10:0] ram_rd_addr;
+wire [7:0] ram_rd_data;
+
+
+//RAM写模块
+ram_wr ram_wr_inst(
+    .clk            (clk),
+    .rst_n          (rst_n),
+
+    .ram_wr_en      (ram_wr_en  ),//写使能
+    .ram_wr_addr    (ram_wr_addr),//写地址
+    .ram_wr_data    (ram_wr_data) //写数据
+);
+//RAM读模块
+ram_rd ram_rd_inst(
+    .clk             (clk),
+    .rst_n           (rst_n),
+
+    .ram_rd_en       (ram_rd_en  ),//读使能
+    .ram_rd_addr     (ram_rd_addr), //读地址
+    .ram_rd_data     (ram_rd_data)//读数据
+);
+//简单双端口RAM
+raram_2port_2048 ram_2_inst(
+    .address_a        (ram_wr_addr),
+	.address_b        (ram_rd_addr),
+	.clock            (clk        ),
+	.data_a           (ram_wr_data),
+	.data_b           (1'b0       ),
+	.rden_a           (1'b0       ),
+	.rden_b           (ram_rd_en  ),
+	.wren_a           (ram_wr_en  ),
+	.wren_b           (1'b0       ),    
+	.q_a              (           ),    
+	.q_b              (ram_rd_data)  
+);
+
+
+
+endmodule

@@ -1,0 +1,326 @@
+module udp_echo_top (
+    // 1. 系统时钟和复位
+    input           clk,         // 板载 50MHz
+    input           rst_n,       // 复位按键
+
+    // 2. 发包触发按键 (保留)
+    input           key_send,    
+
+    // 3. MII 接口
+    input           enet0_rx_clk,
+    input   [3:0]   enet0_rx_data,
+    input           enet0_rx_dv,
+    input           enet0_rx_er,
+    input           enet0_tx_clk,
+    output  [3:0]   enet0_tx_data,
+    output          enet0_tx_en,
+    output          enet0_tx_er,
+
+    // 4. MDIO 接口
+    output          enet0_mdc,
+    inout           enet0_mdio,
+
+    // 5. PHY 复位
+    output          enet0_rst_n,
+
+    output [31:0] dbg_ID1,
+    output [31:0] dbg_ID2,
+    output [31:0] dbg_state,
+    output [31:0] dbg_cnt,
+    output [31:0] dbg_pkt_len,
+    output [31:0] dbg_rx_ram_w_addr,
+    output [31:0] dbg_rx_ram_w_en,
+    output [31:0] dbg_rx_ram_r_addr,
+
+);
+    // DEBUG signals
+    assign dbg_ID1          = ID1;
+    assign dbg_ID2          = ID2;
+    assign dbg_state        = state;
+    assign dbg_cnt          = cnt;
+    assign dbg_pkt_len      = pkt_len;
+    assign dbg_rx_ram_w_addr= rx_ram_w_addr;
+    assign dbg_rx_ram_w_en  = rx_ram_w_en;
+
+
+
+    // ============================================================
+    // 1. 信号定义
+    // ============================================================
+    
+    // MDIO 三态控制信号
+    wire mdio_mdc_w;
+    wire mdio_mdio_out_w;
+    wire mdio_mdio_in_w;
+    wire mdio_mdio_oen_w;
+
+    // Avalon-MM 配置接口 (现在由 config 模块驱动)
+    wire [7:0]  av_addr;
+    wire        av_read;
+    wire        av_write;
+    wire [31:0] av_writedata;
+    wire [31:0] av_readdata;
+    wire        av_waitrequest;
+    wire [31:0] ID1;
+    wire [31:0] ID2;
+
+    // PHY 复位信号 (由 config 模块驱动)
+    wire        w_phy_rst_n; 
+
+    // TSE IP <-> FSM 数据接口
+    wire [7:0] tse_rx_data;
+    wire       tse_rx_dv;
+    wire       tse_rx_sop;
+    wire       tse_rx_eop;
+
+    reg  [7:0] tse_tx_data;
+    reg        tse_tx_wren;
+    reg        tse_tx_sop;
+    reg        tse_tx_eop;
+    wire       tse_tx_ready;
+
+    // RAM 信号
+    reg  [10:0] rx_ram_w_addr;
+    reg         rx_ram_w_en;
+    reg  [10:0] rx_ram_r_addr;
+    wire [7:0]  rx_ram_r_data;
+
+    reg  [10:0] tx_ram_w_addr;
+    reg  [7:0]  tx_ram_w_data;
+    reg         tx_ram_w_en;
+    reg  [10:0] tx_ram_r_addr;
+    wire [7:0]  tx_ram_r_data;
+
+    // 状态机变量
+    reg [3:0]   state;
+    reg [10:0]  pkt_len;
+    reg [10:0]  cnt;
+    reg [10:0]  read_addr_temp;
+
+    // ============================================================
+    // 2. 物理接口连接
+    // ============================================================
+
+    assign enet0_rst_n    = w_phy_rst_n; // 连接到 config 模块输出
+    assign enet0_mdc      = mdio_mdc_w;
+    assign enet0_mdio     = !mdio_mdio_oen_w ? mdio_mdio_out_w : 1'bz; 
+    assign mdio_mdio_in_w = enet0_mdio;
+
+    // ============================================================
+    // 3. 模块例化
+    // ============================================================
+
+    // --- 3.1 MDIO 配置控制模块 (新增) ---
+    mdio_config_ctrl u_mdio_config (
+        .clk             (clk),
+        .rst_n           (rst_n),
+        // 连接到 TSE 的 Avalon-MM 接口
+        .o_av_addr       (av_addr),
+        .o_av_read       (av_read),
+        .o_av_write      (av_write),
+        .o_av_writedata  (av_writedata),
+        .i_av_readdata   (av_readdata),
+        .i_av_waitrequest(av_waitrequest),
+        // 控制 PHY 复位
+        .o_phy_rst_n     (w_phy_rst_n),
+        .r_phy_id1       (ID1),
+        .r_phy_id2       (ID2)
+    );
+
+    // --- 3.2 TSE MAC IP Core ---
+    IPcore ipcore_inst (
+        .clk           (clk),
+        .reset         (~rst_n),      // IP核高电平复位
+        .ff_rx_clk     (clk),
+        .ff_tx_clk     (clk),
+        
+        .tx_clk        (enet0_tx_clk),
+        .rx_clk        (enet0_rx_clk),
+        .m_rx_d        (enet0_rx_data),
+        .m_rx_en       (enet0_rx_dv),
+        .m_rx_err      (enet0_rx_er),
+        .m_tx_d        (enet0_tx_data),
+        .m_tx_en       (enet0_tx_en),
+        .m_tx_err      (enet0_tx_er),
+        .m_rx_crs      (1'b0),
+        .m_rx_col      (1'b0),
+
+        .mdc           (mdio_mdc_w),
+        .mdio_in       (mdio_mdio_in_w),
+        .mdio_out      (mdio_mdio_out_w),
+        .mdio_oen      (mdio_mdio_oen_w),
+
+        // 这里连接 Config 模块的信号
+        .reg_addr      (av_addr),
+        .reg_rd        (av_read),
+        .reg_wr        (av_write),
+        .reg_data_in   (av_writedata),
+        .reg_data_out  (av_readdata),
+        .reg_busy      (av_waitrequest),
+
+        .ff_tx_data    (tse_tx_data),
+        .ff_tx_wren    (tse_tx_wren),
+        .ff_tx_sop     (tse_tx_sop),
+        .ff_tx_eop     (tse_tx_eop),
+        .ff_tx_err     (1'b0),
+        .ff_tx_rdy     (tse_tx_ready),
+
+        .ff_rx_rdy     (1'b1), 
+        .ff_rx_data    (tse_rx_data),
+        .ff_rx_dval    (tse_rx_dv),
+        .ff_rx_sop     (tse_rx_sop),
+        .ff_rx_eop     (tse_rx_eop),
+        .rx_err        (),
+        
+        .gm_rx_d(8'b0), .gm_rx_dv(1'b0), .gm_rx_err(1'b0),
+        .set_10(1'b0), .set_1000(1'b0),
+        .xon_gen(1'b0), .xoff_gen(1'b0), .ff_tx_crc_fwd(1'b0)
+    );
+
+    // --- 3.3 RAM Instance (RX) ---
+    ram_2port_2048 rx_ram_inst (
+        .clock     (clk),
+        .address_a (rx_ram_w_addr), .data_a (tse_rx_data), .wren_a (rx_ram_w_en), .q_a (),
+        .address_b (rx_ram_r_addr), .data_b (8'd0),        .wren_b (1'b0),        .q_b (rx_ram_r_data)
+    );
+
+    // --- 3.4 RAM Instance (TX) ---
+    ram_2port_2048 tx_ram_inst (
+        .clock     (clk),
+        .address_a (tx_ram_w_addr), .data_a (tx_ram_w_data), .wren_a (tx_ram_w_en), .q_a (),
+        .address_b (tx_ram_r_addr), .data_b (8'd0),          .wren_b (1'b0),        .q_b (tx_ram_r_data)
+    );
+
+    // ============================================================
+    // 4. 数据回环 FSM (保持之前的不变)
+    // ============================================================
+    localparam S_FSM_IDLE      = 0; // 改个名字避免和 Config FSM 混淆
+    localparam S_RX_STORE      = 1;
+    localparam S_COPY_READ     = 2;
+    localparam S_COPY_WRITE    = 3;
+    localparam S_APPEND_TAG    = 4;
+    localparam S_TX_PREP       = 5;
+    localparam S_TX_STREAM     = 6;
+    localparam S_TX_DONE       = 7;
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            state         <= S_FSM_IDLE;
+            rx_ram_w_en   <= 0; rx_ram_w_addr <= 0;
+            tx_ram_w_en   <= 0; tx_ram_w_addr <= 0;
+            tse_tx_wren   <= 0; tse_tx_sop <= 0; tse_tx_eop <= 0;
+            pkt_len       <= 0; cnt <= 0;
+        end else begin
+            rx_ram_w_en <= 0;
+            tx_ram_w_en <= 0;
+            tse_tx_wren <= 0;
+            tse_tx_sop  <= 0;
+            tse_tx_eop  <= 0;
+
+            case (state)
+                S_FSM_IDLE: begin
+                    rx_ram_w_addr <= 0;
+                    cnt <= 0;
+                    // 这里可以加个判断：如果 config 还没 S_DONE_OK，就不接收？
+                    // 其实不用，因为没 Config 好之前 TSE 根本不会输出 dv 信号。
+                    if (tse_rx_dv && tse_rx_sop) begin
+                        rx_ram_w_en   <= 1;
+                        state <= S_RX_STORE;
+                    end
+                end
+
+                S_RX_STORE: begin
+                    if (tse_rx_dv) begin
+                        rx_ram_w_en   <= 1;
+                        rx_ram_w_addr <= rx_ram_w_addr + 1;
+                        if (tse_rx_eop) begin
+                            pkt_len <= rx_ram_w_addr + 1;
+                            state   <= S_COPY_READ;
+                            cnt     <= 0;
+                        end
+                    end
+                end
+
+                S_COPY_READ: begin
+                    read_addr_temp = cnt; 
+                    // MAC (Src/Dst swap)
+                    if      (cnt >= 0 && cnt <= 5)   read_addr_temp = cnt + 6;
+                    else if (cnt >= 6 && cnt <= 11)  read_addr_temp = cnt - 6;
+                    // IP (Src/Dst swap)
+                    else if (cnt >= 26 && cnt <= 29) read_addr_temp = cnt + 4;
+                    else if (cnt >= 30 && cnt <= 33) read_addr_temp = cnt - 4;
+                    // Port (Src/Dst swap)
+                    else if (cnt >= 34 && cnt <= 35) read_addr_temp = cnt + 2;
+                    else if (cnt >= 36 && cnt <= 37) read_addr_temp = cnt - 2;
+
+                    rx_ram_r_addr <= read_addr_temp;
+                    state         <= S_COPY_WRITE;
+                end
+
+                S_COPY_WRITE: begin
+                    tx_ram_w_en   <= 1;
+                    tx_ram_w_addr <= cnt;
+                    tx_ram_w_data <= rx_ram_r_data; 
+                    
+                    if (cnt == 17) tx_ram_w_data <= rx_ram_r_data + 4; // IP len
+                    if (cnt == 39) tx_ram_w_data <= rx_ram_r_data + 4; // UDP len
+                    if (cnt == 40 || cnt == 41) tx_ram_w_data <= 8'h00; // Checksum
+
+                    if (cnt == pkt_len - 1) begin
+                        state <= S_APPEND_TAG;
+                        cnt   <= 0;
+                    end else begin
+                        cnt   <= cnt + 1;
+                        state <= S_COPY_READ;
+                    end
+                end
+
+                S_APPEND_TAG: begin
+                    tx_ram_w_en   <= 1;
+                    tx_ram_w_addr <= pkt_len + cnt;
+                    case (cnt)
+                        0: tx_ram_w_data <= "F";
+                        1: tx_ram_w_data <= "P";
+                        2: tx_ram_w_data <= "G";
+                        3: tx_ram_w_data <= "A";
+                    endcase
+                    
+                    if (cnt == 3) begin
+                        pkt_len <= pkt_len + 4;
+                        state   <= S_TX_PREP;
+                    end else begin
+                        cnt <= cnt + 1;
+                    end
+                end
+
+                S_TX_PREP: begin
+                    cnt           <= 0;
+                    tx_ram_r_addr <= 0; 
+                    if (tse_tx_ready) begin
+                        state <= S_TX_STREAM;
+                    end
+                end
+
+                S_TX_STREAM: begin
+                    tse_tx_wren <= 1;
+                    tse_tx_data <= tx_ram_r_data;
+                    
+                    if (cnt == 0)           tse_tx_sop <= 1;
+                    if (cnt == pkt_len - 1) tse_tx_eop <= 1;
+                    
+                    if (cnt == pkt_len - 1) begin
+                        state <= S_TX_DONE;
+                    end else begin
+                        cnt <= cnt + 1;
+                        tx_ram_r_addr <= cnt + 1; 
+                    end
+                end
+
+                S_TX_DONE: state <= S_FSM_IDLE;
+                
+                default: state <= S_FSM_IDLE;
+            endcase
+        end
+    end
+
+endmodule

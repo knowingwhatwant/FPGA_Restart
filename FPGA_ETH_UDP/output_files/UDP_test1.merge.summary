@@ -1,0 +1,14 @@
+Partition Merge Status : Successful - Thu Nov 20 20:46:03 2025
+Quartus Prime Version : 18.0.0 Build 614 04/24/2018 SJ Standard Edition
+Revision Name : UDP_test1
+Top-level Entity Name : ip_2port_ram
+Family : Cyclone IV E
+Total logic elements : 857
+    Total combinational functions : 548
+    Dedicated logic registers : 645
+Total registers : 645
+Total pins : 2
+Total virtual pins : 0
+Total memory bits : 114,688
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

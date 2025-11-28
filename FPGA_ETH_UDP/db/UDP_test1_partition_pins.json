@@ -1,0 +1,133 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "enet0_tx_data[0]",
+					"strict" : false
+				},
+				{
+					"name" : "enet0_tx_data[1]",
+					"strict" : false
+				},
+				{
+					"name" : "enet0_tx_data[2]",
+					"strict" : false
+				},
+				{
+					"name" : "enet0_tx_data[3]",
+					"strict" : false
+				},
+				{
+					"name" : "enet0_tx_en",
+					"strict" : false
+				},
+				{
+					"name" : "enet0_tx_er",
+					"strict" : false
+				},
+				{
+					"name" : "enet0_mdc",
+					"strict" : false
+				},
+				{
+					"name" : "enet0_rst_n",
+					"strict" : false
+				},
+				{
+					"name" : "debug_rx_sop",
+					"strict" : false
+				},
+				{
+					"name" : "debug_rx_dv",
+					"strict" : false
+				},
+				{
+					"name" : "debug_rx_data[0]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_rx_data[1]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_rx_data[2]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_rx_data[3]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_rx_data[4]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_rx_data[5]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_rx_data[6]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_rx_data[7]",
+					"strict" : false
+				},
+				{
+					"name" : "debug_rx_eop",
+					"strict" : false
+				},
+				{
+					"name" : "debug_phy_ready",
+					"strict" : false
+				},
+				{
+					"name" : "enet0_mdio",
+					"strict" : false
+				},
+				{
+					"name" : "enet0_tx_clk",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				},
+				{
+					"name" : "rst_n",
+					"strict" : false
+				},
+				{
+					"name" : "enet0_rx_clk",
+					"strict" : false
+				},
+				{
+					"name" : "enet0_rx_dv",
+					"strict" : false
+				},
+				{
+					"name" : "enet0_rx_data[3]",
+					"strict" : false
+				},
+				{
+					"name" : "enet0_rx_data[2]",
+					"strict" : false
+				},
+				{
+					"name" : "enet0_rx_data[0]",
+					"strict" : false
+				},
+				{
+					"name" : "enet0_rx_data[1]",
+					"strict" : false
+				},
+				{
+					"name" : "enet0_rx_er",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
