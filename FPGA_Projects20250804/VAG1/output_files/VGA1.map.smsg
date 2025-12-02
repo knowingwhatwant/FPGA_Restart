@@ -1,0 +1,2 @@
+Info (10281): Verilog HDL Declaration information at vga_ctrl.v(3): object "H_ACTIVE" differs only in case from object "h_active" in the same scope File: F:/FPGA_Restart/FPGA_Projects20250804/VAG1/vga_ctrl.v Line: 3
+Info (10281): Verilog HDL Declaration information at vga_ctrl.v(9): object "V_ACTIVE" differs only in case from object "v_active" in the same scope File: F:/FPGA_Restart/FPGA_Projects20250804/VAG1/vga_ctrl.v Line: 9

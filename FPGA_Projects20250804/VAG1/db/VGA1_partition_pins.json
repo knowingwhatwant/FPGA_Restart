@@ -1,0 +1,61 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "vga_hs",
+					"strict" : false
+				},
+				{
+					"name" : "vga_vs",
+					"strict" : false
+				},
+				{
+					"name" : "vga_g[0]",
+					"strict" : false
+				},
+				{
+					"name" : "vga_b[0]",
+					"strict" : false
+				},
+				{
+					"name" : "vga_b[1]",
+					"strict" : false
+				},
+				{
+					"name" : "vga_b[2]",
+					"strict" : false
+				},
+				{
+					"name" : "vga_b[3]",
+					"strict" : false
+				},
+				{
+					"name" : "vga_b[4]",
+					"strict" : false
+				},
+				{
+					"name" : "vga_b[5]",
+					"strict" : false
+				},
+				{
+					"name" : "vga_b[6]",
+					"strict" : false
+				},
+				{
+					"name" : "vga_b[7]",
+					"strict" : false
+				},
+				{
+					"name" : "vga_blank_n",
+					"strict" : false
+				},
+				{
+					"name" : "sys_rst_n",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
