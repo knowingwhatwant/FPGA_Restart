@@ -1,0 +1,36 @@
+module iic_top(
+    input clk,
+    input rst_n,
+
+    output iic_scl,
+    inout  iic_sda
+);
+
+    wire       cmd_start;
+    wire [7:0] cmd_data;
+    wire       cmd_done;
+    wire       is_last;
+
+    iic_driver u_iic_driver (
+        .clk       (clk),
+        .rst_n     (rst_n),
+        .cmd_start (cmd_start),
+        .cmd_data  (cmd_data),
+        .cmd_done  (cmd_done),
+        .is_last   (is_last),
+        .iic_scl   (iic_scl),
+        .iic_sda   (iic_sda)
+
+    );
+
+    oled_ctrl u_oled_ctrl (
+        .clk        (clk),
+        .rst_n      (rst_n),
+        .iic_start  (cmd_start),
+        .iic_data   (cmd_data),
+        .iic_is_last(is_last),
+        .iic_done   (cmd_done),
+        .init_done  ()    
+    );
+
+endmodule

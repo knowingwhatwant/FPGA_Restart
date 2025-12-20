@@ -1,0 +1,107 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dF:/FPGA_Restart/FPGA_Projects20250804/IIC/simulation/modelsim
+viic_driver
+Z1 !s110 1764897892
+!i10b 1
+!s100 V4?ZhQS@]F0Elf8AAfe?:2
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IE0<e1DZ_IRg@no0?>1mU@2
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1764685553
+8F:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_driver.v
+FF:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_driver.v
+!i122 2
+L0 1 191
+Z4 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z5 !s108 1764897891.000000
+!s107 F:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_driver.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC|F:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_driver.v|
+!i113 1
+Z6 o-vlog01compat -work work
+Z7 !s92 -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC
+Z8 tCvgOpt 0
+viic_top
+Z9 !s110 1764897891
+!i10b 1
+!s100 ?kjL`Y6noIj[YSMYF@joQ0
+R2
+IGn6SlfGj>PZ_Zc8]i[b9=0
+R3
+R0
+w1764725223
+8F:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_top.v
+FF:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_top.v
+!i122 1
+L0 1 36
+R4
+r1
+!s85 0
+31
+R5
+!s107 F:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_top.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC|F:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_top.v|
+!i113 1
+R6
+R7
+R8
+voled_ctrl
+R9
+!i10b 1
+!s100 oFikOa07cTiJY0b8>]D201
+R2
+Ig3;f542hl]82afV7E1PKk0
+R3
+R0
+w1764685538
+8F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_ctrl.v
+FF:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_ctrl.v
+!i122 0
+L0 1 136
+R4
+r1
+!s85 0
+31
+R5
+!s107 F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_ctrl.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC|F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_ctrl.v|
+!i113 1
+R6
+R7
+R8
+vtb_iic_driver
+R1
+!i10b 1
+!s100 l<C8kWHKQ]JbZHVEZOPMa0
+R2
+I35H5SID0Cg[VnJCzOE6iH3
+R3
+R0
+w1764682073
+8F:/FPGA_Restart/FPGA_Projects20250804/IIC/tb_iic_driver.v
+FF:/FPGA_Restart/FPGA_Projects20250804/IIC/tb_iic_driver.v
+!i122 3
+L0 3 117
+R4
+r1
+!s85 0
+31
+!s108 1764897892.000000
+!s107 F:/FPGA_Restart/FPGA_Projects20250804/IIC/tb_iic_driver.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC|F:/FPGA_Restart/FPGA_Projects20250804/IIC/tb_iic_driver.v|
+!i113 1
+R6
+R7
+R8
