@@ -1,12 +1,12 @@
-Analysis & Synthesis Status : Successful - Wed Dec 03 10:26:00 2025
+Analysis & Synthesis Status : Successful - Sun Dec 21 19:09:39 2025
 Quartus Prime Version : 18.0.0 Build 614 04/24/2018 SJ Standard Edition
 Revision Name : IIC
-Top-level Entity Name : iic_top
+Top-level Entity Name : oled_top
 Family : Cyclone IV E
-Total logic elements : 113
-    Total combinational functions : 102
-    Dedicated logic registers : 52
-Total registers : 52
+Total logic elements : 261
+    Total combinational functions : 261
+    Dedicated logic registers : 127
+Total registers : 127
 Total pins : 4
 Total virtual pins : 0
 Total memory bits : 0

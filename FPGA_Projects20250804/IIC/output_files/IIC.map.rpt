@@ -1,5 +1,5 @@
 Analysis & Synthesis report for IIC
-Wed Dec 03 10:26:00 2025
+Sun Dec 21 19:09:39 2025
 Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Standard Edition
 
 
@@ -13,16 +13,19 @@ Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Standard Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |iic_top|oled_ctrl:u_oled_ctrl|state
-  9. State Machine - |iic_top|iic_driver:u_iic_driver|state
- 10. Registers Removed During Synthesis
- 11. General Register Statistics
- 12. Inverted Register Statistics
- 13. Multiplexer Restructuring Statistics (Restructuring Performed)
- 14. Port Connectivity Checks: "oled_ctrl:u_oled_ctrl"
- 15. Post-Synthesis Netlist Statistics for Top Partition
- 16. Elapsed Time Per Partition
- 17. Analysis & Synthesis Messages
+  8. State Machine - |oled_top|i2c_control:u_i2c_ctrl|state
+  9. State Machine - |oled_top|i2c_control:u_i2c_ctrl|i2c_bit_shift:i2c_bit_shift|state
+ 10. State Machine - |oled_top|oled_app_ctrl:u_oled_app|state
+ 11. Registers Removed During Synthesis
+ 12. General Register Statistics
+ 13. Inverted Register Statistics
+ 14. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 15. Parameter Settings for User Entity Instance: i2c_control:u_i2c_ctrl|i2c_bit_shift:i2c_bit_shift
+ 16. Port Connectivity Checks: "i2c_control:u_i2c_ctrl"
+ 17. Post-Synthesis Netlist Statistics for Top Partition
+ 18. Elapsed Time Per Partition
+ 19. Analysis & Synthesis Messages
+ 20. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -48,15 +51,15 @@ refer to the applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Dec 03 10:26:00 2025           ;
+; Analysis & Synthesis Status        ; Successful - Sun Dec 21 19:09:39 2025           ;
 ; Quartus Prime Version              ; 18.0.0 Build 614 04/24/2018 SJ Standard Edition ;
 ; Revision Name                      ; IIC                                             ;
-; Top-level Entity Name              ; iic_top                                         ;
+; Top-level Entity Name              ; oled_top                                        ;
 ; Family                             ; Cyclone IV E                                    ;
-; Total logic elements               ; 113                                             ;
-;     Total combinational functions  ; 102                                             ;
-;     Dedicated logic registers      ; 52                                              ;
-; Total registers                    ; 52                                              ;
+; Total logic elements               ; 261                                             ;
+;     Total combinational functions  ; 261                                             ;
+;     Dedicated logic registers      ; 127                                             ;
+; Total registers                    ; 127                                             ;
 ; Total pins                         ; 4                                               ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
@@ -71,7 +74,7 @@ refer to the applicable agreement for further details.
 ; Option                                                           ; Setting            ; Default Value      ;
 +------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                           ; EP4CE115F29C7      ;                    ;
-; Top-level entity name                                            ; iic_top            ; IIC                ;
+; Top-level entity name                                            ; oled_top           ; IIC                ;
 ; Family name                                                      ; Cyclone IV E       ; Cyclone V          ;
 ; Use smart compilation                                            ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
@@ -168,15 +171,16 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                         ;
-+----------------------------------+-----------------+------------------------+--------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                           ; Library ;
-+----------------------------------+-----------------+------------------------+--------------------------------------------------------+---------+
-; oled_ctrl.v                      ; yes             ; User Verilog HDL File  ; F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_ctrl.v  ;         ;
-; iic_top.v                        ; yes             ; User Verilog HDL File  ; F:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_top.v    ;         ;
-; iic_driver.v                     ; yes             ; User Verilog HDL File  ; F:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_driver.v ;         ;
-+----------------------------------+-----------------+------------------------+--------------------------------------------------------+---------+
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                            ;
++----------------------------------+-----------------+------------------------+-----------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                              ; Library ;
++----------------------------------+-----------------+------------------------+-----------------------------------------------------------+---------+
+; oled_top.v                       ; yes             ; User Verilog HDL File  ; F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_top.v      ;         ;
+; oled_app_ctrl.v                  ; yes             ; User Verilog HDL File  ; F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_app_ctrl.v ;         ;
+; i2c_control.v                    ; yes             ; User Verilog HDL File  ; F:/FPGA_Restart/FPGA_Projects20250804/IIC/i2c_control.v   ;         ;
+; i2c_bit_shift.v                  ; yes             ; User Verilog HDL File  ; F:/FPGA_Restart/FPGA_Projects20250804/IIC/i2c_bit_shift.v ;         ;
++----------------------------------+-----------------+------------------------+-----------------------------------------------------------+---------+
 
 
 +---------------------------------------------------------+
@@ -184,20 +188,20 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 113       ;
+; Estimated Total logic elements              ; 261       ;
 ;                                             ;           ;
-; Total combinational functions               ; 102       ;
+; Total combinational functions               ; 261       ;
 ; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 55        ;
-;     -- 3 input functions                    ; 23        ;
-;     -- <=2 input functions                  ; 24        ;
+;     -- 4 input functions                    ; 128       ;
+;     -- 3 input functions                    ; 36        ;
+;     -- <=2 input functions                  ; 97        ;
 ;                                             ;           ;
 ; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 92        ;
-;     -- arithmetic mode                      ; 10        ;
+;     -- normal mode                          ; 191       ;
+;     -- arithmetic mode                      ; 70        ;
 ;                                             ;           ;
-; Total registers                             ; 52        ;
-;     -- Dedicated logic registers            ; 52        ;
+; Total registers                             ; 127       ;
+;     -- Dedicated logic registers            ; 127       ;
 ;     -- I/O registers                        ; 0         ;
 ;                                             ;           ;
 ; I/O pins                                    ; 4         ;
@@ -205,68 +209,87 @@ refer to the applicable agreement for further details.
 ; Embedded Multiplier 9-bit elements          ; 0         ;
 ;                                             ;           ;
 ; Maximum fan-out node                        ; clk~input ;
-; Maximum fan-out                             ; 52        ;
-; Total fan-out                               ; 529       ;
-; Average fan-out                             ; 3.25      ;
+; Maximum fan-out                             ; 127       ;
+; Total fan-out                               ; 1326      ;
+; Average fan-out                             ; 3.34      ;
 +---------------------------------------------+-----------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                     ;
-+------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------+-------------+--------------+
-; Compilation Hierarchy Node   ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name              ; Entity Name ; Library Name ;
-+------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------+-------------+--------------+
-; |iic_top                     ; 102 (0)             ; 52 (0)                    ; 0           ; 0            ; 0       ; 0         ; 4    ; 0            ; |iic_top                         ; iic_top     ; work         ;
-;    |iic_driver:u_iic_driver| ; 60 (60)             ; 31 (31)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |iic_top|iic_driver:u_iic_driver ; iic_driver  ; work         ;
-;    |oled_ctrl:u_oled_ctrl|   ; 42 (42)             ; 21 (21)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |iic_top|oled_ctrl:u_oled_ctrl   ; oled_ctrl   ; work         ;
-+------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------+-------------+--------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                          ;
++-------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------+---------------+--------------+
+; Compilation Hierarchy Node          ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                          ; Entity Name   ; Library Name ;
++-------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------+---------------+--------------+
+; |oled_top                           ; 261 (0)             ; 127 (0)                   ; 0           ; 0            ; 0       ; 0         ; 4    ; 0            ; |oled_top                                                    ; oled_top      ; work         ;
+;    |i2c_control:u_i2c_ctrl|         ; 147 (46)            ; 61 (24)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |oled_top|i2c_control:u_i2c_ctrl                             ; i2c_control   ; work         ;
+;       |i2c_bit_shift:i2c_bit_shift| ; 101 (101)           ; 37 (37)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |oled_top|i2c_control:u_i2c_ctrl|i2c_bit_shift:i2c_bit_shift ; i2c_bit_shift ; work         ;
+;    |oled_app_ctrl:u_oled_app|       ; 114 (114)           ; 66 (66)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |oled_top|oled_app_ctrl:u_oled_app                           ; oled_app_ctrl ; work         ;
++-------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------+---------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
 Encoding Type:  One-Hot
-+------------------------------------------------------------------------------------------------------------------+
-; State Machine - |iic_top|oled_ctrl:u_oled_ctrl|state                                                             ;
-+-----------------+------------+-----------------+----------------+-----------------+-----------------+------------+
-; Name            ; state.DONE ; state.CHECK_NUM ; state.SEND_CMD ; state.SEND_CTRL ; state.SEND_ADDR ; state.IDLE ;
-+-----------------+------------+-----------------+----------------+-----------------+-----------------+------------+
-; state.IDLE      ; 0          ; 0               ; 0              ; 0               ; 0               ; 0          ;
-; state.SEND_ADDR ; 0          ; 0               ; 0              ; 0               ; 1               ; 1          ;
-; state.SEND_CTRL ; 0          ; 0               ; 0              ; 1               ; 0               ; 1          ;
-; state.SEND_CMD  ; 0          ; 0               ; 1              ; 0               ; 0               ; 1          ;
-; state.CHECK_NUM ; 0          ; 1               ; 0              ; 0               ; 0               ; 1          ;
-; state.DONE      ; 1          ; 0               ; 0              ; 0               ; 0               ; 1          ;
-+-----------------+------------+-----------------+----------------+-----------------+-----------------+------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |oled_top|i2c_control:u_i2c_ctrl|state                                                                                          ;
++--------------------+-------------------+--------------------+--------------+-------------------+--------------------+--------------+------------+
+; Name               ; state.RD_REG_DONE ; state.WAIT_RD_DONE ; state.RD_REG ; state.WR_REG_DONE ; state.WAIT_WR_DONE ; state.WR_REG ; state.IDLE ;
++--------------------+-------------------+--------------------+--------------+-------------------+--------------------+--------------+------------+
+; state.IDLE         ; 0                 ; 0                  ; 0            ; 0                 ; 0                  ; 0            ; 0          ;
+; state.WR_REG       ; 0                 ; 0                  ; 0            ; 0                 ; 0                  ; 1            ; 1          ;
+; state.WAIT_WR_DONE ; 0                 ; 0                  ; 0            ; 0                 ; 1                  ; 0            ; 1          ;
+; state.WR_REG_DONE  ; 0                 ; 0                  ; 0            ; 1                 ; 0                  ; 0            ; 1          ;
+; state.RD_REG       ; 0                 ; 0                  ; 1            ; 0                 ; 0                  ; 0            ; 1          ;
+; state.WAIT_RD_DONE ; 0                 ; 1                  ; 0            ; 0                 ; 0                  ; 0            ; 1          ;
+; state.RD_REG_DONE  ; 1                 ; 0                  ; 0            ; 0                 ; 0                  ; 0            ; 1          ;
++--------------------+-------------------+--------------------+--------------+-------------------+--------------------+--------------+------------+
 
 
 Encoding Type:  One-Hot
-+--------------------------------------------------------------------------------------------------------------+
-; State Machine - |iic_top|iic_driver:u_iic_driver|state                                                       ;
-+-----------------+-----------------+------------+----------------+-----------------+-------------+------------+
-; Name            ; state.WAIT_NEXT ; state.STOP ; state.READ_ACK ; state.SEND_BYTE ; state.START ; state.IDLE ;
-+-----------------+-----------------+------------+----------------+-----------------+-------------+------------+
-; state.IDLE      ; 0               ; 0          ; 0              ; 0               ; 0           ; 0          ;
-; state.START     ; 0               ; 0          ; 0              ; 0               ; 1           ; 1          ;
-; state.SEND_BYTE ; 0               ; 0          ; 0              ; 1               ; 0           ; 1          ;
-; state.READ_ACK  ; 0               ; 0          ; 1              ; 0               ; 0           ; 1          ;
-; state.STOP      ; 0               ; 1          ; 0              ; 0               ; 0           ; 1          ;
-; state.WAIT_NEXT ; 1               ; 0          ; 0              ; 0               ; 0           ; 1          ;
-+-----------------+-----------------+------------+----------------+-----------------+-------------+------------+
++--------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |oled_top|i2c_control:u_i2c_ctrl|i2c_bit_shift:i2c_bit_shift|state                                             ;
++-----------------+---------------+---------------+-----------------+---------------+---------------+---------------+------------+
+; Name            ; state.GEN_STO ; state.GEN_ACK ; state.CHECK_ACK ; state.RD_DATA ; state.WR_DATA ; state.GEN_STA ; state.IDLE ;
++-----------------+---------------+---------------+-----------------+---------------+---------------+---------------+------------+
+; state.IDLE      ; 0             ; 0             ; 0               ; 0             ; 0             ; 0             ; 0          ;
+; state.GEN_STA   ; 0             ; 0             ; 0               ; 0             ; 0             ; 1             ; 1          ;
+; state.WR_DATA   ; 0             ; 0             ; 0               ; 0             ; 1             ; 0             ; 1          ;
+; state.RD_DATA   ; 0             ; 0             ; 0               ; 1             ; 0             ; 0             ; 1          ;
+; state.CHECK_ACK ; 0             ; 0             ; 1               ; 0             ; 0             ; 0             ; 1          ;
+; state.GEN_ACK   ; 0             ; 1             ; 0               ; 0             ; 0             ; 0             ; 1          ;
+; state.GEN_STO   ; 1             ; 0             ; 0               ; 0             ; 0             ; 0             ; 1          ;
++-----------------+---------------+---------------+-----------------+---------------+---------------+---------------+------------+
 
 
-+------------------------------------------------------------+
-; Registers Removed During Synthesis                         ;
-+---------------------------------------+--------------------+
-; Register name                         ; Reason for Removal ;
-+---------------------------------------+--------------------+
-; oled_ctrl:u_oled_ctrl|state~10        ; Lost fanout        ;
-; oled_ctrl:u_oled_ctrl|state~11        ; Lost fanout        ;
-; oled_ctrl:u_oled_ctrl|state~12        ; Lost fanout        ;
-; oled_ctrl:u_oled_ctrl|state~13        ; Lost fanout        ;
-; iic_driver:u_iic_driver|state~9       ; Lost fanout        ;
-; iic_driver:u_iic_driver|state~10      ; Lost fanout        ;
-; iic_driver:u_iic_driver|state~11      ; Lost fanout        ;
-; Total Number of Removed Registers = 7 ;                    ;
-+---------------------------------------+--------------------+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------+
+; State Machine - |oled_top|oled_app_ctrl:u_oled_app|state                               ;
++-----------------+-----------------+-------------+------------+------------+------------+
+; Name            ; state.TEST_DATA ; state.CLEAR ; state.INIT ; state.IDLE ; state.DONE ;
++-----------------+-----------------+-------------+------------+------------+------------+
+; state.IDLE      ; 0               ; 0           ; 0          ; 0          ; 0          ;
+; state.INIT      ; 0               ; 0           ; 1          ; 1          ; 0          ;
+; state.CLEAR     ; 0               ; 1           ; 0          ; 1          ; 0          ;
+; state.TEST_DATA ; 1               ; 0           ; 0          ; 1          ; 0          ;
+; state.DONE      ; 0               ; 0           ; 0          ; 1          ; 1          ;
++-----------------+-----------------+-------------+------------+------------+------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                         ;
++-------------------------------------------------------------+----------------------------------------------+
+; Register name                                               ; Reason for Removal                           ;
++-------------------------------------------------------------+----------------------------------------------+
+; i2c_control:u_i2c_ctrl|cnt[4..7]                            ; Merged with i2c_control:u_i2c_ctrl|cnt[3]    ;
+; i2c_control:u_i2c_ctrl|Cmd[5]                               ; Merged with i2c_control:u_i2c_ctrl|Cmd[2]    ;
+; oled_app_ctrl:u_oled_app|addr[1..13,15]                     ; Merged with oled_app_ctrl:u_oled_app|addr[0] ;
+; oled_app_ctrl:u_oled_app|addr[0]                            ; Stuck at GND due to stuck port data_in       ;
+; i2c_control:u_i2c_ctrl|Cmd[4]                               ; Stuck at GND due to stuck port data_in       ;
+; i2c_control:u_i2c_ctrl|i2c_bit_shift:i2c_bit_shift|state~18 ; Lost fanout                                  ;
+; oled_app_ctrl:u_oled_app|state~9                            ; Lost fanout                                  ;
+; oled_app_ctrl:u_oled_app|state~10                           ; Lost fanout                                  ;
+; i2c_control:u_i2c_ctrl|cnt[3]                               ; Stuck at GND due to stuck port data_in       ;
+; Total Number of Removed Registers = 25                      ;                                              ;
++-------------------------------------------------------------+----------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -274,48 +297,66 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 52    ;
-; Number of registers using Synchronous Clear  ; 0     ;
-; Number of registers using Synchronous Load   ; 4     ;
-; Number of registers using Asynchronous Clear ; 44    ;
+; Total registers                              ; 127   ;
+; Number of registers using Synchronous Clear  ; 63    ;
+; Number of registers using Synchronous Load   ; 1     ;
+; Number of registers using Asynchronous Clear ; 113   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 32    ;
+; Number of registers using Clock Enable       ; 79    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+--------------------------------------------------+
-; Inverted Register Statistics                     ;
-+----------------------------------------+---------+
-; Inverted Register                      ; Fan out ;
-+----------------------------------------+---------+
-; iic_driver:u_iic_driver|iic_scl        ; 2       ;
-; iic_driver:u_iic_driver|sda_out        ; 4       ;
-; iic_driver:u_iic_driver|sda_link       ; 2       ;
-; Total number of inverted registers = 3 ;         ;
-+----------------------------------------+---------+
++-------------------------------------------------------------------------+
+; Inverted Register Statistics                                            ;
++---------------------------------------------------------------+---------+
+; Inverted Register                                             ; Fan out ;
++---------------------------------------------------------------+---------+
+; i2c_control:u_i2c_ctrl|i2c_bit_shift:i2c_bit_shift|i2c_sdat_o ; 3       ;
+; Total number of inverted registers = 1                        ;         ;
++---------------------------------------------------------------+---------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                      ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |iic_top|oled_ctrl:u_oled_ctrl|iic_data[4]      ;
-; 7:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; Yes        ; |iic_top|iic_driver:u_iic_driver|bit_cnt[2]     ;
-; 7:1                ; 2 bits    ; 8 LEs         ; 2 LEs                ; 6 LEs                  ; Yes        ; |iic_top|iic_driver:u_iic_driver|quarter_cnt[1] ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; No         ; |iic_top|oled_ctrl:u_oled_ctrl|Selector1        ;
-; 11:1               ; 2 bits    ; 14 LEs        ; 4 LEs                ; 10 LEs                 ; No         ; |iic_top|iic_driver:u_iic_driver|state          ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                              ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------+
+; 3:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |oled_top|i2c_control:u_i2c_ctrl|i2c_bit_shift:i2c_bit_shift|div_cnt[6] ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |oled_top|oled_app_ctrl:u_oled_app|addr[0]                              ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |oled_top|oled_app_ctrl:u_oled_app|wrdata[3]                            ;
+; 19:1               ; 2 bits    ; 24 LEs        ; 4 LEs                ; 20 LEs                 ; Yes        ; |oled_top|i2c_control:u_i2c_ctrl|Cmd[2]                                 ;
+; 9:1                ; 6 bits    ; 36 LEs        ; 12 LEs               ; 24 LEs                 ; Yes        ; |oled_top|i2c_control:u_i2c_ctrl|Tx_DATA[7]                             ;
+; 7:1                ; 5 bits    ; 20 LEs        ; 5 LEs                ; 15 LEs                 ; Yes        ; |oled_top|i2c_control:u_i2c_ctrl|i2c_bit_shift:i2c_bit_shift|cnt[3]     ;
+; 9:1                ; 5 bits    ; 30 LEs        ; 20 LEs               ; 10 LEs                 ; No         ; |oled_top|oled_app_ctrl:u_oled_app|Selector2                            ;
+; 11:1               ; 2 bits    ; 14 LEs        ; 4 LEs                ; 10 LEs                 ; No         ; |oled_top|i2c_control:u_i2c_ctrl|i2c_bit_shift:i2c_bit_shift|Selector12 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------+
 
 
-+--------------------------------------------------------+
-; Port Connectivity Checks: "oled_ctrl:u_oled_ctrl"      ;
-+-----------+--------+----------+------------------------+
-; Port      ; Type   ; Severity ; Details                ;
-+-----------+--------+----------+------------------------+
-; init_done ; Output ; Info     ; Explicitly unconnected ;
-+-----------+--------+----------+------------------------+
++-------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: i2c_control:u_i2c_ctrl|i2c_bit_shift:i2c_bit_shift ;
++----------------+----------+---------------------------------------------------------------------+
+; Parameter Name ; Value    ; Type                                                                ;
++----------------+----------+---------------------------------------------------------------------+
+; SYS_CLOCK      ; 50000000 ; Signed Integer                                                      ;
+; SCL_CLOCK      ; 400000   ; Signed Integer                                                      ;
++----------------+----------+---------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "i2c_control:u_i2c_ctrl"                                                                                             ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                                                  ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
+; rdreg_req       ; Input  ; Info     ; Stuck at GND                                                                                             ;
+; addr_mode       ; Input  ; Info     ; Stuck at GND                                                                                             ;
+; device_id[6..3] ; Input  ; Info     ; Stuck at VCC                                                                                             ;
+; device_id[2..0] ; Input  ; Info     ; Stuck at GND                                                                                             ;
+; device_id[7]    ; Input  ; Info     ; Stuck at GND                                                                                             ;
+; ack             ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                      ;
+; rddata          ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+----------------------------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -324,24 +365,26 @@ Encoding Type:  One-Hot
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 4                           ;
-; cycloneiii_ff         ; 52                          ;
-;     CLR               ; 20                          ;
-;     ENA               ; 4                           ;
-;     ENA CLR           ; 24                          ;
-;     ENA SLD           ; 4                           ;
+; cycloneiii_ff         ; 127                         ;
+;     CLR               ; 27                          ;
+;     CLR SCLR          ; 20                          ;
+;     CLR SLD           ; 1                           ;
+;     ENA               ; 14                          ;
+;     ENA CLR           ; 22                          ;
+;     ENA CLR SCLR      ; 43                          ;
 ; cycloneiii_io_obuf    ; 1                           ;
-; cycloneiii_lcell_comb ; 103                         ;
-;     arith             ; 10                          ;
-;         2 data inputs ; 9                           ;
-;         3 data inputs ; 1                           ;
-;     normal            ; 93                          ;
-;         1 data inputs ; 4                           ;
-;         2 data inputs ; 12                          ;
-;         3 data inputs ; 22                          ;
-;         4 data inputs ; 55                          ;
+; cycloneiii_lcell_comb ; 261                         ;
+;     arith             ; 70                          ;
+;         2 data inputs ; 68                          ;
+;         3 data inputs ; 2                           ;
+;     normal            ; 191                         ;
+;         1 data inputs ; 6                           ;
+;         2 data inputs ; 23                          ;
+;         3 data inputs ; 34                          ;
+;         4 data inputs ; 128                         ;
 ;                       ;                             ;
-; Max LUT depth         ; 5.00                        ;
-; Average LUT depth     ; 2.83                        ;
+; Max LUT depth         ; 7.00                        ;
+; Average LUT depth     ; 3.41                        ;
 +-----------------------+-----------------------------+
 
 
@@ -360,10 +403,28 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.0.0 Build 614 04/24/2018 SJ Standard Edition
-    Info: Processing started: Wed Dec 03 10:25:54 2025
+    Info: Processing started: Sun Dec 21 19:09:33 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off IIC -c IIC
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file oled_top.v
+    Info (12023): Found entity 1: oled_top File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_top.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file oled_app_ctrl.v
+    Info (12023): Found entity 1: oled_app_ctrl File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_app_ctrl.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file m24lc04b.v
+    Info (12023): Found entity 1: M24LC04B File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/M24LC04B.v Line: 85
+Info (12021): Found 1 design units, including 1 entities, in source file i2c_bit_shift_tb.v
+    Info (12023): Found entity 1: i2c_bit_shift_tb File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/i2c_bit_shift_tb.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file 24lc64.v
+    Info (12023): Found entity 1: M24LC64 File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/24LC64.v Line: 87
+Info (12021): Found 1 design units, including 1 entities, in source file tb_i2c_bit_shift.v
+    Info (12023): Found entity 1: tb_i2c_bit_shift File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/tb_i2c_bit_shift.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file i2c_control_tb.v
+    Info (12023): Found entity 1: i2c_control_tb File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/i2c_control_tb.v Line: 23
+Info (12021): Found 1 design units, including 1 entities, in source file i2c_control.v
+    Info (12023): Found entity 1: i2c_control File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/i2c_control.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file i2c_bit_shift.v
+    Info (12023): Found entity 1: i2c_bit_shift File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/i2c_bit_shift.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file oled_ctrl.v
     Info (12023): Found entity 1: oled_ctrl File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_ctrl.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file iic_top.v
@@ -372,34 +433,41 @@ Info (12021): Found 1 design units, including 1 entities, in source file iic_dri
     Info (12023): Found entity 1: iic_driver File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_driver.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file tb_iic_driver.v
     Info (12023): Found entity 1: tb_iic_driver File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/tb_iic_driver.v Line: 3
-Info (12127): Elaborating entity "iic_top" for the top level hierarchy
-Info (12128): Elaborating entity "iic_driver" for hierarchy "iic_driver:u_iic_driver" File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_top.v Line: 24
-Warning (10230): Verilog HDL assignment warning at iic_driver.v(64): truncated value with size 32 to match size of target (8) File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_driver.v Line: 64
-Warning (10230): Verilog HDL assignment warning at iic_driver.v(83): truncated value with size 32 to match size of target (2) File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_driver.v Line: 83
-Warning (10230): Verilog HDL assignment warning at iic_driver.v(114): truncated value with size 32 to match size of target (3) File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_driver.v Line: 114
-Info (12128): Elaborating entity "oled_ctrl" for hierarchy "oled_ctrl:u_oled_ctrl" File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_top.v Line: 34
-Warning (10230): Verilog HDL assignment warning at oled_ctrl.v(122): truncated value with size 32 to match size of target (5) File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_ctrl.v Line: 122
-Warning (10030): Net "oled_init_data.data_a" at oled_ctrl.v(19) has no driver or initial value, using a default initial value '0' File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_ctrl.v Line: 19
-Warning (10030): Net "oled_init_data.waddr_a" at oled_ctrl.v(19) has no driver or initial value, using a default initial value '0' File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_ctrl.v Line: 19
-Warning (10030): Net "oled_init_data.we_a" at oled_ctrl.v(19) has no driver or initial value, using a default initial value '0' File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_ctrl.v Line: 19
+Info (12127): Elaborating entity "oled_top" for the top level hierarchy
+Info (12128): Elaborating entity "oled_app_ctrl" for hierarchy "oled_app_ctrl:u_oled_app" File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_top.v Line: 24
+Warning (10230): Verilog HDL assignment warning at oled_app_ctrl.v(72): truncated value with size 32 to match size of target (6) File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_app_ctrl.v Line: 72
+Warning (10230): Verilog HDL assignment warning at oled_app_ctrl.v(89): truncated value with size 32 to match size of target (13) File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_app_ctrl.v Line: 89
+Warning (10030): Net "init_seq.data_a" at oled_app_ctrl.v(23) has no driver or initial value, using a default initial value '0' File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_app_ctrl.v Line: 23
+Warning (10030): Net "init_seq.waddr_a" at oled_app_ctrl.v(23) has no driver or initial value, using a default initial value '0' File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_app_ctrl.v Line: 23
+Warning (10030): Net "init_seq.we_a" at oled_app_ctrl.v(23) has no driver or initial value, using a default initial value '0' File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_app_ctrl.v Line: 23
+Info (12128): Elaborating entity "i2c_control" for hierarchy "i2c_control:u_i2c_ctrl" File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_top.v Line: 40
+Info (12128): Elaborating entity "i2c_bit_shift" for hierarchy "i2c_control:u_i2c_ctrl|i2c_bit_shift:i2c_bit_shift" File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/i2c_control.v Line: 67
 Info (276014): Found 1 instances of uninferred RAM logic
-    Info (276004): RAM logic "oled_ctrl:u_oled_ctrl|oled_init_data" is uninferred due to inappropriate RAM size File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_ctrl.v Line: 19
-Critical Warning (127005): Memory depth (32) in the design file differs from memory depth (21) in the Memory Initialization File "F:/FPGA_Restart/FPGA_Projects20250804/IIC/db/IIC.ram0_oled_ctrl_85b83103.hdl.mif" -- setting initial value for remaining addresses to 0
-Info (13000): Registers with preset signals will power-up high File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_driver.v Line: 10
+    Info (276004): RAM logic "oled_app_ctrl:u_oled_app|init_seq" is uninferred due to inappropriate RAM size File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_app_ctrl.v Line: 23
+Critical Warning (127005): Memory depth (32) in the design file differs from memory depth (28) in the Memory Initialization File "F:/FPGA_Restart/FPGA_Projects20250804/IIC/db/IIC.ram0_oled_app_ctrl_d313938a.hdl.mif" -- setting initial value for remaining addresses to 0
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (13000): Registers with preset signals will power-up high File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/i2c_bit_shift.v Line: 26
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 7 registers lost all their fanouts during netlist optimizations.
+Info (17049): 3 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file F:/FPGA_Restart/FPGA_Projects20250804/IIC/output_files/IIC.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 118 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 267 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 1 output pins
     Info (21060): Implemented 1 bidirectional pins
-    Info (21061): Implemented 114 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 9 warnings
-    Info: Peak virtual memory: 4847 megabytes
-    Info: Processing ended: Wed Dec 03 10:26:00 2025
+    Info (21061): Implemented 263 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 8 warnings
+    Info: Peak virtual memory: 4852 megabytes
+    Info: Processing ended: Sun Dec 21 19:09:39 2025
     Info: Elapsed time: 00:00:06
-    Info: Total CPU time (on all processors): 00:00:11
+    Info: Total CPU time (on all processors): 00:00:13
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in F:/FPGA_Restart/FPGA_Projects20250804/IIC/output_files/IIC.map.smsg.
 
 

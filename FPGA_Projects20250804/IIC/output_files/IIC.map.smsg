@@ -1,0 +1,1 @@
+Info (10281): Verilog HDL Declaration information at i2c_control.v(32): object "ack" differs only in case from object "ACK" in the same scope File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/i2c_control.v Line: 32

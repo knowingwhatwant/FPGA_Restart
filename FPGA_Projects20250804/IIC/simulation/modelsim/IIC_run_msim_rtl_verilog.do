@@ -33,13 +33,11 @@ if {[file exists rtl_work]} {
 vlib rtl_work
 vmap work rtl_work
 
-vlog -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC {F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_ctrl.v}
-vlog -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC {F:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_top.v}
-vlog -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC {F:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_driver.v}
+vlog -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC {F:/FPGA_Restart/FPGA_Projects20250804/IIC/i2c_bit_shift.v}
 
-vlog -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC {F:/FPGA_Restart/FPGA_Projects20250804/IIC/tb_iic_driver.v}
+vlog -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC {F:/FPGA_Restart/FPGA_Projects20250804/IIC/tb_i2c_bit_shift.v}
 
-vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs="+acc"  tb_iic_driver
+vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs="+acc"  tb_i2c_bit_shift
 
 add wave *
 view structure

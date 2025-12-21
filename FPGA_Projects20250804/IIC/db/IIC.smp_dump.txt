@@ -1,18 +1,28 @@
 
-State Machine - |iic_top|oled_ctrl:u_oled_ctrl|state
-Name state.DONE state.CHECK_NUM state.SEND_CMD state.SEND_CTRL state.SEND_ADDR state.IDLE 
-state.IDLE 0 0 0 0 0 0 
-state.SEND_ADDR 0 0 0 0 1 1 
-state.SEND_CTRL 0 0 0 1 0 1 
-state.SEND_CMD 0 0 1 0 0 1 
-state.CHECK_NUM 0 1 0 0 0 1 
-state.DONE 1 0 0 0 0 1 
+State Machine - |oled_top|i2c_control:u_i2c_ctrl|state
+Name state.RD_REG_DONE state.WAIT_RD_DONE state.RD_REG state.WR_REG_DONE state.WAIT_WR_DONE state.WR_REG state.IDLE 
+state.IDLE 0 0 0 0 0 0 0 
+state.WR_REG 0 0 0 0 0 1 1 
+state.WAIT_WR_DONE 0 0 0 0 1 0 1 
+state.WR_REG_DONE 0 0 0 1 0 0 1 
+state.RD_REG 0 0 1 0 0 0 1 
+state.WAIT_RD_DONE 0 1 0 0 0 0 1 
+state.RD_REG_DONE 1 0 0 0 0 0 1 
 
-State Machine - |iic_top|iic_driver:u_iic_driver|state
-Name state.WAIT_NEXT state.STOP state.READ_ACK state.SEND_BYTE state.START state.IDLE 
-state.IDLE 0 0 0 0 0 0 
-state.START 0 0 0 0 1 1 
-state.SEND_BYTE 0 0 0 1 0 1 
-state.READ_ACK 0 0 1 0 0 1 
-state.STOP 0 1 0 0 0 1 
-state.WAIT_NEXT 1 0 0 0 0 1 
+State Machine - |oled_top|i2c_control:u_i2c_ctrl|i2c_bit_shift:i2c_bit_shift|state
+Name state.GEN_STO state.GEN_ACK state.CHECK_ACK state.RD_DATA state.WR_DATA state.GEN_STA state.IDLE 
+state.IDLE 0 0 0 0 0 0 0 
+state.GEN_STA 0 0 0 0 0 1 1 
+state.WR_DATA 0 0 0 0 1 0 1 
+state.RD_DATA 0 0 0 1 0 0 1 
+state.CHECK_ACK 0 0 1 0 0 0 1 
+state.GEN_ACK 0 1 0 0 0 0 1 
+state.GEN_STO 1 0 0 0 0 0 1 
+
+State Machine - |oled_top|oled_app_ctrl:u_oled_app|state
+Name state.TEST_DATA state.CLEAR state.INIT state.IDLE state.DONE 
+state.IDLE 0 0 0 0 0 
+state.INIT 0 0 1 1 0 
+state.CLEAR 0 1 0 1 0 
+state.TEST_DATA 1 0 0 1 0 
+state.DONE 0 0 0 1 1 

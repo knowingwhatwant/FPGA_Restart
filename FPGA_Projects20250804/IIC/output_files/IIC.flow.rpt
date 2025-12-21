@@ -1,5 +1,5 @@
 Flow report for IIC
-Wed Dec 03 10:26:14 2025
+Sun Dec 21 19:09:53 2025
 Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Standard Edition
 
 
@@ -40,17 +40,17 @@ refer to the applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Wed Dec 03 10:26:14 2025           ;
+; Flow Status                        ; Successful - Sun Dec 21 19:09:53 2025           ;
 ; Quartus Prime Version              ; 18.0.0 Build 614 04/24/2018 SJ Standard Edition ;
 ; Revision Name                      ; IIC                                             ;
-; Top-level Entity Name              ; iic_top                                         ;
+; Top-level Entity Name              ; oled_top                                        ;
 ; Family                             ; Cyclone IV E                                    ;
 ; Device                             ; EP4CE115F29C7                                   ;
 ; Timing Models                      ; Final                                           ;
-; Total logic elements               ; 109 / 114,480 ( < 1 % )                         ;
-;     Total combinational functions  ; 103 / 114,480 ( < 1 % )                         ;
-;     Dedicated logic registers      ; 52 / 114,480 ( < 1 % )                          ;
-; Total registers                    ; 52                                              ;
+; Total logic elements               ; 262 / 114,480 ( < 1 % )                         ;
+;     Total combinational functions  ; 261 / 114,480 ( < 1 % )                         ;
+;     Dedicated logic registers      ; 127 / 114,480 ( < 1 % )                         ;
+; Total registers                    ; 127                                             ;
 ; Total pins                         ; 4 / 529 ( < 1 % )                               ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0 / 3,981,312 ( 0 % )                           ;
@@ -64,38 +64,46 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 12/03/2025 10:25:54 ;
+; Start date & time ; 12/21/2025 19:09:33 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; IIC                 ;
 +-------------------+---------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                             ;
-+--------------------------------------+----------------------------------------+---------------+-------------+----------------+
-; Assignment Name                      ; Value                                  ; Default Value ; Entity Name ; Section Id     ;
-+--------------------------------------+----------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID                ; 9619526107940.176472875443428          ; --            ; --          ; --             ;
-; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_iic_driver  ;
-; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; tb_iic_driver                          ; --            ; --          ; eda_simulation ;
-; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                            ; --            ; --          ; eda_simulation ;
-; EDA_SIMULATION_TOOL                  ; ModelSim (Verilog)                     ; <None>        ; --          ; --             ;
-; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                        ; --            ; --          ; eda_simulation ;
-; EDA_TEST_BENCH_FILE                  ; tb_iic_driver.v                        ; --            ; --          ; tb_iic_driver  ;
-; EDA_TEST_BENCH_MODULE_NAME           ; tb_iic_driver                          ; --            ; --          ; tb_iic_driver  ;
-; EDA_TEST_BENCH_NAME                  ; tb_iic_driver                          ; --            ; --          ; eda_simulation ;
-; EDA_TIME_SCALE                       ; 1 ps                                   ; --            ; --          ; eda_simulation ;
-; MAX_CORE_JUNCTION_TEMP               ; 85                                     ; --            ; --          ; --             ;
-; MIN_CORE_JUNCTION_TEMP               ; 0                                      ; --            ; --          ; --             ;
-; NOMINAL_CORE_SUPPLY_VOLTAGE          ; 1.2V                                   ; --            ; --          ; --             ;
-; PARTITION_COLOR                      ; -- (Not supported for targeted family) ; --            ; iic_top     ; Top            ;
-; PARTITION_FITTER_PRESERVATION_LEVEL  ; -- (Not supported for targeted family) ; --            ; iic_top     ; Top            ;
-; PARTITION_NETLIST_TYPE               ; -- (Not supported for targeted family) ; --            ; iic_top     ; Top            ;
-; POWER_BOARD_THERMAL_MODEL            ; None (CONSERVATIVE)                    ; --            ; --          ; --             ;
-; POWER_PRESET_COOLING_SOLUTION        ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --            ; --          ; --             ;
-; PROJECT_OUTPUT_DIRECTORY             ; output_files                           ; --            ; --          ; --             ;
-; TOP_LEVEL_ENTITY                     ; iic_top                                ; IIC           ; --          ; --             ;
-+--------------------------------------+----------------------------------------+---------------+-------------+----------------+
++--------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                               ;
++--------------------------------------+----------------------------------------+---------------+-------------+------------------+
+; Assignment Name                      ; Value                                  ; Default Value ; Entity Name ; Section Id       ;
++--------------------------------------+----------------------------------------+---------------+-------------+------------------+
+; COMPILER_SIGNATURE_ID                ; 9619526107940.176631537340108          ; --            ; --          ; --               ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_iic_driver    ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; tb_i2c_bit_shift ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; i2c_bit_shift_tb ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; tb_i2c_bit_shift                       ; --            ; --          ; eda_simulation   ;
+; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                            ; --            ; --          ; eda_simulation   ;
+; EDA_SIMULATION_TOOL                  ; ModelSim (Verilog)                     ; <None>        ; --          ; --               ;
+; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                        ; --            ; --          ; eda_simulation   ;
+; EDA_TEST_BENCH_FILE                  ; tb_iic_driver.v                        ; --            ; --          ; tb_iic_driver    ;
+; EDA_TEST_BENCH_FILE                  ; tb_i2c_bit_shift.v                     ; --            ; --          ; tb_i2c_bit_shift ;
+; EDA_TEST_BENCH_FILE                  ; i2c_bit_shift_tb.v                     ; --            ; --          ; i2c_bit_shift_tb ;
+; EDA_TEST_BENCH_MODULE_NAME           ; tb_iic_driver                          ; --            ; --          ; tb_iic_driver    ;
+; EDA_TEST_BENCH_MODULE_NAME           ; tb_i2c_bit_shift                       ; --            ; --          ; tb_i2c_bit_shift ;
+; EDA_TEST_BENCH_MODULE_NAME           ; i2c_bit_shift_tb                       ; --            ; --          ; i2c_bit_shift_tb ;
+; EDA_TEST_BENCH_NAME                  ; tb_iic_driver                          ; --            ; --          ; eda_simulation   ;
+; EDA_TEST_BENCH_NAME                  ; i2c_bit_shift_tb                       ; --            ; --          ; eda_simulation   ;
+; EDA_TEST_BENCH_NAME                  ; tb_i2c_bit_shift                       ; --            ; --          ; eda_simulation   ;
+; EDA_TIME_SCALE                       ; 1 ps                                   ; --            ; --          ; eda_simulation   ;
+; MAX_CORE_JUNCTION_TEMP               ; 85                                     ; --            ; --          ; --               ;
+; MIN_CORE_JUNCTION_TEMP               ; 0                                      ; --            ; --          ; --               ;
+; NOMINAL_CORE_SUPPLY_VOLTAGE          ; 1.2V                                   ; --            ; --          ; --               ;
+; PARTITION_COLOR                      ; -- (Not supported for targeted family) ; --            ; oled_top    ; Top              ;
+; PARTITION_FITTER_PRESERVATION_LEVEL  ; -- (Not supported for targeted family) ; --            ; oled_top    ; Top              ;
+; PARTITION_NETLIST_TYPE               ; -- (Not supported for targeted family) ; --            ; oled_top    ; Top              ;
+; POWER_BOARD_THERMAL_MODEL            ; None (CONSERVATIVE)                    ; --            ; --          ; --               ;
+; POWER_PRESET_COOLING_SOLUTION        ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --            ; --          ; --               ;
+; PROJECT_OUTPUT_DIRECTORY             ; output_files                           ; --            ; --          ; --               ;
+; TOP_LEVEL_ENTITY                     ; oled_top                               ; IIC           ; --          ; --               ;
++--------------------------------------+----------------------------------------+---------------+-------------+------------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------+
@@ -103,12 +111,12 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:06     ; 1.0                     ; 4847 MB             ; 00:00:11                           ;
-; Fitter               ; 00:00:08     ; 1.0                     ; 6740 MB             ; 00:00:18                           ;
-; Assembler            ; 00:00:01     ; 1.0                     ; 4686 MB             ; 00:00:02                           ;
-; Timing Analyzer      ; 00:00:01     ; 1.0                     ; 4996 MB             ; 00:00:01                           ;
-; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4655 MB             ; 00:00:01                           ;
-; Total                ; 00:00:17     ; --                      ; --                  ; 00:00:33                           ;
+; Analysis & Synthesis ; 00:00:06     ; 1.0                     ; 4852 MB             ; 00:00:12                           ;
+; Fitter               ; 00:00:07     ; 1.0                     ; 6740 MB             ; 00:00:19                           ;
+; Assembler            ; 00:00:02     ; 1.0                     ; 4686 MB             ; 00:00:02                           ;
+; Timing Analyzer      ; 00:00:01     ; 1.1                     ; 5002 MB             ; 00:00:01                           ;
+; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 4659 MB             ; 00:00:01                           ;
+; Total                ; 00:00:16     ; --                      ; --                  ; 00:00:35                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

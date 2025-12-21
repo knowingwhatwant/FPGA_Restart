@@ -13,7 +13,7 @@
 # Modifying modelsim.ini
 # vlog -vlog01compat -work altera_ver {d:/intelfpga/18.0/quartus/eda/sim_lib/altera_primitives.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 09:24:47 on Dec 05,2025
+# Start time: 18:21:04 on Dec 21,2025
 # vlog -reportprogress 300 -vlog01compat -work altera_ver d:/intelfpga/18.0/quartus/eda/sim_lib/altera_primitives.v 
 # -- Compiling module global
 # -- Compiling module carry
@@ -95,7 +95,7 @@
 # 	alt_iobuf_diff
 # 	alt_bidir_diff
 # 	alt_bidir_buf
-# End time: 09:24:47 on Dec 05,2025, Elapsed time: 0:00:00
+# End time: 18:21:04 on Dec 21,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vlib verilog_libs/lpm_ver
@@ -106,7 +106,7 @@
 # Modifying modelsim.ini
 # vlog -vlog01compat -work lpm_ver {d:/intelfpga/18.0/quartus/eda/sim_lib/220model.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 09:24:47 on Dec 05,2025
+# Start time: 18:21:04 on Dec 21,2025
 # vlog -reportprogress 300 -vlog01compat -work lpm_ver d:/intelfpga/18.0/quartus/eda/sim_lib/220model.v 
 # -- Compiling module LPM_MEMORY_INITIALIZATION
 # -- Compiling module LPM_HINT_EVALUATION
@@ -170,7 +170,7 @@
 # 	lpm_inpad
 # 	lpm_outpad
 # 	lpm_bipad
-# End time: 09:24:48 on Dec 05,2025, Elapsed time: 0:00:01
+# End time: 18:21:05 on Dec 21,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # 
 # vlib verilog_libs/sgate_ver
@@ -181,7 +181,7 @@
 # Modifying modelsim.ini
 # vlog -vlog01compat -work sgate_ver {d:/intelfpga/18.0/quartus/eda/sim_lib/sgate.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 09:24:48 on Dec 05,2025
+# Start time: 18:21:05 on Dec 21,2025
 # vlog -reportprogress 300 -vlog01compat -work sgate_ver d:/intelfpga/18.0/quartus/eda/sim_lib/sgate.v 
 # -- Compiling module oper_add
 # -- Compiling module oper_addsub
@@ -223,7 +223,7 @@
 # 	oper_decoder
 # 	oper_bus_mux
 # 	oper_latch
-# End time: 09:24:48 on Dec 05,2025, Elapsed time: 0:00:00
+# End time: 18:21:05 on Dec 21,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vlib verilog_libs/altera_mf_ver
@@ -234,7 +234,7 @@
 # Modifying modelsim.ini
 # vlog -vlog01compat -work altera_mf_ver {d:/intelfpga/18.0/quartus/eda/sim_lib/altera_mf.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 09:24:48 on Dec 05,2025
+# Start time: 18:21:05 on Dec 21,2025
 # vlog -reportprogress 300 -vlog01compat -work altera_mf_ver d:/intelfpga/18.0/quartus/eda/sim_lib/altera_mf.v 
 # -- Compiling module lcell
 # -- Compiling module ALTERA_MF_MEMORY_INITIALIZATION
@@ -364,7 +364,7 @@
 # 	alt_fault_injection
 # 	sld_virtual_jtag_basic
 # 	altsource_probe
-# End time: 09:24:49 on Dec 05,2025, Elapsed time: 0:00:01
+# End time: 18:21:05 on Dec 21,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vlib verilog_libs/altera_lnsim_ver
@@ -375,7 +375,7 @@
 # Modifying modelsim.ini
 # vlog -sv -work altera_lnsim_ver {d:/intelfpga/18.0/quartus/eda/sim_lib/altera_lnsim.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 09:24:50 on Dec 05,2025
+# Start time: 18:21:06 on Dec 21,2025
 # vlog -reportprogress 300 -sv -work altera_lnsim_ver d:/intelfpga/18.0/quartus/eda/sim_lib/altera_lnsim.sv 
 # -- Compiling package altera_lnsim_functions
 # -- Compiling package altera_generic_pll_functions
@@ -458,7 +458,7 @@
 # 	altera_iopll
 # 	fourteennm_altera_iopll
 # 	fourteennm_simple_iopll
-# End time: 09:24:50 on Dec 05,2025, Elapsed time: 0:00:00
+# End time: 18:21:06 on Dec 21,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vlib verilog_libs/cycloneive_ver
@@ -469,7 +469,7 @@
 # Modifying modelsim.ini
 # vlog -vlog01compat -work cycloneive_ver {d:/intelfpga/18.0/quartus/eda/sim_lib/cycloneive_atoms.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 09:24:51 on Dec 05,2025
+# Start time: 18:21:06 on Dec 21,2025
 # vlog -reportprogress 300 -vlog01compat -work cycloneive_ver d:/intelfpga/18.0/quartus/eda/sim_lib/cycloneive_atoms.v 
 # -- Compiling UDP CYCLONEIVE_PRIM_DFFE
 # -- Compiling UDP CYCLONEIVE_PRIM_DFFEAS
@@ -547,7 +547,7 @@
 # 	cycloneive_jtag
 # 	cycloneive_crcblock
 # 	cycloneive_oscillator
-# End time: 09:24:51 on Dec 05,2025, Elapsed time: 0:00:00
+# End time: 18:21:06 on Dec 21,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # if {[file exists rtl_work]} {
@@ -559,56 +559,33 @@
 # vmap work rtl_work 
 # Modifying modelsim.ini
 # 
-# vlog -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC {F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_ctrl.v}
+# vlog -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC {F:/FPGA_Restart/FPGA_Projects20250804/IIC/i2c_bit_shift.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 09:24:51 on Dec 05,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC" F:/FPGA_Restart/FPGA_Projects20250804/IIC/oled_ctrl.v 
-# -- Compiling module oled_ctrl
+# Start time: 18:21:06 on Dec 21,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC" F:/FPGA_Restart/FPGA_Projects20250804/IIC/i2c_bit_shift.v 
+# -- Compiling module i2c_bit_shift
 # 
 # Top level modules:
-# 	oled_ctrl
-# End time: 09:24:51 on Dec 05,2025, Elapsed time: 0:00:00
+# 	i2c_bit_shift
+# End time: 18:21:06 on Dec 21,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC {F:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_top.v}
+# 
+# vlog -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC {F:/FPGA_Restart/FPGA_Projects20250804/IIC/tb_i2c_bit_shift.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 09:24:51 on Dec 05,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC" F:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_top.v 
-# -- Compiling module iic_top
+# Start time: 18:21:06 on Dec 21,2025
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC" F:/FPGA_Restart/FPGA_Projects20250804/IIC/tb_i2c_bit_shift.v 
+# -- Compiling module tb_i2c_bit_shift
 # 
 # Top level modules:
-# 	iic_top
-# End time: 09:24:51 on Dec 05,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC {F:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_driver.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 09:24:51 on Dec 05,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC" F:/FPGA_Restart/FPGA_Projects20250804/IIC/iic_driver.v 
-# -- Compiling module iic_driver
-# 
-# Top level modules:
-# 	iic_driver
-# End time: 09:24:52 on Dec 05,2025, Elapsed time: 0:00:01
+# 	tb_i2c_bit_shift
+# End time: 18:21:06 on Dec 21,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
-# vlog -vlog01compat -work work +incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC {F:/FPGA_Restart/FPGA_Projects20250804/IIC/tb_iic_driver.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 09:24:52 on Dec 05,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+F:/FPGA_Restart/FPGA_Projects20250804/IIC" F:/FPGA_Restart/FPGA_Projects20250804/IIC/tb_iic_driver.v 
-# -- Compiling module tb_iic_driver
-# 
-# Top level modules:
-# 	tb_iic_driver
-# End time: 09:24:52 on Dec 05,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# 
-# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs="+acc"  tb_iic_driver
-# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs=""+acc"" tb_iic_driver 
-# Start time: 09:24:52 on Dec 05,2025
-# Loading work.tb_iic_driver
-# Loading work.iic_driver
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'u_iic_driver'.  Expected 8, found 7.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_iic_driver/u_iic_driver File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/tb_iic_driver.v Line: 20
-# ** Warning: (vsim-3722) F:/FPGA_Restart/FPGA_Projects20250804/IIC/tb_iic_driver.v(20): [TFMPC] - Missing connection for port 'is_last'.
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs="+acc"  tb_i2c_bit_shift
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs=""+acc"" tb_i2c_bit_shift 
+# Start time: 18:21:07 on Dec 21,2025
+# Loading work.tb_i2c_bit_shift
+# Loading work.i2c_bit_shift
 # 
 # add wave *
 # view structure
@@ -616,31 +593,9 @@
 # view signals
 # .main_pane.objects.interior.cs.body.tree
 # run -all
-# Test Case 1: Sending 0xA5...
-# Test Case 1: Done!
-# Test Case 2: Sending 0x3C...
-# Test Case 2: Done!
-# ** Note: $stop    : F:/FPGA_Restart/FPGA_Projects20250804/IIC/tb_iic_driver.v(116)
-#    Time: 199670 ns  Iteration: 0  Instance: /tb_iic_driver
-# Break in Module tb_iic_driver at F:/FPGA_Restart/FPGA_Projects20250804/IIC/tb_iic_driver.v line 116
-add wave -position insertpoint  \
-sim:/tb_iic_driver/u_iic_driver/state \
-sim:/tb_iic_driver/u_iic_driver/iic_tick \
-sim:/tb_iic_driver/u_iic_driver/bit_cnt \
-sim:/tb_iic_driver/u_iic_driver/quarter_cnt \
-sim:/tb_iic_driver/u_iic_driver/work_en
-restart
-# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
-# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'u_iic_driver'.  Expected 8, found 7.
-#    Time: 0 ps  Iteration: 0  Instance: /tb_iic_driver/u_iic_driver File: F:/FPGA_Restart/FPGA_Projects20250804/IIC/tb_iic_driver.v Line: 20
-# ** Warning: (vsim-3722) F:/FPGA_Restart/FPGA_Projects20250804/IIC/tb_iic_driver.v(20): [TFMPC] - Missing connection for port 'is_last'.
-run -all
-# Test Case 1: Sending 0xA5...
-# Test Case 1: Done!
-# Test Case 2: Sending 0x3C...
-# Test Case 2: Done!
-# ** Note: $stop    : F:/FPGA_Restart/FPGA_Projects20250804/IIC/tb_iic_driver.v(116)
-#    Time: 199670 ns  Iteration: 0  Instance: /tb_iic_driver
-# Break in Module tb_iic_driver at F:/FPGA_Restart/FPGA_Projects20250804/IIC/tb_iic_driver.v line 116
-# End time: 09:27:49 on Dec 05,2025, Elapsed time: 0:02:57
-# Errors: 0, Warnings: 2
+# Simulation Success!
+# ** Note: $stop    : F:/FPGA_Restart/FPGA_Projects20250804/IIC/tb_i2c_bit_shift.v(117)
+#    Time: 78690 ns  Iteration: 0  Instance: /tb_i2c_bit_shift
+# Break in Module tb_i2c_bit_shift at F:/FPGA_Restart/FPGA_Projects20250804/IIC/tb_i2c_bit_shift.v line 117
+# End time: 18:58:05 on Dec 21,2025, Elapsed time: 0:36:58
+# Errors: 0, Warnings: 0

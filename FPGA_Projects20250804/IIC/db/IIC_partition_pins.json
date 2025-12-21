@@ -4,11 +4,11 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "iic_scl",
+					"name" : "i2c_sclk",
 					"strict" : false
 				},
 				{
-					"name" : "iic_sda",
+					"name" : "i2c_sdat",
 					"strict" : false
 				},
 				{

@@ -1,5 +1,5 @@
 EDA Netlist Writer report for IIC
-Wed Dec 03 10:26:14 2025
+Sun Dec 21 19:09:53 2025
 Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Standard Edition
 
 
@@ -36,9 +36,9 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Wed Dec 03 10:26:14 2025 ;
+; EDA Netlist Writer Status ; Successful - Sun Dec 21 19:09:53 2025 ;
 ; Revision Name             ; IIC                                   ;
-; Top-level Entity Name     ; iic_top                               ;
+; Top-level Entity Name     ; oled_top                              ;
 ; Family                    ; Cyclone IV E                          ;
 ; Simulation Files Creation ; Successful                            ;
 +---------------------------+---------------------------------------+
@@ -88,7 +88,7 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime EDA Netlist Writer
     Info: Version 18.0.0 Build 614 04/24/2018 SJ Standard Edition
-    Info: Processing started: Wed Dec 03 10:26:13 2025
+    Info: Processing started: Sun Dec 21 19:09:53 2025
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off IIC -c IIC
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (204019): Generated file IIC_7_1200mv_85c_slow.vo in folder "F:/FPGA_Restart/FPGA_Projects20250804/IIC/simulation/modelsim/" for EDA simulation tool
@@ -100,9 +100,9 @@ Info (204019): Generated file IIC_7_1200mv_0c_v_slow.sdo in folder "F:/FPGA_Rest
 Info (204019): Generated file IIC_min_1200mv_0c_v_fast.sdo in folder "F:/FPGA_Restart/FPGA_Projects20250804/IIC/simulation/modelsim/" for EDA simulation tool
 Info (204019): Generated file IIC_v.sdo in folder "F:/FPGA_Restart/FPGA_Projects20250804/IIC/simulation/modelsim/" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4655 megabytes
-    Info: Processing ended: Wed Dec 03 10:26:14 2025
-    Info: Elapsed time: 00:00:01
+    Info: Peak virtual memory: 4659 megabytes
+    Info: Processing ended: Sun Dec 21 19:09:53 2025
+    Info: Elapsed time: 00:00:00
     Info: Total CPU time (on all processors): 00:00:01
 
 
