@@ -1,0 +1,23 @@
+Info: Start Nativelink Simulation process
+executing command line: ip-make-simscript --nativelink-mode --output-directory=UDP_test1_iputf_input --spd=F:/FPGA_Restart/FPGA_ETH_UDP/IPcore.spd 
+
+========= EDA Simulation Settings =====================
+
+Sim Mode              :  RTL
+Family                :  cycloneive
+Quartus root          :  d:/intelfpga/18.0/quartus/bin64/
+Quartus sim root      :  d:/intelfpga/18.0/quartus/eda/sim_lib
+Simulation Tool       :  modelsim
+Simulation Language   :  verilog
+Simulation Mode       :  GUI
+Sim Output File       :  
+Sim SDF file          :  
+Sim dir               :  simulation\modelsim
+
+=======================================================
+
+Info: Starting NativeLink simulation with ModelSim software
+Sourced NativeLink script d:/intelfpga/18.0/quartus/common/tcl/internal/nativelink/modelsim.tcl
+Warning: File UDP_test1_run_msim_rtl_verilog.do already exists - backing up current file as UDP_test1_run_msim_rtl_verilog.do.bak11
+Info: Spawning ModelSim Simulation software 
+Info: NativeLink simulation flow was successful

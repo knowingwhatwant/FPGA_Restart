@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at udp_echo_top.v(155): always construct contains both blocking and non-blocking assignments File: F:/FPGA_Restart/FPGA_ETH_UDP/udp_echo_top.v Line: 155

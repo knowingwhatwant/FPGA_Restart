@@ -1,0 +1,603 @@
+Flow report for UDP_test1
+Thu Jan 15 10:47:10 2026
+Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Standard Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+  8. Flow Messages
+  9. Flow Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------+
+; Flow Summary                                                                         ;
++------------------------------------+-------------------------------------------------+
+; Flow Status                        ; Successful - Thu Jan 15 10:47:10 2026           ;
+; Quartus Prime Version              ; 18.0.0 Build 614 04/24/2018 SJ Standard Edition ;
+; Revision Name                      ; UDP_test1                                       ;
+; Top-level Entity Name              ; udp_echo_top                                    ;
+; Family                             ; Cyclone IV E                                    ;
+; Device                             ; EP4CE22E22I7                                    ;
+; Timing Models                      ; Final                                           ;
+; Total logic elements               ; 2,732 / 22,320 ( 12 % )                         ;
+;     Total combinational functions  ; 1,795 / 22,320 ( 8 % )                          ;
+;     Dedicated logic registers      ; 2,141 / 22,320 ( 10 % )                         ;
+; Total registers                    ; 2151                                            ;
+; Total pins                         ; 29 / 80 ( 36 % )                                ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 76,016 / 608,256 ( 12 % )                       ;
+; Embedded Multiplier 9-bit elements ; 0 / 132 ( 0 % )                                 ;
+; Total PLLs                         ; 0 / 4 ( 0 % )                                   ;
++------------------------------------+-------------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 01/15/2026 10:46:19 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; UDP_test1           ;
++-------------------+---------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                                                         ;
++--------------------------------------+----------------------------------------------------------------------------------+---------------+--------------+-----------------+
+; Assignment Name                      ; Value                                                                            ; Default Value ; Entity Name  ; Section Id      ;
++--------------------------------------+----------------------------------------------------------------------------------+---------------+--------------+-----------------+
+; COMPILER_SIGNATURE_ID                ; 9619526107940.176844517735268                                                    ; --            ; --           ; --              ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                                                               ; --            ; --           ; ip_2port_ram_tb ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; ip_2port_ram_tb                                                                  ; --            ; --           ; eda_simulation  ;
+; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                                                                      ; --            ; --           ; eda_simulation  ;
+; EDA_SIMULATION_TOOL                  ; ModelSim (Verilog)                                                               ; <None>        ; --           ; --              ;
+; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                                                                  ; --            ; --           ; eda_simulation  ;
+; EDA_TEST_BENCH_FILE                  ; ip_2port_ram_tb.v                                                                ; --            ; --           ; ip_2port_ram_tb ;
+; EDA_TEST_BENCH_MODULE_NAME           ; ip_2port_ram_tb                                                                  ; --            ; --           ; ip_2port_ram_tb ;
+; EDA_TEST_BENCH_NAME                  ; ip_2port_ram_tb                                                                  ; --            ; --           ; eda_simulation  ;
+; EDA_TIME_SCALE                       ; 1 ps                                                                             ; --            ; --           ; eda_simulation  ;
+; ENABLE_SIGNALTAP                     ; Off                                                                              ; --            ; --           ; --              ;
+; MAX_CORE_JUNCTION_TEMP               ; 100                                                                              ; --            ; --           ; --              ;
+; MIN_CORE_JUNCTION_TEMP               ; -40                                                                              ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore.cmp                                                                       ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/IPcore.v                                                              ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_eth_tse_mac.v                        ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_eth_tse_mac.v                         ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_clk_cntl.v                       ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_clk_cntl.v                        ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_crc328checker.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_crc328checker.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_crc328generator.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_crc328generator.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_crc32ctl8.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_crc32ctl8.v                       ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_crc32galois8.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_crc32galois8.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_gmii_io.v                        ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_gmii_io.v                         ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_lb_read_cntl.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_lb_read_cntl.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_lb_wrt_cntl.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_lb_wrt_cntl.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_hashing.v                        ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_hashing.v                         ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_host_control.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_host_control.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_host_control_small.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_host_control_small.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_mac_control.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_mac_control.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_register_map.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_register_map.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_register_map_small.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_register_map_small.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_rx_counter_cntl.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_rx_counter_cntl.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_shared_mac_control.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_shared_mac_control.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_shared_register_map.v            ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_shared_register_map.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_tx_counter_cntl.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_tx_counter_cntl.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_lfsr_10.v                        ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_lfsr_10.v                         ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_loopback_ff.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_loopback_ff.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_altshifttaps.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_altshifttaps.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_fifoless_mac_rx.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_fifoless_mac_rx.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_mac_rx.v                         ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_mac_rx.v                          ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_fifoless_mac_tx.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_fifoless_mac_tx.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_mac_tx.v                         ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_mac_tx.v                          ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_magic_detection.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_magic_detection.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_mdio.v                           ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_mdio.v                            ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_mdio_clk_gen.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_mdio_clk_gen.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_mdio_cntl.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_mdio_cntl.v                       ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_top_mdio.v                       ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_top_mdio.v                        ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_mii_rx_if.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_mii_rx_if.v                       ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_mii_tx_if.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_mii_tx_if.v                       ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_pipeline_base.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_pipeline_base.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_pipeline_stage.sv                ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_pipeline_stage.sv                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_dpram_16x32.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_dpram_16x32.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_dpram_8x32.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_dpram_8x32.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_dpram_ecc_16x32.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_dpram_ecc_16x32.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_fifoless_retransmit_cntl.v       ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_fifoless_retransmit_cntl.v        ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_retransmit_cntl.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_retransmit_cntl.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_rgmii_in1.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_rgmii_in1.v                       ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_rgmii_in4.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_rgmii_in4.v                       ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_nf_rgmii_module.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_nf_rgmii_module.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_rgmii_module.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_rgmii_module.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_rgmii_out1.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_rgmii_out1.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_rgmii_out4.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_rgmii_out4.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_rx_ff.v                          ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_rx_ff.v                           ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_rx_min_ff.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_rx_min_ff.v                       ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_rx_ff_cntrl.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_rx_ff_cntrl.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_rx_ff_cntrl_32.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_rx_ff_cntrl_32.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_rx_ff_cntrl_32_shift16.v         ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_rx_ff_cntrl_32_shift16.v          ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_rx_ff_length.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_rx_ff_length.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_rx_stat_extract.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_rx_stat_extract.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_timing_adapter32.v               ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_timing_adapter32.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_timing_adapter8.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_timing_adapter8.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_timing_adapter_fifo32.v          ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_timing_adapter_fifo32.v           ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_timing_adapter_fifo8.v           ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_timing_adapter_fifo8.v            ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_top_1geth.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_top_1geth.v                       ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_top_fifoless_1geth.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_top_fifoless_1geth.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_top_w_fifo.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_top_w_fifo.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_top_w_fifo_10_100_1000.v         ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_top_w_fifo_10_100_1000.v          ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_top_wo_fifo.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_top_wo_fifo.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_top_wo_fifo_10_100_1000.v        ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_top_wo_fifo_10_100_1000.v         ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_top_gen_host.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_top_gen_host.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_tx_ff.v                          ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_tx_ff.v                           ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_tx_min_ff.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_tx_min_ff.v                       ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_tx_ff_cntrl.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_tx_ff_cntrl.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_tx_ff_cntrl_32.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_tx_ff_cntrl_32.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_tx_ff_cntrl_32_shift16.v         ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_tx_ff_cntrl_32_shift16.v          ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_tx_ff_length.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_tx_ff_length.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_tx_ff_read_cntl.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_tx_ff_read_cntl.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_tx_stat_extract.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_tx_stat_extract.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_eth_tse_std_synchronizer.v           ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_eth_tse_std_synchronizer.v            ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_eth_tse_std_synchronizer_bundle.v    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_eth_tse_std_synchronizer_bundle.v     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_eth_tse_ptp_std_synchronizer.v       ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_eth_tse_ptp_std_synchronizer.v        ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_false_path_marker.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_false_path_marker.v               ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_reset_synchronizer.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_reset_synchronizer.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_clock_crosser.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_clock_crosser.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_a_fifo_13.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_a_fifo_13.v                       ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_a_fifo_24.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_a_fifo_24.v                       ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_a_fifo_34.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_a_fifo_34.v                       ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_a_fifo_opt_1246.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_a_fifo_opt_1246.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_a_fifo_opt_14_44.v               ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_a_fifo_opt_14_44.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_a_fifo_opt_36_10.v               ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_a_fifo_opt_36_10.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_gray_cnt.v                       ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_gray_cnt.v                        ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_sdpm_altsyncram.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_sdpm_altsyncram.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_altsyncram_dpm_fifo.v            ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_altsyncram_dpm_fifo.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_bin_cnt.v                        ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_bin_cnt.v                         ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ph_calculator.sv                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ph_calculator.sv                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_sdpm_gen.v                       ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_sdpm_gen.v                        ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_dec_x10.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_dec_x10.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x10.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x10.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x10_wrapper.v            ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x10_wrapper.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_dec_x14.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_dec_x14.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x14.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x14.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x14_wrapper.v            ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x14_wrapper.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_dec_x2.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_dec_x2.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x2.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x2.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x2_wrapper.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x2_wrapper.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_dec_x23.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_dec_x23.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x23.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x23.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x23_wrapper.v            ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x23_wrapper.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_dec_x36.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_dec_x36.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x36.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x36.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x36_wrapper.v            ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x36_wrapper.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_dec_x40.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_dec_x40.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x40.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x40.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x40_wrapper.v            ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x40_wrapper.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_dec_x30.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_dec_x30.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x30.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x30.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x30_wrapper.v            ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x30_wrapper.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_status_crosser.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_status_crosser.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; IPcore_sim/altera_eth_tse_mac/altera_std_synchronizer_nocut.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; ram_2port_2048_inst.v                                                            ; --            ; --           ; --              ;
+; MISC_FILE                            ; ram_2port_2048_bb.v                                                              ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII.cmp                                                                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/TSE_RGMII.v                                                        ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_eth_tse_mac.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_eth_tse_mac.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_clk_cntl.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_clk_cntl.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_crc328checker.v               ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_crc328checker.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_crc328generator.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_crc328generator.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_crc32ctl8.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_crc32ctl8.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_crc32galois8.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_crc32galois8.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_gmii_io.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_gmii_io.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_lb_read_cntl.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_lb_read_cntl.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_lb_wrt_cntl.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_lb_wrt_cntl.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_hashing.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_hashing.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_host_control.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_host_control.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_host_control_small.v          ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_host_control_small.v           ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_mac_control.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_mac_control.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_register_map.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_register_map.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_register_map_small.v          ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_register_map_small.v           ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_rx_counter_cntl.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_rx_counter_cntl.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_shared_mac_control.v          ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_shared_mac_control.v           ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_shared_register_map.v         ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_shared_register_map.v          ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_tx_counter_cntl.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_tx_counter_cntl.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_lfsr_10.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_lfsr_10.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_loopback_ff.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_loopback_ff.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_altshifttaps.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_altshifttaps.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_fifoless_mac_rx.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_fifoless_mac_rx.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_mac_rx.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_mac_rx.v                       ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_fifoless_mac_tx.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_fifoless_mac_tx.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_mac_tx.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_mac_tx.v                       ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_magic_detection.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_magic_detection.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_mdio.v                        ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_mdio.v                         ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_mdio_clk_gen.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_mdio_clk_gen.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_mdio_cntl.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_mdio_cntl.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_top_mdio.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_top_mdio.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_mii_rx_if.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_mii_rx_if.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_mii_tx_if.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_mii_tx_if.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_pipeline_base.v               ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_pipeline_base.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_pipeline_stage.sv             ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_pipeline_stage.sv              ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_dpram_16x32.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_dpram_16x32.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_dpram_8x32.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_dpram_8x32.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_dpram_ecc_16x32.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_dpram_ecc_16x32.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_fifoless_retransmit_cntl.v    ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_fifoless_retransmit_cntl.v     ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_retransmit_cntl.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_retransmit_cntl.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_rgmii_in1.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_rgmii_in1.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_rgmii_in4.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_rgmii_in4.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_nf_rgmii_module.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_nf_rgmii_module.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_rgmii_module.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_rgmii_module.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_rgmii_out1.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_rgmii_out1.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_rgmii_out4.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_rgmii_out4.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_rx_ff.v                       ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_rx_ff.v                        ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_rx_min_ff.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_rx_min_ff.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_rx_ff_cntrl.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_rx_ff_cntrl.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_rx_ff_cntrl_32.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_rx_ff_cntrl_32.v               ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_rx_ff_cntrl_32_shift16.v      ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_rx_ff_cntrl_32_shift16.v       ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_rx_ff_length.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_rx_ff_length.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_rx_stat_extract.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_rx_stat_extract.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_timing_adapter32.v            ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_timing_adapter32.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_timing_adapter8.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_timing_adapter8.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_timing_adapter_fifo32.v       ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_timing_adapter_fifo32.v        ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_timing_adapter_fifo8.v        ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_timing_adapter_fifo8.v         ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_top_1geth.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_top_1geth.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_top_fifoless_1geth.v          ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_top_fifoless_1geth.v           ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_top_w_fifo.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_top_w_fifo.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_top_w_fifo_10_100_1000.v      ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_top_w_fifo_10_100_1000.v       ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_top_wo_fifo.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_top_wo_fifo.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_top_wo_fifo_10_100_1000.v     ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_top_wo_fifo_10_100_1000.v      ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_top_gen_host.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_top_gen_host.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_tx_ff.v                       ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_tx_ff.v                        ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_tx_min_ff.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_tx_min_ff.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_tx_ff_cntrl.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_tx_ff_cntrl.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_tx_ff_cntrl_32.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_tx_ff_cntrl_32.v               ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_tx_ff_cntrl_32_shift16.v      ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_tx_ff_cntrl_32_shift16.v       ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_tx_ff_length.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_tx_ff_length.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_tx_ff_read_cntl.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_tx_ff_read_cntl.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_tx_stat_extract.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_tx_stat_extract.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_eth_tse_std_synchronizer.v        ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_eth_tse_std_synchronizer.v         ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_eth_tse_std_synchronizer_bundle.v ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_eth_tse_std_synchronizer_bundle.v  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_eth_tse_ptp_std_synchronizer.v    ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_eth_tse_ptp_std_synchronizer.v     ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_false_path_marker.v           ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_false_path_marker.v            ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_reset_synchronizer.v          ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_reset_synchronizer.v           ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_clock_crosser.v               ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_clock_crosser.v                ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_a_fifo_13.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_a_fifo_13.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_a_fifo_24.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_a_fifo_24.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_a_fifo_34.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_a_fifo_34.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_a_fifo_opt_1246.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_a_fifo_opt_1246.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_a_fifo_opt_14_44.v            ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_a_fifo_opt_14_44.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_a_fifo_opt_36_10.v            ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_a_fifo_opt_36_10.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_gray_cnt.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_gray_cnt.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_sdpm_altsyncram.v             ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_sdpm_altsyncram.v              ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_altsyncram_dpm_fifo.v         ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_altsyncram_dpm_fifo.v          ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_bin_cnt.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_bin_cnt.v                      ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ph_calculator.sv              ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ph_calculator.sv               ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_sdpm_gen.v                    ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_sdpm_gen.v                     ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_dec_x10.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_dec_x10.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x10.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x10.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x10_wrapper.v         ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x10_wrapper.v          ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_dec_x14.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_dec_x14.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x14.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x14.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x14_wrapper.v         ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x14_wrapper.v          ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_dec_x2.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_dec_x2.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x2.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x2.v                   ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x2_wrapper.v          ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x2_wrapper.v           ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_dec_x23.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_dec_x23.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x23.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x23.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x23_wrapper.v         ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x23_wrapper.v          ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_dec_x36.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_dec_x36.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x36.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x36.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x36_wrapper.v         ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x36_wrapper.v          ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_dec_x40.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_dec_x40.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x40.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x40.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x40_wrapper.v         ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x40_wrapper.v          ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_dec_x30.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_dec_x30.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x30.v                 ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x30.v                  ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_enc_x30_wrapper.v         ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_enc_x30_wrapper.v          ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/mentor/altera_tse_ecc_status_crosser.v          ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/aldec/altera_tse_ecc_status_crosser.v           ; --            ; --           ; --              ;
+; MISC_FILE                            ; TSE_RGMII_sim/altera_eth_tse_mac/altera_std_synchronizer_nocut.v                 ; --            ; --           ; --              ;
+; OUTPUT_IO_TIMING_FAR_END_VMEAS       ; Half Signal Swing                                                                ; --            ; --           ; --              ;
+; OUTPUT_IO_TIMING_FAR_END_VMEAS       ; Half Signal Swing                                                                ; --            ; --           ; --              ;
+; OUTPUT_IO_TIMING_NEAR_END_VMEAS      ; Half Vccio                                                                       ; --            ; --           ; --              ;
+; OUTPUT_IO_TIMING_NEAR_END_VMEAS      ; Half Vccio                                                                       ; --            ; --           ; --              ;
+; PARTITION_COLOR                      ; -- (Not supported for targeted family)                                           ; --            ; udp_echo_top ; Top             ;
+; PARTITION_FITTER_PRESERVATION_LEVEL  ; -- (Not supported for targeted family)                                           ; --            ; udp_echo_top ; Top             ;
+; PARTITION_NETLIST_TYPE               ; -- (Not supported for targeted family)                                           ; --            ; udp_echo_top ; Top             ;
+; POWER_BOARD_THERMAL_MODEL            ; None (CONSERVATIVE)                                                              ; --            ; --           ; --              ;
+; POWER_PRESET_COOLING_SOLUTION        ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                                            ; --            ; --           ; --              ;
+; PROJECT_OUTPUT_DIRECTORY             ; output_files                                                                     ; --            ; --           ; --              ;
+; SPD_FILE                             ; IPcore.spd                                                                       ; --            ; --           ; --              ;
+; SPD_FILE                             ; TSE_RGMII.spd                                                                    ; --            ; --           ; --              ;
+; SYNTHESIS_ONLY_QIP                   ; On                                                                               ; --            ; --           ; --              ;
+; SYNTHESIS_ONLY_QIP                   ; On                                                                               ; --            ; --           ; --              ;
+; TOP_LEVEL_ENTITY                     ; udp_echo_top                                                                     ; UDP_test1     ; --           ; --              ;
+; USE_SIGNALTAP_FILE                   ; stp1.stp                                                                         ; --            ; --           ; --              ;
++--------------------------------------+----------------------------------------------------------------------------------+---------------+--------------+-----------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                        ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis ; 00:00:30     ; 1.0                     ; 4983 MB             ; 00:00:36                           ;
+; Fitter               ; 00:00:09     ; 1.2                     ; 6635 MB             ; 00:00:19                           ;
+; Assembler            ; 00:00:02     ; 1.0                     ; 4699 MB             ; 00:00:02                           ;
+; Timing Analyzer      ; 00:00:03     ; 1.6                     ; 4970 MB             ; 00:00:03                           ;
+; EDA Netlist Writer   ; 00:00:04     ; 1.0                     ; 4695 MB             ; 00:00:04                           ;
+; Total                ; 00:00:48     ; --                      ; --                  ; 00:01:04                           ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                    ;
++----------------------+------------------+------------+------------+----------------+
+; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
++----------------------+------------------+------------+------------+----------------+
+; Analysis & Synthesis ; DESKTOP-P5CEPCJ  ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; DESKTOP-P5CEPCJ  ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; DESKTOP-P5CEPCJ  ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; DESKTOP-P5CEPCJ  ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; DESKTOP-P5CEPCJ  ; Windows 10 ; 10.0       ; x86_64         ;
++----------------------+------------------+------------+------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --read_settings_files=on --write_settings_files=off UDP_test1 -c UDP_test1
+quartus_fit --read_settings_files=off --write_settings_files=off UDP_test1 -c UDP_test1
+quartus_asm --read_settings_files=off --write_settings_files=off UDP_test1 -c UDP_test1
+quartus_sta UDP_test1 -c UDP_test1
+quartus_eda --read_settings_files=off --write_settings_files=off UDP_test1 -c UDP_test1
+
+
+

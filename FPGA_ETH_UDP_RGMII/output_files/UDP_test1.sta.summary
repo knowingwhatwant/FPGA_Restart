@@ -1,0 +1,185 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 100C Model Setup 'mii_tx_clk'
+Slack : 1.512
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Setup 'sys_clk'
+Slack : 10.339
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Setup 'mii_rx_clk'
+Slack : 19.085
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Hold 'sys_clk'
+Slack : 0.343
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Hold 'mii_tx_clk'
+Slack : 0.424
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Hold 'mii_rx_clk'
+Slack : 0.445
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Recovery 'sys_clk'
+Slack : 16.013
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Recovery 'mii_tx_clk'
+Slack : 34.827
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Recovery 'mii_rx_clk'
+Slack : 35.762
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Removal 'mii_rx_clk'
+Slack : 2.641
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Removal 'sys_clk'
+Slack : 2.914
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Removal 'mii_tx_clk'
+Slack : 3.085
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Minimum Pulse Width 'sys_clk'
+Slack : 9.616
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Minimum Pulse Width 'mii_tx_clk'
+Slack : 19.565
+TNS   : 0.000
+
+Type  : Slow 1200mV 100C Model Minimum Pulse Width 'mii_rx_clk'
+Slack : 19.596
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Setup 'mii_tx_clk'
+Slack : 2.221
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Setup 'sys_clk'
+Slack : 11.438
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Setup 'mii_rx_clk'
+Slack : 19.280
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Hold 'sys_clk'
+Slack : 0.343
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Hold 'mii_rx_clk'
+Slack : 0.368
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Hold 'mii_tx_clk'
+Slack : 0.368
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Recovery 'sys_clk'
+Slack : 16.528
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Recovery 'mii_tx_clk'
+Slack : 35.419
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Recovery 'mii_rx_clk'
+Slack : 36.262
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Removal 'mii_rx_clk'
+Slack : 2.222
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Removal 'sys_clk'
+Slack : 2.467
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Removal 'mii_tx_clk'
+Slack : 2.595
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Minimum Pulse Width 'sys_clk'
+Slack : 9.631
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Minimum Pulse Width 'mii_tx_clk'
+Slack : 19.649
+TNS   : 0.000
+
+Type  : Slow 1200mV -40C Model Minimum Pulse Width 'mii_rx_clk'
+Slack : 19.650
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Setup 'mii_tx_clk'
+Slack : 4.879
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Setup 'sys_clk'
+Slack : 15.698
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Setup 'mii_rx_clk'
+Slack : 19.063
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Hold 'sys_clk'
+Slack : 0.133
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Hold 'mii_tx_clk'
+Slack : 0.180
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Hold 'mii_rx_clk'
+Slack : 0.193
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Recovery 'sys_clk'
+Slack : 18.030
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Recovery 'mii_tx_clk'
+Slack : 37.479
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Recovery 'mii_rx_clk'
+Slack : 37.911
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Removal 'mii_rx_clk'
+Slack : 1.296
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Removal 'sys_clk'
+Slack : 1.385
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Removal 'mii_tx_clk'
+Slack : 1.486
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Minimum Pulse Width 'sys_clk'
+Slack : 9.377
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Minimum Pulse Width 'mii_tx_clk'
+Slack : 19.123
+TNS   : 0.000
+
+Type  : Fast 1200mV -40C Model Minimum Pulse Width 'mii_rx_clk'
+Slack : 19.152
+TNS   : 0.000
+
+------------------------------------------------------------

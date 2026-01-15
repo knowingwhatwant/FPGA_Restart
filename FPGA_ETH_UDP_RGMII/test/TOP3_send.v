@@ -1,0 +1,340 @@
+// 纯发固定数据包示例
+
+module TOP3_send (
+    // 1. 系统时钟和复位
+    input           clk,        // 板载 50MHz
+    input           rst_n,      // 复位按键
+
+    // 2. 发包触发按键 (请在 Pin Planner 分配给一个按键!)
+    // 如果没有多余按键，暂时不用管，复位后会自动发一次
+    input           key_send,   
+
+    // 3. MII 接口
+    input           enet0_rx_clk,
+    input   [3:0]   enet0_rx_data,
+    input           enet0_rx_dv,
+    input           enet0_rx_er,
+    input           enet0_tx_clk,
+    output  [3:0]   enet0_tx_data,
+    output          enet0_tx_en,
+    output          enet0_tx_er,
+
+    // 4. MDIO 接口
+    output          enet0_mdc,
+    inout           enet0_mdio,
+
+    // 5. PHY 复位
+    output          enet0_rst_n,
+
+    // 6. 调试信号 (SignalTap)
+    output  [3:0]   dbg_state,
+    output  [31:0]  dbg_phy_id1,
+    output  [31:0]  dbg_phy_id2,
+    output  [4:0]   dbg_phy_addr,
+    output          dbg_tx_ready  // 添加这一行：将tx_ready连接到输出端口
+);
+
+// =================================================================
+// 信号定义
+// =================================================================
+wire sys_clk = clk;
+wire sys_rst = ~rst_n; // IP核高电平复位
+
+// MDIO
+wire mdio_mdc_w;
+wire mdio_mdio_out_w;
+wire mdio_mdio_in_w;
+wire mdio_mdio_oen_w;
+
+// 配置状态机信号
+reg [3:0]   r_state;
+reg [19:0]  r_wait_cnt;
+reg [7:0]   o_av_addr;
+reg         o_av_read;
+reg         o_av_write;
+reg [31:0]  o_av_writedata;
+wire [31:0] i_av_readdata;
+wire        i_av_waitrequest;
+reg [31:0]  r_phy_id1;
+reg [31:0]  r_phy_id2;
+reg [4:0]   r_phy_addr;
+reg         r_phy_rst_n;
+
+// 发包信号
+reg [7:0]   tx_data;
+reg         tx_valid;
+reg         tx_sop;
+reg         tx_eop;
+wire        tx_ready;
+reg [7:0]   pkt_cnt;    // 包字节计数器
+reg [2:0]   send_state; // 发包状态机
+reg         key_send_d; // 按键消抖/边沿检测
+
+// =================================================================
+// 逻辑连接
+// =================================================================
+assign enet0_rst_n    = r_phy_rst_n;
+assign enet0_mdc      = mdio_mdc_w;
+assign enet0_mdio     = !mdio_mdio_oen_w ? mdio_mdio_out_w : 1'bz; // (0 表示使能输出；1 表示禁止输出，高阻态，用于输入)
+assign mdio_mdio_in_w = enet0_mdio;
+
+assign dbg_state      = r_state;
+assign dbg_phy_id1    = r_phy_id1;
+assign dbg_phy_id2    = r_phy_id2;
+assign dbg_phy_addr   = r_phy_addr;
+assign dbg_tx_ready   = tx_ready;  // 添加这一行：将tx_ready连接到调试输出
+
+// =================================================================
+// IP核例化
+// =================================================================
+IPcore ipcore_inst (
+    .clk          (sys_clk),
+    .reset        (sys_rst),
+    .ff_rx_clk    (sys_clk),
+    .ff_tx_clk    (sys_clk),
+    
+    .tx_clk       (enet0_tx_clk),//PHY发包时钟
+    .rx_clk       (enet0_rx_clk),
+
+    .m_rx_d       (enet0_rx_data),//mii_rx_data
+    .m_rx_en      (enet0_rx_dv),  //mii_rx_data_valid
+    .m_rx_err     (enet0_rx_er),  //mii_rx_error
+    .m_tx_d       (enet0_tx_data),//out:mii_tx_data
+    .m_tx_en      (enet0_tx_en),  //out:mii_tx_data_enable
+    .m_tx_err     (enet0_tx_er),  //out:mii_tx_error
+    .m_rx_crs     (1'b0),         //载波侦听。半双工才用，全双工直接给0。
+    .m_rx_col     (1'b0),         //冲突检测。半双工才用，全双工直接给0。
+
+    .mdc          (mdio_mdc_w),
+    .mdio_in      (mdio_mdio_in_w),
+    .mdio_out     (mdio_mdio_out_w),
+    .mdio_oen     (mdio_mdio_oen_w),   // 输出使能，0表示输出，1表示输入
+
+    // 控制接口 (连到配置状态机，Avalon-MM，给状态机用的)
+    .reg_addr     (o_av_addr),          // FPGA to IP : output_avalon_address
+    .reg_rd       (o_av_read),          // FPGA to IP : output_avalon_read
+    .reg_wr       (o_av_write),         // FPGA to IP : output_avalon_write
+    .reg_data_in  (o_av_writedata),     // FPGA to IP : output_avalon_writedata
+    .reg_data_out (i_av_readdata),      // FPGA to IP : input_avalon_readdata
+    .reg_busy     (i_av_waitrequest),   // FPGA to IP : input_avalon_waitrequest
+
+    // 发送接口 (连到下面的发包逻辑),Avalon-ST
+    .ff_tx_data   (tx_data),
+    .ff_tx_wren   (tx_valid),
+    .ff_tx_sop    (tx_sop),
+    .ff_tx_eop    (tx_eop),
+    .ff_tx_err    (1'b0),
+    .ff_tx_rdy    (tx_ready),           
+
+    // 其他悬空
+    .ff_rx_rdy    (1'b1), // 允许接收 (虽然我们不处理)
+    .gm_rx_d      (8'b0), .gm_rx_dv(1'b0), .gm_rx_err(1'b0),
+    .set_10(1'b0), .set_1000(1'b0), .xon_gen(1'b0), .xoff_gen(1'b0),
+    .ff_tx_crc_fwd(1'b0) // 让IP核自动计算CRC
+);
+
+// =================================================================
+// 配置状态机 (自动配置MAC)
+// =================================================================
+localparam  S_IDLE        = 4'd0,
+            S_PHY_WAKEUP  = 4'd1,
+            S_SET_ADDR    = 4'd2,
+            S_WAIT_WRITE  = 4'd3,
+            S_READ_ID1    = 4'd4,
+            S_WAIT_READ1  = 4'd5,
+            S_READ_ID2    = 4'd6,
+            S_WAIT_READ2  = 4'd7,
+            S_CHECK       = 4'd8,
+            // 新增状态：配置MAC
+            S_CFG_MAC     = 4'd9,
+            S_WAIT_CFG    = 4'd10,
+            S_DONE_OK     = 4'd11;
+
+always @(posedge sys_clk or posedge sys_rst) begin
+    if (sys_rst) begin
+        r_state <= S_IDLE; r_wait_cnt <= 0;
+        o_av_read <= 0; o_av_write <= 0; r_phy_addr <= 0; r_phy_rst_n <= 0;
+    end else begin
+        o_av_read <= 0; o_av_write <= 0;
+        
+        case (r_state)
+            S_IDLE: begin
+                r_phy_rst_n <= 0;
+                if (r_wait_cnt < 20'd500_000) r_wait_cnt <= r_wait_cnt + 1;
+                else begin r_wait_cnt <= 0; r_state <= S_PHY_WAKEUP; end
+            end
+            S_PHY_WAKEUP: begin
+                r_phy_rst_n <= 1;
+                if (r_wait_cnt < 20'd500_000) r_wait_cnt <= r_wait_cnt + 1;
+                else r_state <= S_SET_ADDR;
+            end
+            S_SET_ADDR: begin // 写 MDIO_ADDR0
+                o_av_write <= 1; o_av_addr <= 8'h0F; 
+                o_av_writedata <= {27'b0, r_phy_addr}; 
+                r_state <= S_WAIT_WRITE;
+            end
+            S_WAIT_WRITE: begin
+                o_av_write <= 1;
+                if (!i_av_waitrequest) begin o_av_write <= 0; r_state <= S_READ_ID1; end
+            end
+            S_READ_ID1: begin
+                o_av_read <= 1; o_av_addr <= 8'h82; r_state <= S_WAIT_READ1;
+            end
+            S_WAIT_READ1: begin
+                o_av_read <= 1;
+                if (!i_av_waitrequest) begin r_phy_id1 <= i_av_readdata; o_av_read <= 0; r_state <= S_READ_ID2; end
+            end
+            S_READ_ID2: begin
+                o_av_read <= 1; o_av_addr <= 8'h83; r_state <= S_WAIT_READ2;
+            end
+            S_WAIT_READ2: begin
+                o_av_read <= 1;
+                if (!i_av_waitrequest) begin r_phy_id2 <= i_av_readdata; o_av_read <= 0; r_state <= S_CHECK; end
+            end
+            S_CHECK: begin
+                if ((r_phy_id1[15:0] == 16'hFFFF) && (r_phy_id2[15:0] == 16'hFFFF)) begin
+                    if (r_phy_addr < 31) begin r_phy_addr <= r_phy_addr + 1; r_state <= S_SET_ADDR; end
+                end else begin
+                    // 找到了！去配置MAC
+                    r_state <= S_CFG_MAC;
+                end
+            end
+            
+            // --- 新增：开启MAC发送使能 ---
+            S_CFG_MAC: begin
+                o_av_write <= 1; 
+                o_av_addr <= 8'h02; // command_config 寄存器
+                // 写入 0x03 (TX_ENA=1, RX_ENA=1)
+                o_av_writedata <= 32'h00000003; 
+                r_state <= S_WAIT_CFG;
+            end
+            S_WAIT_CFG: begin
+                o_av_write <= 1;
+                if (!i_av_waitrequest) begin o_av_write <= 0; r_state <= S_DONE_OK; end
+            end
+
+            S_DONE_OK: r_state <= S_DONE_OK;
+        endcase
+    end
+end
+
+// =================================================================
+// UDP 发包逻辑 (修改版：自动连发，每秒发一次)
+// =================================================================
+reg [25:0] auto_cnt; // 计数器
+
+always @(posedge sys_clk or posedge sys_rst) begin
+    if (sys_rst) begin
+        send_state <= 0; tx_valid <= 0; tx_sop <= 0; tx_eop <= 0; pkt_cnt <= 0;
+        auto_cnt <= 0;
+    end else begin
+        case (send_state)
+            0: begin // 空闲
+                // 只有当 PHY 配置完成 (State=Bh) 时才工作
+                if (r_state == S_DONE_OK) begin
+                    auto_cnt <= auto_cnt + 1;
+                    
+                    // 计数器计数到约 50,000,000 (1秒) 时触发发送
+                    // (或者计数器刚溢出归零时触发)
+                    if (auto_cnt == 26'd50_000_000) begin
+                        auto_cnt <= 0;     // 清零
+                        send_state <= 1;   // 触发发送！
+                    end
+                end
+            end
+            
+            1: begin // 准备发送
+                if (tx_ready) begin
+                    tx_valid <= 1;
+                    tx_sop <= 1;
+                    tx_data <= 8'hFF; // 目标MAC: FF-FF-FF-FF-FF-FF (广播)
+                    pkt_cnt <= 1;
+                    send_state <= 2;
+                end
+            end
+            
+            2: begin // 发送数据流
+                if (tx_ready) begin
+                    tx_sop <= 0;
+                    pkt_cnt <= pkt_cnt + 1;
+                    case (pkt_cnt)
+                        // 目标MAC (FF-FF-FF-FF-FF-FF表示广播)
+                        1: tx_data <= 8'hFF;
+                        2: tx_data <= 8'hFF;
+                        3: tx_data <= 8'hFF;
+                        4: tx_data <= 8'hFF;
+                        5: tx_data <= 8'hFF;
+                        // 源MAC (00-11-22-33-44-55)
+                        6: tx_data <= 8'h00;
+                        7: tx_data <= 8'h11;
+                        8: tx_data <= 8'h22;
+                        9: tx_data <= 8'h33;
+                        10:tx_data <= 8'h44;
+                        11:tx_data <= 8'h55;
+                        // 帧类型 (EtherType) - 2字节
+                        12:tx_data <= 8'h08;  // IPv4协议标识高字节
+                        13:tx_data <= 8'h00;  // IPv4协议标识低字节 (0x0800表示IPv4)
+                        // IP头部固定部分
+                        14:tx_data <= 8'h45;  // Version(4):IPv4, IHL(4):5个32位字 (即20字节头部)
+                        15:tx_data <= 8'h00;  // Type of Service (服务类型)
+                        16:tx_data <= 8'h00;  // Total Length 高字节 (总长度)
+                        17:tx_data <= 8'h2E;  // Total Length 低字节 (0x002E = 46字节，包括IP头+UDP头+数据)
+                        18:tx_data <= 8'h00;  // Identification 高字节 (标识符)
+                        19:tx_data <= 8'h00;  // Identification 低字节
+                        20:tx_data <= 8'h00;  // Flags(3位) + Fragment Offset 高5位
+                        21:tx_data <= 8'h00;  // Fragment Offset 低8位
+                        22:tx_data <= 8'h40;  // Time to Live (TTL生存时间，64跳)
+                        23:tx_data <= 8'h11;  // Protocol (0x11 = 17，表示UDP协议)
+                        24:tx_data <= 8'h00;  // Header Checksum 高字节 (校验和)
+                        25:tx_data <= 8'h00;  // Header Checksum 低字节
+                        // 源IP (192.168.1.123 -> C0 A8 01 7B)
+                        26:tx_data <= 8'hC0;
+                        27:tx_data <= 8'hA8;
+                        28:tx_data <= 8'h01;
+                        29:tx_data <= 8'h7B;
+                        // 目标IP (192.168.1.55 -> C0 A8 01 37) - 请确保你电脑设为了这个IP
+                        30:tx_data <= 8'hC0;
+                        31:tx_data <= 8'hA8;
+                        32:tx_data <= 8'h01;
+                        33:tx_data <= 8'h37;
+                        // UDP头部
+                        34:tx_data <= 8'h12;  // Source Port 高字节 (源端口号 0x1234 = 4660)
+                        35:tx_data <= 8'h34;  // Source Port 低字节
+                        36:tx_data <= 8'h12;  // Destination Port 高字节 (目标端口号 0x1234 = 4660)
+                        37:tx_data <= 8'h34;  // Destination Port 低字节
+                        38:tx_data <= 8'h00;  // Length 高字节 (UDP总长度，包括头部和数据)
+                        39:tx_data <= 8'h12;  // Length 低字节 (0x0012 = 18字节，8字节UDP头+10字节数据)
+                        40:tx_data <= 8'h00;  // Checksum 高字节 (校验和，0表示不使用)
+                        41:tx_data <= 8'h00;  // Checksum 低字节
+                        // 数据 ("HelloFPGA!") 10 bytes
+                        42:tx_data <= "H";
+                        43:tx_data <= "e";
+                        44:tx_data <= "l";
+                        45:tx_data <= "l";
+                        46:tx_data <= "o";
+                        47:tx_data <= "F";
+                        48:tx_data <= "P";
+                        49:tx_data <= "G";
+                        50:tx_data <= "A";
+                        51:tx_data <= "!";
+                        // 结束
+                        // 结束
+                        default: begin
+                            tx_eop <= 1;
+                            tx_valid <= 1;
+                            send_state <= 3;
+                        end
+                    endcase
+                end
+            end
+            
+            3: begin // 结束脉冲
+                tx_eop <= 0;
+                tx_valid <= 0;
+                send_state <= 0; // 回到空闲, 重新开始计数
+            end
+        endcase
+    end
+end
+
+endmodule

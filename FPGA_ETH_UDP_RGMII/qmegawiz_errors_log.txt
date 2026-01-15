@@ -1,0 +1,11 @@
+
+
+F:/FPGA_Restart/FPGA_ETH_UDP_RGMII/IPcore.v
+
+Jan 09 01PM:55:54>: Megafunction Triple-Speed Ethernet Intel FPGA IP v18.0 is not listed in any 
+wizard.lst file in the specified library path(s).Wizard launch aborted
+
+F:/FPGA_Restart/FPGA_ETH_UDP_RGMII/IPcore.v
+
+Jan 09 01PM:56:12>: Megafunction Triple-Speed Ethernet Intel FPGA IP v18.0 is not listed in any 
+wizard.lst file in the specified library path(s).Wizard launch aborted

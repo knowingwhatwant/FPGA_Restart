@@ -1,0 +1,187 @@
+/*****************************************************************************
+ * 文件名: tse_loopback_logic.v
+ * 功能: 基于用户顶层接口的 TSE 接收 (RX) 和原样发送 (TX) 环回控制逻辑。
+ * 描述: 将 tse_rx_data 流存储到 RX RAM 中，然后读出并驱动 tse_tx 接口，
+ * 用于验证 TSE IP 核的 2 字节 Padding 行为。
+ *****************************************************************************/
+
+module tse_loopback_logic (
+    input           clk,
+    input           rst_n,
+
+    // --- TSE RX 接口 (输入) ---
+    input  wire [7:0] tse_rx_data,
+    input  wire       tse_rx_dv,
+    input  wire       tse_rx_sop,
+    input  wire       tse_rx_eop,
+
+    // --- RAM 写入控制 (输出) ---
+    output reg  [10:0] rx_ram_w_addr,
+    output reg         rx_ram_w_en,
+    
+    // --- RAM 读取控制 (输入/输出) ---
+    input  wire [7:0]  rx_ram_r_data,  // 从 RAM 读出的数据
+    output reg  [10:0] rx_ram_r_addr,
+
+    // --- TSE TX 接口 (输出) ---
+    output reg  [7:0]  tse_tx_data,   // 需要 Signaltap 捕获
+    output reg         tse_tx_wren, // 对应原顶层 ff_tx_wren
+    output reg         tse_tx_sop,  // 需要 Signaltap 捕获
+    output reg         tse_tx_eop,  // 需要 Signaltap 捕获
+    input  wire        tse_tx_ready // TSE TX FIFO 准备好接收数据
+);
+
+// --- 状态机定义 (使用你顶层文件中的状态码) ---
+localparam S_IDLE         = 4'd0;  // 空闲
+localparam S_RX_STORE     = 4'd1;  // 接收并存储到 RAM
+localparam S_RX_MODIFY    = 4'd2;  // 修改最后一个字节
+localparam S_TX_STREAM    = 4'd7;  // 从 RAM 读出并发送
+
+// --- 信号定义 ---
+reg [3:0]   state;
+reg [3:0]   next_state;
+reg [10:0]  pkt_len; // 用于存储帧的总长度 (包括 Padding 和 CRC)
+reg [10:0]  cnt;    // 计数器
+
+// ============================================================
+// 1. 状态机时序逻辑
+// ============================================================
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        state   <= S_IDLE;
+    end else begin
+        state   <= next_state;
+    end
+end
+
+// ============================================================
+// 2. 状态机组合逻辑和控制信号
+// ============================================================
+always @(*) begin
+    // 默认值/保持
+    next_state  = state;
+    rx_ram_w_en = 1'b0;
+    tse_tx_wren = 1'b0;
+    tse_tx_sop  = 1'b0;
+    tse_tx_eop  = 1'b0;
+    tse_tx_data = 8'd0; // 默认值
+
+    // TX 控制信号的默认值 (保持不变，由时序逻辑控制地址)
+    // rx_ram_r_addr, rx_ram_w_addr, pkt_len, cnt
+
+    case (state)
+        S_IDLE: begin
+            if (tse_rx_sop) begin      // 接收到帧开始
+                next_state = S_RX_STORE;
+                rx_ram_w_en = 1'b1;  // 立即写入第一个数据
+            end
+        end
+        
+        S_RX_STORE: begin
+            if (tse_rx_dv) begin
+                rx_ram_w_en = 1'b1;    // 接收数据有效时写入 RAM
+            end
+
+            if (tse_rx_eop) begin     // 接收结束
+                next_state = S_RX_MODIFY; // 修改最后一个字节
+            end
+        end
+
+        S_RX_MODIFY: begin
+            // 修改最后一个字节为 8'h11
+            rx_ram_w_en = 1'b1;
+            next_state = S_TX_STREAM;
+        end
+
+        S_TX_STREAM: begin
+            // 确保 TX 正在等待或准备好接收数据，并且我们还有数据需要发送
+            if (tse_tx_ready && (cnt < pkt_len)) begin 
+                tse_tx_wren = 1'b1;              // 持续发送数据
+
+                tse_tx_data = rx_ram_r_data;     // 从 RAM 读出数据
+
+                // SOP 信号：当发送计数器为 0 时拉高
+                if (cnt == 11'd0) begin
+                    tse_tx_sop = 1'b1; 
+                end
+
+                // EOP 信号：当发送计数器指向最后一个字节时拉高
+                if (cnt == pkt_len - 1'b1) begin 
+                    tse_tx_eop = 1'b1;  
+                    next_state = S_IDLE;         // 发送完最后一个字节后跳转到 IDLE
+                end
+            end
+            // 如果 pkt_len = 0 (不可能) 或 tse_tx_ready 未拉高，则保持状态不变。
+            else if (cnt >= pkt_len) begin
+                // 异常或发送完成后的状态保持
+                next_state = S_IDLE;
+            end
+        end
+
+        default: next_state = S_IDLE;
+    endcase
+
+end
+
+// ============================================================
+// 3. 地址、长度、计数器时序逻辑
+// ============================================================
+
+// 写入地址和包长度 (在 S_RX_STORE 状态下自增)
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        rx_ram_w_addr <= 11'd0;
+        pkt_len       <= 11'd0;
+    end else if (state == S_IDLE) begin
+        rx_ram_w_addr <= 11'd0;  // 空闲时清零
+        pkt_len       <= 11'd0;  // 准备记录新帧长度
+    end else if (state == S_RX_STORE && tse_rx_dv) begin
+        rx_ram_w_addr <= rx_ram_w_addr + 1'b1;
+        pkt_len       <= pkt_len + 1'b1;
+    end else if (state == S_RX_MODIFY) begin
+        // 在修改状态下，指向最后一个字节的位置
+        rx_ram_w_addr <= pkt_len - 2'b2;
+    end
+end
+
+// 修改数据：在S_RX_MODIFY状态下写入8'h11
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        // 可以在这里添加额外的控制信号
+    end else if (state == S_RX_MODIFY) begin
+        // 这个信号会在组合逻辑中使用
+    end
+end
+
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n) begin
+        rx_ram_r_addr <= 11'd0;
+        cnt           <= 11'd0;
+    end else if (state == S_IDLE) begin
+        rx_ram_r_addr <= 11'd0; 
+        cnt           <= 11'd0; 
+    end else if (state == S_TX_STREAM && tse_tx_ready && (cnt < pkt_len)) begin 
+        // 只有在满足发送条件 (tse_tx_ready) 且未达到帧长度时才自增
+        rx_ram_r_addr <= rx_ram_r_addr + 1'b1;
+        cnt           <= cnt + 1'b1;
+    end
+end
+
+// ============================================================
+// 4. 特殊处理：修改最后一个字节的数据
+// ============================================================
+reg [7:0] modify_data;
+
+always @(*) begin
+    if (state == S_RX_MODIFY) begin
+        modify_data = 8'h11;  // 将最后一个字节修改为8'h11
+    end else begin
+        modify_data = tse_rx_data;  // 正常情况下使用原始数据
+    end
+end
+
+// 在写使能时使用修改后的数据
+wire [7:0] ram_write_data;
+assign ram_write_data = (state == S_RX_MODIFY) ? 8'h11 : tse_rx_data;
+
+endmodule
