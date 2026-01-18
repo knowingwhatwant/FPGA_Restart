@@ -1,5 +1,5 @@
 Assembler report for UDP_test1
-Thu Jan 15 10:47:01 2026
+Fri Jan 16 18:38:16 2026
 Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Standard Edition
 
 
@@ -39,7 +39,7 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Thu Jan 15 10:47:01 2026 ;
+; Assembler Status      ; Successful - Fri Jan 16 18:38:16 2026 ;
 ; Revision Name         ; UDP_test1                             ;
 ; Top-level Entity Name ; udp_echo_top                          ;
 ; Family                ; Cyclone IV E                          ;
@@ -60,6 +60,8 @@ refer to the applicable agreement for further details.
 ; Vendor ; IP Core Name                      ; License Type ;
 +--------+-----------------------------------+--------------+
 ; Altera ; Triple-Speed Ethernet (6AF7 00BD) ; Licensed     ;
+; Altera ; Signal Tap (6AF7 BCE1)            ; Licensed     ;
+; Altera ; Signal Tap (6AF7 BCEC)            ; Licensed     ;
 +--------+-----------------------------------+--------------+
 
 
@@ -78,8 +80,8 @@ refer to the applicable agreement for further details.
 +----------------+------------------------------------------------------------------------+
 ; Option         ; Setting                                                                ;
 +----------------+------------------------------------------------------------------------+
-; JTAG usercode  ; 0x002C04B8                                                             ;
-; Checksum       ; 0x002C04B8                                                             ;
+; JTAG usercode  ; 0x003CB2EC                                                             ;
+; Checksum       ; 0x003CB2EC                                                             ;
 +----------------+------------------------------------------------------------------------+
 
 
@@ -89,8 +91,8 @@ refer to the applicable agreement for further details.
 ; Option             ; Setting                                                            ;
 +--------------------+--------------------------------------------------------------------+
 ; JTAG usercode      ; 0x00000000                                                         ;
-; Checksum           ; 0x1CC9D184                                                         ;
-; Compression Ratio  ; 3                                                                  ;
+; Checksum           ; 0x1CABE309                                                         ;
+; Compression Ratio  ; 2                                                                  ;
 +--------------------+--------------------------------------------------------------------+
 
 
@@ -100,14 +102,14 @@ refer to the applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 18.0.0 Build 614 04/24/2018 SJ Standard Edition
-    Info: Processing started: Thu Jan 15 10:46:59 2026
+    Info: Processing started: Fri Jan 16 18:38:14 2026
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off UDP_test1 -c UDP_test1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4699 megabytes
-    Info: Processing ended: Thu Jan 15 10:47:01 2026
+    Info: Peak virtual memory: 4706 megabytes
+    Info: Processing ended: Fri Jan 16 18:38:16 2026
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 

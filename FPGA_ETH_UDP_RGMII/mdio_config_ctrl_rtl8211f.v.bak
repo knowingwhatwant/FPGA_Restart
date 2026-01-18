@@ -1,0 +1,207 @@
+// ============================================================================
+// Module: mdio_config_ctrl_rtl8211f (Enhanced Version)
+// Description: 配置 RTL8211F PHY 芯片的状态机
+// 优化内容：
+// 1. 增加了软件复位后的等待时间 (S_RESET_WAIT)
+// 2. 更新了 command_config 值 (0x1B)，支持千兆速率 + 混杂模式 (不进行过滤)
+// 3. 完善了数据抓取和地址扫描逻辑
+// ============================================================================
+
+module mdio_config_ctrl_rtl8211f (
+    input  wire        clk,
+    input  wire        rst_n,
+
+    // --- Avalon-MM Master 接口 ---
+    output reg  [7:0]  o_av_addr,
+    output reg         o_av_read,
+    output reg         o_av_write,
+    output reg  [31:0] o_av_writedata,
+    input  wire [31:0] i_av_readdata,
+    input  wire        i_av_waitrequest,
+
+    // --- 控制与状态 ---
+    output reg         o_phy_rst_n,
+    output reg [15:0]  r_phy_id1,
+    output reg [15:0]  r_phy_id2,
+    output reg         o_cfg_done
+    
+    output wire        debug_cfg_done,
+    output wire [3:0]  debug_state
+);
+
+
+    assign debug_cfg_done = o_cfg_done;
+  assign debug_state    = r_state;
+
+    // 状态机定义
+    localparam  S_IDLE          = 4'd0,
+                S_PHY_WAKEUP    = 4'd1,
+                S_SET_ADDR      = 4'd2,
+                S_READ_ID1      = 4'd3,
+                S_WAIT_ID1      = 4'd4,
+                S_READ_ID2      = 4'd5,
+                S_WAIT_ID2      = 4'd6,
+                S_SOFT_RESET    = 4'd7,
+                S_RESET_WAIT    = 4'd14, // 新增：等待软件复位完成
+                S_SWITCH_PAGE   = 4'd8,
+                S_SET_DELAY     = 4'd9,
+                S_BACK_PAGE0    = 4'd10,
+                S_CFG_MAC       = 4'd11,
+                S_DONE_OK       = 4'd12,
+                S_WAIT_WRITE    = 4'd13;
+
+    reg [3:0]   r_state;
+    reg [3:0]   r_next_state;
+    reg [23:0]  r_wait_cnt;
+    reg [4:0]   r_phy_addr;
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            r_state        <= S_IDLE;
+            r_wait_cnt     <= 0;
+            o_av_read      <= 0;
+            o_av_write     <= 0;
+            o_av_addr      <= 0;
+            o_av_writedata <= 0;
+            r_phy_addr     <= 5'd4; // 从你的硬件地址 4/5 开始扫
+            o_phy_rst_n    <= 0;
+            r_phy_id1      <= 0;
+            r_phy_id2      <= 0;
+            o_cfg_done     <= 0;
+        end else begin
+            o_av_read  <= 0;
+            o_av_write <= 0;
+
+            case (r_state)
+                S_IDLE: begin
+                    o_phy_rst_n <= 0;
+                    if (r_wait_cnt < 24'd1_000_000) r_wait_cnt <= r_wait_cnt + 1;
+                    else begin r_wait_cnt <= 0; r_state <= S_PHY_WAKEUP; end
+                end
+
+                S_PHY_WAKEUP: begin
+                    o_phy_rst_n <= 1;
+                    if (r_wait_cnt < 24'd2_500_000) r_wait_cnt <= r_wait_cnt + 1;
+                    else begin r_wait_cnt <= 0; r_state <= S_SET_ADDR; end
+                end
+
+                S_SET_ADDR: begin
+                    o_av_write     <= 1;
+                    o_av_addr      <= 8'h0F;
+                    o_av_writedata <= {27'b0, r_phy_addr};
+                    r_next_state   <= S_READ_ID1;
+                    r_state        <= S_WAIT_WRITE;
+                end
+
+                S_READ_ID1: begin
+                    o_av_read <= 1;
+                    o_av_addr <= 8'h82;
+                    r_state   <= S_WAIT_ID1;
+                end
+
+                S_WAIT_ID1: begin
+                    o_av_read <= 1;
+                    if (!i_av_waitrequest) begin
+                        r_phy_id1 <= i_av_readdata[15:0];
+                        o_av_read <= 0;
+                        r_state   <= S_READ_ID2;
+                    end
+                end
+
+                S_READ_ID2: begin
+                    o_av_read <= 1;
+                    o_av_addr <= 8'h83;
+                    r_state   <= S_WAIT_ID2;
+                end
+
+                S_WAIT_ID2: begin
+                    o_av_read <= 1;
+                    if (!i_av_waitrequest) begin
+                        r_phy_id2 <= i_av_readdata[15:0];
+                        o_av_read <= 0;
+                        r_state   <= S_SOFT_RESET;
+                    end
+                end
+
+                S_SOFT_RESET: begin
+                    if (r_phy_id1 == 16'h001C && (r_phy_id2 & 16'hFFF0) == 16'hC910) begin
+                        o_av_write     <= 1;
+                        o_av_addr      <= 8'h80;
+                        o_av_writedata <= 32'h8000;
+                        r_next_state   <= S_RESET_WAIT; // 跳转到等待状态
+                        r_state        <= S_WAIT_WRITE;
+                    end else if (r_phy_addr < 5'd31) begin
+                        r_phy_addr <= r_phy_addr + 1;
+                        r_state    <= S_SET_ADDR;
+                    end else begin
+                        r_phy_addr <= 0;
+                        r_state    <= S_SET_ADDR;
+                    end
+                end
+
+                // 软件复位后需要约 30ms 等待内部逻辑重新加载
+                S_RESET_WAIT: begin
+                    if (r_wait_cnt < 24'd1_500_000) 
+                        r_wait_cnt <= r_wait_cnt + 1;
+                    else begin
+                        r_wait_cnt <= 0;
+                        r_state    <= S_SWITCH_PAGE;
+                    end
+                end
+
+                S_SWITCH_PAGE: begin
+                    o_av_write     <= 1;
+                    o_av_addr      <= 8'h9F; 
+                    o_av_writedata <= 32'h0D08;
+                    r_next_state   <= S_SET_DELAY;
+                    r_state        <= S_WAIT_WRITE;
+                end
+
+                S_SET_DELAY: begin
+                    o_av_write     <= 1;
+                    o_av_addr      <= 8'h91; 
+                    o_av_writedata <= 32'h0003; 
+                    r_next_state   <= S_BACK_PAGE0;
+                    r_state        <= S_WAIT_WRITE;
+                end
+
+                S_BACK_PAGE0: begin
+                    o_av_write     <= 1;
+                    o_av_addr      <= 8'h9F;
+                    o_av_writedata <= 32'h0000;
+                    r_next_state   <= S_CFG_MAC;
+                    r_state        <= S_WAIT_WRITE;
+                end
+
+                S_CFG_MAC: begin
+                    o_av_write     <= 1;
+                    o_av_addr      <= 8'h02; // command_config
+                    // 0x0000001B 的含义:
+                    // Bit 0: TX_ENA = 1
+                    // Bit 1: RX_ENA = 1
+                    // Bit 3: ETH_SPEED = 1 (1000Mbps)
+                    // Bit 4: PROMIS_EN = 1 (混杂模式，接收所有广播/单播包)
+                    o_av_writedata <= 32'h0000001B; 
+                    r_next_state   <= S_DONE_OK;
+                    r_state        <= S_WAIT_WRITE;
+                end
+
+                S_WAIT_WRITE: begin
+                    o_av_write <= 1;
+                    if (!i_av_waitrequest) begin
+                        o_av_write <= 0;
+                        r_state    <= r_next_state;
+                    end
+                end
+
+                S_DONE_OK: begin
+                    o_cfg_done <= 1;
+                    r_state    <= S_DONE_OK;
+                end
+
+                default: r_state <= S_IDLE;
+            endcase
+        end
+    end
+
+endmodule

@@ -1,14 +1,11 @@
 
 State Machine - |udp_echo_top|tse_packet_processor:u_processor|state
-Name state.S_TX_STREAM state.S_TX_PRE state.S_PROC_WR state.S_PROC_BUFF state.S_PROC_WAIT state.S_PROC_CALC state.S_RX_STORE state.S_IDLE 
-state.S_IDLE 0 0 0 0 0 0 0 0 
-state.S_RX_STORE 0 0 0 0 0 0 1 1 
-state.S_PROC_CALC 0 0 0 0 0 1 0 1 
-state.S_PROC_WAIT 0 0 0 0 1 0 0 1 
-state.S_PROC_BUFF 0 0 0 1 0 0 0 1 
-state.S_PROC_WR 0 0 1 0 0 0 0 1 
-state.S_TX_PRE 0 1 0 0 0 0 0 1 
-state.S_TX_STREAM 1 0 0 0 0 0 0 1 
+Name state.S_TX_PRE state.S_COPY state.S_RX_STORE state.S_IDLE state.S_TX_STREAM 
+state.S_IDLE 0 0 0 0 0 
+state.S_RX_STORE 0 0 1 1 0 
+state.S_COPY 0 1 0 1 0 
+state.S_TX_PRE 1 0 0 1 0 
+state.S_TX_STREAM 0 0 0 1 1 
 
 State Machine - |udp_echo_top|TSE_RGMII:ipcore_inst|TSE_RGMII_0002:tse_rgmii_inst|altera_eth_tse_mac:i_tse_mac|altera_tse_top_w_fifo_10_100_1000:U_MAC_TOP|altera_tse_top_w_fifo:U_MAC|altera_tse_tx_min_ff:U_TXFF|altera_tse_retransmit_cntl:U_RETR|state
 Name state.STM_TYP_WAIT_COL state.STM_TYP_BACK_OFF state.STM_TYP_RETRANSMIT_SHORT state.STM_TYP_RETRANSMIT state.STM_TYP_FLUSH state.STM_TYP_WAIT_END state.STM_TYP_COPY state.STM_TYP_IDLE state.STM_TYP_WAIT_COL_1 
@@ -85,27 +82,28 @@ state.STM_TYPE_WAIT_BUSY 0 1 0 0 0 0 0 1
 state.STM_TYPE_STAT_READ 1 0 0 0 0 0 0 1 
 
 State Machine - |udp_echo_top|mdio_config_ctrl_rtl8211f:u_mdio_config|r_next_state
-Name r_next_state.S_CFG_MAC r_next_state.S_BACK_PAGE0 r_next_state.S_SET_DELAY r_next_state.S_SWITCH_PAGE r_next_state.S_READ_ID1 r_next_state.S_DONE_OK 
+Name r_next_state.S_RESET_WAIT r_next_state.S_DONE_OK r_next_state.S_CFG_MAC r_next_state.S_BACK_PAGE0 r_next_state.S_SET_DELAY r_next_state.S_READ_ID1 
 r_next_state.S_READ_ID1 0 0 0 0 0 0 
-r_next_state.S_SWITCH_PAGE 0 0 0 1 1 0 
-r_next_state.S_SET_DELAY 0 0 1 0 1 0 
-r_next_state.S_BACK_PAGE0 0 1 0 0 1 0 
-r_next_state.S_CFG_MAC 1 0 0 0 1 0 
-r_next_state.S_DONE_OK 0 0 0 0 1 1 
+r_next_state.S_SET_DELAY 0 0 0 0 1 1 
+r_next_state.S_BACK_PAGE0 0 0 0 1 0 1 
+r_next_state.S_CFG_MAC 0 0 1 0 0 1 
+r_next_state.S_DONE_OK 0 1 0 0 0 1 
+r_next_state.S_RESET_WAIT 1 0 0 0 0 1 
 
 State Machine - |udp_echo_top|mdio_config_ctrl_rtl8211f:u_mdio_config|r_state
-Name r_state.S_WAIT_WRITE r_state.S_DONE_OK r_state.S_CFG_MAC r_state.S_BACK_PAGE0 r_state.S_SET_DELAY r_state.S_SWITCH_PAGE r_state.S_SOFT_RESET r_state.S_WAIT_ID2 r_state.S_READ_ID2 r_state.S_WAIT_ID1 r_state.S_READ_ID1 r_state.S_SET_ADDR r_state.S_PHY_WAKEUP r_state.S_IDLE 
-r_state.S_IDLE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-r_state.S_PHY_WAKEUP 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
-r_state.S_SET_ADDR 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
-r_state.S_READ_ID1 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
-r_state.S_WAIT_ID1 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
-r_state.S_READ_ID2 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
-r_state.S_WAIT_ID2 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
-r_state.S_SOFT_RESET 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
-r_state.S_SWITCH_PAGE 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
-r_state.S_SET_DELAY 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
-r_state.S_BACK_PAGE0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
-r_state.S_CFG_MAC 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
-r_state.S_DONE_OK 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
-r_state.S_WAIT_WRITE 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+Name r_state.S_RESET_WAIT r_state.S_WAIT_WRITE r_state.S_DONE_OK r_state.S_CFG_MAC r_state.S_BACK_PAGE0 r_state.S_SET_DELAY r_state.S_SWITCH_PAGE r_state.S_SOFT_RESET r_state.S_WAIT_ID2 r_state.S_READ_ID2 r_state.S_WAIT_ID1 r_state.S_READ_ID1 r_state.S_SET_ADDR r_state.S_PHY_WAKEUP r_state.S_IDLE 
+r_state.S_IDLE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+r_state.S_PHY_WAKEUP 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+r_state.S_SET_ADDR 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+r_state.S_READ_ID1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+r_state.S_WAIT_ID1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+r_state.S_READ_ID2 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+r_state.S_WAIT_ID2 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+r_state.S_SOFT_RESET 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+r_state.S_SWITCH_PAGE 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+r_state.S_SET_DELAY 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+r_state.S_BACK_PAGE0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+r_state.S_CFG_MAC 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+r_state.S_DONE_OK 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+r_state.S_WAIT_WRITE 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+r_state.S_RESET_WAIT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 

@@ -32,59 +32,115 @@
 					"strict" : false
 				},
 				{
-					"name" : "debug_rx_sop",
+					"name" : "dbg_cfg_done",
 					"strict" : false
 				},
 				{
-					"name" : "debug_rx_dv",
+					"name" : "dbg_state[0]",
 					"strict" : false
 				},
 				{
-					"name" : "debug_rx_data[0]",
+					"name" : "dbg_state[1]",
 					"strict" : false
 				},
 				{
-					"name" : "debug_rx_data[1]",
+					"name" : "dbg_state[2]",
 					"strict" : false
 				},
 				{
-					"name" : "debug_rx_data[2]",
+					"name" : "dbg_rx_data[0]",
 					"strict" : false
 				},
 				{
-					"name" : "debug_rx_data[3]",
+					"name" : "dbg_rx_data[1]",
 					"strict" : false
 				},
 				{
-					"name" : "debug_rx_data[4]",
+					"name" : "dbg_rx_data[2]",
 					"strict" : false
 				},
 				{
-					"name" : "debug_rx_data[5]",
+					"name" : "dbg_rx_data[3]",
 					"strict" : false
 				},
 				{
-					"name" : "debug_rx_data[6]",
+					"name" : "dbg_rx_data[4]",
 					"strict" : false
 				},
 				{
-					"name" : "debug_rx_data[7]",
+					"name" : "dbg_rx_data[5]",
 					"strict" : false
 				},
 				{
-					"name" : "debug_rx_eop",
+					"name" : "dbg_rx_data[6]",
 					"strict" : false
 				},
 				{
-					"name" : "debug_phy_ready",
+					"name" : "dbg_rx_data[7]",
+					"strict" : false
+				},
+				{
+					"name" : "dbg_rx_dv",
+					"strict" : false
+				},
+				{
+					"name" : "dbg_rx_sop",
+					"strict" : false
+				},
+				{
+					"name" : "dbg_rx_eop",
+					"strict" : false
+				},
+				{
+					"name" : "dbg_tx_data[0]",
+					"strict" : false
+				},
+				{
+					"name" : "dbg_tx_data[1]",
+					"strict" : false
+				},
+				{
+					"name" : "dbg_tx_data[2]",
+					"strict" : false
+				},
+				{
+					"name" : "dbg_tx_data[3]",
+					"strict" : false
+				},
+				{
+					"name" : "dbg_tx_data[4]",
+					"strict" : false
+				},
+				{
+					"name" : "dbg_tx_data[5]",
+					"strict" : false
+				},
+				{
+					"name" : "dbg_tx_data[6]",
+					"strict" : false
+				},
+				{
+					"name" : "dbg_tx_data[7]",
+					"strict" : false
+				},
+				{
+					"name" : "dbg_tx_wren",
+					"strict" : false
+				},
+				{
+					"name" : "dbg_tx_sop",
+					"strict" : false
+				},
+				{
+					"name" : "dbg_tx_eop",
+					"strict" : false
+				},
+				{
+					"name" : "dbg_tx_ready",
 					"strict" : false
 				},
 				{
 					"name" : "enet0_mdio",
-					"strict" : false
-				},
-				{
-					"name" : "enet0_tx_clk",
 					"strict" : false
 				},
 				{
@@ -117,6 +173,22 @@
 				},
 				{
 					"name" : "enet0_rgmii_rx[1]",
+					"strict" : false
+				},
+				{
+					"name" : "altera_reserved_tms",
+					"strict" : false
+				},
+				{
+					"name" : "altera_reserved_tck",
+					"strict" : false
+				},
+				{
+					"name" : "altera_reserved_tdi",
+					"strict" : false
+				},
+				{
+					"name" : "altera_reserved_tdo",
 					"strict" : false
 				}
 			]

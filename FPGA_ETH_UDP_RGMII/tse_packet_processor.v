@@ -1,263 +1,190 @@
+// ============================================================================
+// Module: tse_packet_processor
+// Description: 重构后的简化版处理器。实现纯数据回环：RX RAM -> COPY -> TX RAM -> TX
+// 优化了状态机结构，并保留了组合逻辑写使能以确保第一拍数据不丢失。
+// ============================================================================
+
 module tse_packet_processor (
-    input clk,
-    input rst_n,
+    input  wire        clk,
+    input  wire        rst_n,
 
     // --- TSE RX 接口 ---
-    input wire [7:0] tse_rx_data,
-    input wire       tse_rx_dv,
-    input wire       tse_rx_sop,
-    input wire       tse_rx_eop,
+    input  wire [7:0]  tse_rx_data,
+    input  wire        tse_rx_dv,
+    input  wire        tse_rx_sop,
+    input  wire        tse_rx_eop,
 
-    // --- RAM 写入控制 (RX RAM) ---
-    output reg [10:0] rx_ram_w_addr,
-    output reg        rx_ram_w_en,
+    // --- RX RAM 接口 (存储接收到的数据) ---
+    output wire [10:0] rx_ram_w_addr,
+    output wire        rx_ram_w_en,
+    output wire [7:0]  rx_ram_w_data,
 
-    // --- RAM 读取控制 (RX RAM) ---
-    input  wire [ 7:0] rx_ram_r_data,
+    // --- RAM 读取接口 (逻辑解析用) ---
     output reg  [10:0] rx_ram_r_addr,
+    input  wire [7:0]  rx_ram_r_data,
 
-    // --- RAM 写入控制 (TX RAM) ---
-    output reg [10:0] tx_ram_w_addr,
-    output reg [ 7:0] tx_ram_w_data,
-    output reg        tx_ram_w_en,
+    // --- TX RAM 接口 (准备发送的数据) ---
+    output reg  [10:0] tx_ram_w_addr,
+    output reg  [7:0]  tx_ram_w_data,
+    output reg         tx_ram_w_en,
 
-    // --- RAM 读取控制 (TX RAM) ---
-    input  wire [ 7:0] tx_ram_r_data,
+    // --- RAM 读取接口 (发送用) ---
     output reg  [10:0] tx_ram_r_addr,
+    input  wire [7:0]  tx_ram_r_data,
 
-    // --- TSE TX 接口 ---
-    output reg  [7:0] tse_tx_data,
-    output reg        tse_tx_wren,
-    output reg        tse_tx_sop,
-    output reg        tse_tx_eop,
-    input  wire       tse_tx_ready,
+    // --- TSE TX 接口 (回传数据) ---
+    output reg  [7:0]  tse_tx_data,
+    output reg         tse_tx_wren,
+    output reg         tse_tx_sop,
+    output reg         tse_tx_eop,
+    input  wire        tse_tx_ready,
 
-    // --- 脉冲控制接口 (修改部分) ---
-    output reg        pulse_start_trig,  // 脉冲启动触发
-    output reg [15:0] pulse_target_val,  // 脉冲目标值
-
-
-    // --- Debug ---
-    output wire [ 3:0] debug_state,
-    output wire [10:0] debug_cnt,
-    output wire [10:0] debug_pkt_len,
-    output wire [ 7:0] debug_rx_ram_r_data_mon
+    // --- 调试信号 ---
+    output wire [3:0]  debug_state
 );
 
-  // --- FPGA 本地信息 ---
-  localparam FPGA_MAC_0 = 8'h02;
-  localparam FPGA_MAC_1 = 8'h00;
-  localparam FPGA_MAC_2 = 8'h00;
-  localparam FPGA_MAC_3 = 8'h00;
-  localparam FPGA_MAC_4 = 8'h00;
-  localparam FPGA_MAC_5 = 8'h01;
+    // 状态机定义 (由 8 个状态简化为 5 个)
+    localparam S_IDLE      = 4'd0;
+    localparam S_RX_STORE  = 4'd1; // 接收并存入 RX RAM
+    localparam S_COPY      = 4'd2; // 将数据从 RX RAM 搬运到 TX RAM
+    localparam S_TX_PRE    = 4'd3; // 准备发送 (等待 Ready)
+    localparam S_TX_STREAM = 4'd4; // 读 TX RAM 并驱动 TSE IP
 
-  localparam FPGA_IP_0 = 8'hC0;  // 192
-  localparam FPGA_IP_1 = 8'hA8;  // 168
-  localparam FPGA_IP_2 = 8'h01;  // 1
-  localparam FPGA_IP_3 = 8'h7B;  // 123
+    reg [3:0]  state;
+    reg [10:0] pkt_len;      // 记录当前包总长度
+    reg [10:0] cnt;          // 内部通用计数器
+    reg [10:0] r_rx_w_addr;  // 内部写地址寄存器
+    reg [10:0] r_rx_w_addr_ff;
+    assign debug_state = state;
 
-  // --- 状态机定义 (新增 S_PROC_WAIT) ---
-  localparam S_IDLE = 0;
-  localparam S_RX_STORE = 1;
-  localparam S_PROC_CALC = 2;  // 1. 给地址
-  localparam S_PROC_WAIT = 3;  // 2. 等RAM (新增!)
-  localparam S_PROC_BUFF = 4;  // 3. 锁数据
-  localparam S_PROC_WR = 5;  // 4. 写数据
-  localparam S_TX_PRE = 6;
-  localparam S_TX_STREAM = 7;
+    // ============================================================
+    // 1. 接收路径逻辑 (保持组合逻辑以确保 SOP 第一拍对齐)
+    // ============================================================
+    
+    // 组合逻辑产生写使能，确保 SOP 来到的那一拍立即写入 Addr 0
+    assign rx_ram_w_en   = (state == S_IDLE && tse_rx_sop) || (state == S_RX_STORE && tse_rx_dv);
+    assign rx_ram_w_addr = (state == S_IDLE && tse_rx_sop) ? 11'd0 : r_rx_w_addr;
+    assign rx_ram_w_data = tse_rx_data;
 
-  reg [3:0] state, next_state;
-  reg [10:0] pkt_len;
-  reg [10:0] cnt;
+    // ============================================================
+    // 2. 主状态机跳转
+    // ============================================================
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            state <= S_IDLE;
+        end else begin
+            case (state)
+                S_IDLE: begin
+                    if (tse_rx_sop) state <= S_RX_STORE;
+                end
 
-  // Debug
-  assign debug_state             = state;
-  assign debug_cnt               = cnt;
-  assign debug_pkt_len           = pkt_len;
-  assign debug_rx_ram_r_data_mon = rx_ram_r_data;
+                S_RX_STORE: begin
+                    if (tse_rx_dv && tse_rx_eop) state <= S_COPY;
+                end
 
-  // ============================================================
-  // 1. 状态机时序
-  // ============================================================
-  always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) state <= S_IDLE;
-    else state <= next_state;
-  end
+                S_COPY: begin
+                    // 延时拷贝，3拍
+                    if (cnt == pkt_len + 2) state <= S_TX_PRE;
+                end
 
-  // ============================================================
-  // 2. 状态跳转逻辑
-  // ============================================================
-  always @(*) begin
-    next_state = state;
-    case (state)
-      S_IDLE: if (tse_rx_sop) next_state = S_RX_STORE;
+                S_TX_PRE: begin
+                    // 等待 TSE IP 核准备好接收数据
+                    if (tse_tx_ready) state <= S_TX_STREAM;
+                end
 
-      S_RX_STORE: if (tse_rx_eop) next_state = S_PROC_CALC;
+                S_TX_STREAM: begin
+                    // 发送完成跳转回空闲
+                    if (tse_tx_ready && cnt == pkt_len - 1'b1) state <= S_IDLE;
+                end
 
-      S_PROC_CALC: next_state = S_PROC_WAIT;  // -> 去等待
-
-      S_PROC_WAIT: next_state = S_PROC_BUFF;  // -> 去锁存
-
-      S_PROC_BUFF: next_state = S_PROC_WR;  // -> 去写入
-
-      S_PROC_WR: begin
-        if (cnt == pkt_len - 1'b1) next_state = S_TX_PRE;
-        else next_state = S_PROC_CALC;
-      end
-
-      S_TX_PRE: if (tse_tx_ready) next_state = S_TX_STREAM;
-
-      S_TX_STREAM: if (tse_tx_ready && (cnt == pkt_len - 1'b1)) next_state = S_IDLE;
-
-      default: next_state = S_IDLE;
-    endcase
-  end
-
-  // ============================================================
-  // 3. 统一计数器
-  // ============================================================
-  always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-      cnt <= 0;
-    end else begin
-      case (state)
-        S_IDLE:   cnt <= 0;
-        // RX, CALC, WAIT, BUFF 都不动计数器
-        S_PROC_WR: begin
-          if (cnt < pkt_len - 1'b1) cnt <= cnt + 1'b1;
-          else cnt <= 0;
+                default: state <= S_IDLE;
+            endcase
         end
-        S_TX_PRE: cnt <= 0;
-        S_TX_STREAM: begin
-          if (tse_tx_ready && cnt < pkt_len - 1'b1) cnt <= cnt + 1'b1;
+    end
+
+    // ============================================================
+    // 3. 计数器与地址生成逻辑
+    // ============================================================
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin         
+            pkt_len     <= 0;
+            // 清零所有中间寄存器
+            cnt             <= 0;
+            r_rx_w_addr     <= 0;
+            r_rx_w_addr_ff  <= 0;   // ← 新增！
+            rx_ram_r_addr   <= 0;   // ← 新增！
+            tx_ram_w_addr   <= 0;
+            tx_ram_w_data   <= 0;
+            tx_ram_w_en     <= 0;
+            tx_ram_r_addr   <= 0;   // ← 新增！
+        end else begin
+            case (state)
+                S_IDLE: begin
+                    cnt         <= 0;
+                    tx_ram_w_addr <= 0;
+                    tx_ram_w_en <= 0;
+                    if (tse_rx_sop) begin
+                        r_rx_w_addr <= 11'd1; 
+                        pkt_len     <= 11'd1;
+                    end
+                end
+
+                S_RX_STORE: begin
+                    if (tse_rx_dv) begin
+                        r_rx_w_addr <= r_rx_w_addr + 1'b1;
+                        pkt_len     <= pkt_len + 1'b1;
+                    end
+                end
+
+                S_COPY: begin
+                    r_rx_w_addr <= 0; // 复位
+                    
+                    // --- 简单的流水线搬运 (处理 RAM 1 拍延迟) ---
+                    // T0: 给出读地址
+                    // T1: 收到读数据，给出写地址和写使能
+                    rx_ram_r_addr <= cnt;               // 读地址递增
+                    r_rx_w_addr_ff <= rx_ram_r_addr; // 数据延迟 1 拍
+                    tx_ram_w_addr <= r_rx_w_addr_ff;     // 写地址比读地址慢一拍
+                    tx_ram_w_data <= rx_ram_r_data;     // 数据比读地址慢一拍
+                    
+                    // 只有在数据真正出来的时候才开启写使能
+                    if (cnt > 0) tx_ram_w_en <= 1'b1;
+                    
+                    if (cnt < pkt_len + 2 ) cnt <= cnt + 1'b1;
+                    else begin
+                        tx_ram_w_en <= 0;
+                        cnt <= 0;
+                        tx_ram_r_addr <= 0; // 复位
+                        
+                    end
+                end
+
+                S_TX_PRE: begin
+                    cnt <= 0;
+                    // 预读第一个字节，利用 RAM 的延迟在进入 STREAM 时刚好出数
+                    tx_ram_r_addr <= 1;
+                end
+
+                S_TX_STREAM: begin
+                    if (tse_tx_ready) begin
+                        if (cnt < pkt_len) begin
+                            cnt <= cnt + 1'b1;
+                            tx_ram_r_addr <= tx_ram_r_addr + 1'b1;
+                        end
+                    end
+                end
+            endcase
         end
-        default:  cnt <= cnt;
-      endcase
     end
-  end
 
-  // ============================================================
-  // 4. 接收逻辑 (RX Store)
-  // ============================================================
-  always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-      rx_ram_w_addr <= 0;
-      rx_ram_w_en   <= 0;
-      pkt_len       <= 0;
-    end else begin
-      rx_ram_w_en <= 0;
-
-      if (state == S_IDLE && tse_rx_sop) begin
-        rx_ram_w_en   <= 1;
-        rx_ram_w_addr <= 11'd1;
-        pkt_len       <= 11'd1;
-      end else if (state == S_RX_STORE && tse_rx_dv) begin
-        rx_ram_w_en   <= 1;
-        rx_ram_w_addr <= rx_ram_w_addr + 1'b1;
-        pkt_len       <= pkt_len + 1'b1;
-      end else if (state == S_IDLE) begin
-        rx_ram_w_addr <= 0;
-      end
+    // ============================================================
+    // 4. 发送端口驱动 (组合逻辑输出)
+    // ============================================================
+    always @(*) begin
+        tse_tx_wren = (state == S_TX_STREAM) && tse_tx_ready;
+        tse_tx_data = tx_ram_r_data;
+        tse_tx_sop  = (state == S_TX_STREAM) && (cnt == 0);
+        tse_tx_eop  = (state == S_TX_STREAM) && (cnt == pkt_len - 1'b1);
     end
-  end
-
-  // ============================================================
-  // 5. 处理逻辑 (4步走: 计算->等待->锁存->写)
-  // ============================================================
-
-  // 5.1 计算 RX 读地址 (在 CALC 状态更新)
-  always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) rx_ram_r_addr <= 0;
-    else if (state == S_PROC_CALC) begin
-      if (cnt >= 0 && cnt <= 5) rx_ram_r_addr <= cnt + 6;
-      else if (cnt >= 30 && cnt <= 33) rx_ram_r_addr <= cnt - 4;
-      else rx_ram_r_addr <= cnt;
-    end
-  end
-
-  // 5.2 锁存数据 (在 BUFF 状态锁存)
-  // 经过 CALC(更新地址) -> WAIT(RAM响应) -> BUFF(锁存)，数据绝对稳定
-  always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-      tx_ram_w_data    <= 0;
-      tx_ram_w_data    <= 0;
-      pulse_start_trig <= 0;
-      pulse_target_val <= 0;
-    end else begin
-      // 脉冲触发信号默认是脉冲，只维持一拍，所以这里要拉低
-      // 但为了安全，我们可以在状态机跳转时拉低，或者在这里默认拉低
-      pulse_start_trig <= 0;
-      if (state == S_PROC_BUFF) begin
-        // 修改或直通数据
-        if (cnt == 6) tx_ram_w_data <= FPGA_MAC_0;
-        else if (cnt == 7) tx_ram_w_data <= FPGA_MAC_1;
-        else if (cnt == 8) tx_ram_w_data <= FPGA_MAC_2;
-        else if (cnt == 9) tx_ram_w_data <= FPGA_MAC_3;
-        else if (cnt == 10) tx_ram_w_data <= FPGA_MAC_4;
-        else if (cnt == 11) tx_ram_w_data <= FPGA_MAC_5;
-        else if (cnt == 26) tx_ram_w_data <= FPGA_IP_0;
-        else if (cnt == 27) tx_ram_w_data <= FPGA_IP_1;
-        else if (cnt == 28) tx_ram_w_data <= FPGA_IP_2;
-        else if (cnt == 29) tx_ram_w_data <= FPGA_IP_3;
-        else if (cnt == 40 || cnt == 41) tx_ram_w_data <= 8'h00; // UDP checksum 
-        else tx_ram_w_data <= rx_ram_r_data;
-      end
-      // --- 2. [新增] 指令解析逻辑 ---
-      // 检查地址 42 (Payload 第1个字节)
-      if (cnt == 42) begin
-        // 判断是否为数字 '1' ~ '9' (ASCII 0x31 ~ 0x39)
-        if (rx_ram_r_data >= 8'h31 && rx_ram_r_data <= 8'h39) begin
-          pulse_start_trig <= 1;  // 触发！
-
-          // 计算公式：(ASCII值 - 0x30) * 200
-          // 例如 '2' (0x32) - 0x30 = 2.  2 * 200 = 400.
-          pulse_target_val <= (rx_ram_r_data - 8'h30) * 16'd200;
-        end
-      end
-    end
-  end
-
-  // 5.3 执行写入 (在 WR 状态写)
-  always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-      tx_ram_w_en   <= 0;
-      tx_ram_w_addr <= 0;
-    end else begin
-      tx_ram_w_en <= 0;
-
-      if (state == S_PROC_WR) begin
-        tx_ram_w_en   <= 1;
-        tx_ram_w_addr <= cnt;
-      end
-    end
-  end
-
-  // ============================================================
-  // 6. 发送逻辑
-  // ============================================================
-  always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) tx_ram_r_addr <= 0;
-    else begin
-      if (state == S_IDLE) tx_ram_r_addr <= 0;
-      else if (state == S_TX_PRE && tse_tx_ready) tx_ram_r_addr <= 1;
-      else if (state == S_TX_STREAM && tse_tx_ready && cnt < pkt_len - 1'b1) tx_ram_r_addr <= tx_ram_r_addr + 1'b1;
-    end
-  end
-
-  always @(*) begin
-    tse_tx_wren = 0;
-    tse_tx_sop  = 0;
-    tse_tx_eop  = 0;
-    tse_tx_data = 0;
-
-    if (state == S_TX_STREAM && tse_tx_ready) begin
-      tse_tx_wren = 1;
-      tse_tx_data = tx_ram_r_data;
-
-      if (cnt == 0) tse_tx_sop = 1;
-      if (cnt == pkt_len - 1'b1) tse_tx_eop = 1;
-    end
-  end
 
 endmodule

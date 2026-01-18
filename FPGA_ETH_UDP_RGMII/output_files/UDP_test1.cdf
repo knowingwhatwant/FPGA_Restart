@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP4CE115) Path("F:/FPGA_Restart/FPGA_ETH_UDP/output_files/") File("output_file.jic") MfrSpec(OpMask(1) SEC_Device(EPCS64) Child_OpMask(1 1));
+		Device PartName(EP4CE22E22) Path("F:/FPGA_Restart/FPGA_ETH_UDP_RGMII/output_files/") File("UDP_test1.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 
