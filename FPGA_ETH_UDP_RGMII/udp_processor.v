@@ -11,7 +11,10 @@ module udp_processor (
     input  wire        work_en,
     input  wire [10:0] pkt_len_in,
     output reg         done,
-
+    input  wire [15:0] word6,
+    input  wire [15:0] word7,
+    input  wire [15:0] word8,
+    input  wire [15:0] word9,
     // RAM 接口
     output reg  [10:0] rx_ram_r_addr,
     input  wire [7:0]  rx_ram_r_data,
@@ -30,8 +33,17 @@ module udp_processor (
             rx_ram_r_addr <= cnt;
             r_addr_ff     <= rx_ram_r_addr;
             tx_ram_w_addr <= r_addr_ff;
-            tx_ram_w_data <= rx_ram_r_data; // 此处可进行 MAC/IP 交换逻辑
-
+            case (cnt) 
+                26+2: tx_ram_w_data <= word6[15:8]; // UDP 源IP
+                27+2: tx_ram_w_data <= word6[7:0];  // UDP 源IP
+                28+2: tx_ram_w_data <= word7[15:8]; // UDP 源IP
+                29+2: tx_ram_w_data <= word7[7:0];  // UDP 源IP
+                30+2: tx_ram_w_data <= word8[15:8]; // UDP 目的IP
+                31+2: tx_ram_w_data <= word8[7:0];  // UDP 目的IP
+                32+2: tx_ram_w_data <= word9[15:8]; // UDP 目的IP
+                33+2: tx_ram_w_data <= word9[7:0];  // UDP 目的IP
+                default: tx_ram_w_data <= rx_ram_r_data;
+            endcase
             // 开启写使能 (考虑流水线延迟)
             if (cnt > 0 && cnt <= pkt_len_in + 1) tx_ram_w_en <= 1;
             else tx_ram_w_en <= 0;

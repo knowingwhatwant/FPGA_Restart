@@ -1,5 +1,5 @@
 Flow report for UDP_test1
-Sun Jan 18 16:26:31 2026
+Wed Jan 21 13:56:33 2026
 Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Standard Edition
 
 
@@ -40,17 +40,17 @@ refer to the applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Sun Jan 18 16:26:31 2026           ;
+; Flow Status                        ; Successful - Wed Jan 21 13:56:33 2026           ;
 ; Quartus Prime Version              ; 18.0.0 Build 614 04/24/2018 SJ Standard Edition ;
 ; Revision Name                      ; UDP_test1                                       ;
 ; Top-level Entity Name              ; udp_echo_top                                    ;
 ; Family                             ; Cyclone IV E                                    ;
 ; Device                             ; EP4CE22E22I7                                    ;
 ; Timing Models                      ; Final                                           ;
-; Total logic elements               ; 4,629 / 22,320 ( 21 % )                         ;
-;     Total combinational functions  ; 2,778 / 22,320 ( 12 % )                         ;
-;     Dedicated logic registers      ; 3,680 / 22,320 ( 16 % )                         ;
-; Total registers                    ; 3690                                            ;
+; Total logic elements               ; 5,035 / 22,320 ( 23 % )                         ;
+;     Total combinational functions  ; 3,163 / 22,320 ( 14 % )                         ;
+;     Dedicated logic registers      ; 3,874 / 22,320 ( 17 % )                         ;
+; Total registers                    ; 3884                                            ;
 ; Total pins                         ; 49 / 80 ( 61 % )                                ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 241,904 / 608,256 ( 40 % )                      ;
@@ -64,7 +64,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 01/18/2026 16:25:17 ;
+; Start date & time ; 01/21/2026 13:55:19 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; UDP_test1           ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ refer to the applicable agreement for further details.
 +--------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+------------------+
 ; Assignment Name                      ; Value                                                                                                                                                                                                                                                                                           ; Default Value ; Entity Name  ; Section Id       ;
 +--------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+--------------+------------------+
-; COMPILER_SIGNATURE_ID                ; 9619526107940.176872471521352                                                                                                                                                                                                                                                                   ; --            ; --           ; --               ;
+; COMPILER_SIGNATURE_ID                ; 9619526107940.176897491705700                                                                                                                                                                                                                                                                   ; --            ; --           ; --               ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                                                                                                                                                                                                                                                              ; --            ; --           ; ip_2port_ram_tb  ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; ip_2port_ram_tb                                                                                                                                                                                                                                                                                 ; --            ; --           ; eda_simulation   ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                                                                                                                                                                                                                                                                                     ; --            ; --           ; eda_simulation   ;
@@ -599,12 +599,12 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:42     ; 1.0                     ; 5052 MB             ; 00:00:52                           ;
-; Fitter               ; 00:00:14     ; 1.4                     ; 6646 MB             ; 00:00:47                           ;
-; Assembler            ; 00:00:03     ; 1.0                     ; 4706 MB             ; 00:00:02                           ;
-; Timing Analyzer      ; 00:00:04     ; 1.7                     ; 4993 MB             ; 00:00:04                           ;
-; EDA Netlist Writer   ; 00:00:06     ; 1.0                     ; 4719 MB             ; 00:00:06                           ;
-; Total                ; 00:01:09     ; --                      ; --                  ; 00:01:51                           ;
+; Analysis & Synthesis ; 00:00:42     ; 1.0                     ; 5047 MB             ; 00:00:53                           ;
+; Fitter               ; 00:00:14     ; 1.4                     ; 6683 MB             ; 00:00:42                           ;
+; Assembler            ; 00:00:02     ; 1.0                     ; 4707 MB             ; 00:00:02                           ;
+; Timing Analyzer      ; 00:00:03     ; 1.7                     ; 4995 MB             ; 00:00:04                           ;
+; EDA Netlist Writer   ; 00:00:07     ; 1.0                     ; 4720 MB             ; 00:00:06                           ;
+; Total                ; 00:01:08     ; --                      ; --                  ; 00:01:47                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

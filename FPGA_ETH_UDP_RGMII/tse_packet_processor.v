@@ -179,6 +179,8 @@ module tse_packet_processor (
         end
     end
 
+    // 6、7是SRC IP
+    // 8、9是DST IP
     // 3. 校验和计算器例化
     wire [15:0] w6 = is_udp ? ip_hdr_words[8] : ip_hdr_words[6]; 
     wire [15:0] w7 = is_udp ? ip_hdr_words[9] : ip_hdr_words[7]; 
@@ -206,6 +208,7 @@ module tse_packet_processor (
     udp_processor u_udp (
         .clk(clk), .rst_n(rst_n),
         .work_en(state == S_WORK && is_udp), .pkt_len_in(pkt_len_reg),
+        .word6(w6), .word7(w7), .word8(w8), .word9(w9),
         .rx_ram_r_addr(udp_r_addr), .rx_ram_r_data(rx_ram_r_data),
         .tx_ram_w_addr(udp_w_addr), .tx_ram_w_data(udp_w_data), .tx_ram_w_en(udp_w_en), .done(udp_done)
     );
