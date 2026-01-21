@@ -39,6 +39,7 @@ module tse_packet_processor (
     // --- 身份参数 ---
     localparam MY_MAC = 48'h02_00_00_00_00_01;
     localparam MY_IP  = {8'd192, 8'd168, 8'd1, 8'd123};
+    localparam MY_UDP_PORT = 16'd1234;
 
     // --- 状态机定义 ---
     localparam S_IDLE      = 3'd0, 
@@ -63,7 +64,11 @@ module tse_packet_processor (
 
     // --- 实时嗅探寄存器 ---
     reg [47:0] rem_mac_sniff;
-    reg [31:0] rem_ip_sniff;
+    reg [31:0] arp_rem_ip;
+    reg [31:0] udp_rem_ip;
+    reg [15:0] udp_rem_port;
+    reg [15:0] rx_udp_dst_port;
+    reg [7:0]  ip_proto;
 
     // --- 子模块连线与仲裁寄存器 ---
     wire [10:0] arp_w_addr, udp_w_addr, udp_r_addr;
@@ -86,7 +91,7 @@ module tse_packet_processor (
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             state <= S_IDLE;
-            rem_mac_sniff <= 0; rem_ip_sniff <= 0; eth_type <= 0;
+            rem_mac_sniff <= 0; arp_rem_ip <= 0; eth_type <= 0;
             main_tx_w_en <= 0; is_arp <= 0; is_udp <= 0; chksum_start <= 0;
         end else begin
             case (state)
@@ -94,40 +99,61 @@ module tse_packet_processor (
                     is_arp <= 0; is_udp <= 0; chksum_start <= 0; main_tx_w_en <= 0;
                     if (tse_rx_sop) begin 
                         state <= S_RX; pkt_len_reg <= 11'd1;
-                        rem_mac_sniff <= 0; rem_ip_sniff <= 0;
+                        rem_mac_sniff <= 0; arp_rem_ip <= 0;
                     end
                 end
 
                 S_RX: if (tse_rx_dv) begin
                     pkt_len_reg <= pkt_len_reg + 11'd1;
                     
-                    // 以太网类型
+                    // A.以太网类型
                     if (pkt_len_reg == 11'd12) eth_type[15:8] <= tse_rx_data;
                     if (pkt_len_reg == 11'd13) eth_type[ 7:0] <= tse_rx_data;
 
-                    // ARP/IP 身份嗅探 (对应以太网帧 23-32 字节)
-                    if (pkt_len_reg >= 11'd22 && pkt_len_reg <= 11'd27) 
+                   // B. 抓取对方 MAC (6-11) - 无论是 ARP 还是 UDP，物理层来源都是这个
+                    if (pkt_len_reg >= 11'd6 && pkt_len_reg <= 11'd11)
                         rem_mac_sniff <= {rem_mac_sniff[39:0], tse_rx_data};
-                    if (pkt_len_reg >= 11'd28 && pkt_len_reg <= 11'd31) 
-                        rem_ip_sniff <= {rem_ip_sniff[23:0], tse_rx_data};
 
-                    // IP 首部字提取 (对应以太网帧 15-34 字节)
-                    if (pkt_len_reg >= 11'd14 && pkt_len_reg <= 11'd33) begin
-                        if (pkt_len_reg[0] == 0) // 偶数计数器为高位
-                            ip_hdr_words[(pkt_len_reg-11'd14)>>1][15:8] <= tse_rx_data;
-                        else
-                            ip_hdr_words[(pkt_len_reg-11'd14)>>1][ 7:0] <= tse_rx_data;
+                    // C. 协议感知嗅探 (基于 eth_type 的判断)
+                    if (eth_type == 16'h0806) begin 
+                        // ARP 发送方 IP 偏移是 28-31
+                        if (pkt_len_reg >= 11'd28 && pkt_len_reg <= 11'd31)
+                            arp_rem_ip <= {arp_rem_ip[23:0], tse_rx_data};
+                    end 
+                    else if (eth_type == 16'h0800) begin : UDP_FIELDS
+                    // IP 协议号 (Offset 23)
+                        if (pkt_len_reg == 11'd23) ip_proto <= tse_rx_data;
+                        // IP 源 IP 偏移是 26-29
+                        if (pkt_len_reg >= 11'd26 && pkt_len_reg <= 11'd29)
+                            udp_rem_ip <= {udp_rem_ip[23:0], tse_rx_data};
+                        
+                        // UDP 源端口偏移是 34-35
+                        if (pkt_len_reg >= 11'd34 && pkt_len_reg <= 11'd35)
+                            udp_rem_port <= {udp_rem_port[7:0], tse_rx_data};
+                        if(pkt_len_reg >= 11'd36 && pkt_len_reg <= 11'd37)
+                            rx_udp_dst_port <= {rx_udp_dst_port[7:0], tse_rx_data};
+
+                        // 抓取 IP 首部用于校验和 (14-33)
+                        if (pkt_len_reg >= 11'd14 && pkt_len_reg <= 11'd33) begin
+                            if (pkt_len_reg[0] == 0) ip_hdr_words[(pkt_len_reg-14)>>1][15:8] <= tse_rx_data;
+                            else                     ip_hdr_words[(pkt_len_reg-14)>>1][ 7:0] <= tse_rx_data;
+                        end
                     end
-
                     if (tse_rx_eop) state <= S_DECIDE;
                 end
 
                 S_DECIDE: begin
-                    if (eth_type == 16'h0806 || eth_type == 16'h0800) begin
-                        is_arp <= (eth_type == 16'h0806);
-                        is_udp <= (eth_type == 16'h0800);
+                    if (eth_type == 16'h0806) begin
+                        is_arp <= 1'b1;
+                        is_udp <= 1'b0;
                         state  <= S_WORK;
-                    end else state <= S_IDLE;
+                    end else if (eth_type == 16'h0800 && ip_proto == 8'd17 && rx_udp_dst_port == MY_UDP_PORT) begin
+                        is_arp <= 1'b0;
+                        is_udp <= 1'b1;
+                        state  <= S_WORK;
+                    end else begin
+                        state  <= S_IDLE; // 未知或无关协议丢弃
+                    end
                 end
 
                 S_WORK: begin
@@ -135,7 +161,7 @@ module tse_packet_processor (
                         if (is_udp) begin
                             state <= S_CHKSUM_H;
                             chksum_start <= 1; 
-                        end else begin
+                        end else if(is_arp) begin
                             state <= S_TX_PRE;
                             pkt_len_reg <= 11'd42; 
                         end
@@ -181,34 +207,40 @@ module tse_packet_processor (
 
     // 6、7是SRC IP
     // 8、9是DST IP
-    // 3. 校验和计算器例化
-    wire [15:0] w6 = is_udp ? ip_hdr_words[8] : ip_hdr_words[6]; 
+    // 3. 校验和计算器例化-交换IP
+    wire [15:0] w6 = is_udp ? ip_hdr_words[8] : ip_hdr_words[6];   
     wire [15:0] w7 = is_udp ? ip_hdr_words[9] : ip_hdr_words[7]; 
     wire [15:0] w8 = is_udp ? ip_hdr_words[6] : ip_hdr_words[8]; 
     wire [15:0] w9 = is_udp ? ip_hdr_words[7] : ip_hdr_words[9]; 
+
 
     ip_checksum_calculator u_chk_gen (
         .clk(clk), .rst_n(rst_n),
         .start(chksum_start),
         .word0(ip_hdr_words[0]), .word1(ip_hdr_words[1]),
         .word2(ip_hdr_words[2]), .word3(ip_hdr_words[3]),
-        .word4(ip_hdr_words[4]), .word5(16'h0000), 
+        .word4(ip_hdr_words[4]), .word5(16'h0000),          //计算时checksum字段为0
         .word6(w6), .word7(w7), .word8(w8), .word9(w9),
+
         .checksum_out(new_chksum), .done(chksum_done)
     );
     
     // 4. 子模块例化
-    arp_processor u_arp (
-        .clk(clk), .rst_n(rst_n), .local_mac(MY_MAC), .local_ip(MY_IP),
-        .rem_mac_in(rem_mac_sniff), .rem_ip_in(rem_ip_sniff),
+    arp_processor #(.FPGA_MAC(MY_MAC), .FPGA_IP(MY_IP)
+    ) u_arp (
+        .clk(clk), .rst_n(rst_n), 
+        .rem_mac_in(rem_mac_sniff), .rem_ip_in(arp_rem_ip),
         .work_en(state == S_WORK && is_arp),
         .tx_ram_w_addr(arp_w_addr), .tx_ram_w_data(arp_w_data), .tx_ram_w_en(arp_w_en), .done(arp_done)
     );
 
-    udp_processor u_udp (
+    udp_processor #(.FPGA_MAC(MY_MAC), .FPGA_IP(MY_IP), .FPGA_UDP_PORT(MY_UDP_PORT)
+    ) u_udp (
         .clk(clk), .rst_n(rst_n),
         .work_en(state == S_WORK && is_udp), .pkt_len_in(pkt_len_reg),
-        .word6(w6), .word7(w7), .word8(w8), .word9(w9),
+        .dst_ip(udp_rem_ip),
+        .dst_mac(rem_mac_sniff),
+        .dst_port(udp_rem_port),
         .rx_ram_r_addr(udp_r_addr), .rx_ram_r_data(rx_ram_r_data),
         .tx_ram_w_addr(udp_w_addr), .tx_ram_w_data(udp_w_data), .tx_ram_w_en(udp_w_en), .done(udp_done)
     );

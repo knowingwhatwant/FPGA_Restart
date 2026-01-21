@@ -4,13 +4,14 @@
 // 逻辑：直接利用嗅探到的对方 MAC/IP，在 tx_ram 中填入标准的 42 字节 ARP 回复报文。
 // ============================================================================
 
-module arp_processor (
+module arp_processor #(
+    parameter [47:0] FPGA_MAC = 48'h02_00_00_00_00_01,
+    parameter [31:0] FPGA_IP = {8'd192, 8'd168, 8'd1, 8'd123}
+)(
     input  wire        clk,
     input  wire        rst_n,
     
-    // 身份信息
-    input  wire [47:0] local_mac,
-    input  wire [31:0] local_ip,
+
     input  wire [47:0] rem_mac_in,     // 顶层嗅探到的对方 MAC
     input  wire [31:0] rem_ip_in,      // 顶层嗅探到的对方 IP
 
@@ -47,12 +48,12 @@ module arp_processor (
                     6'd3 : tx_ram_w_data <= rem_mac_in[23:16];
                     6'd4 : tx_ram_w_data <= rem_mac_in[15: 8];
                     6'd5 : tx_ram_w_data <= rem_mac_in[ 7: 0];
-                    6'd6 : tx_ram_w_data <= local_mac[47:40]; // 源 MAC (FPGA)
-                    6'd7 : tx_ram_w_data <= local_mac[39:32];
-                    6'd8 : tx_ram_w_data <= local_mac[31:24];
-                    6'd9 : tx_ram_w_data <= local_mac[23:16];
-                    6'd10: tx_ram_w_data <= local_mac[15: 8];
-                    6'd11: tx_ram_w_data <= local_mac[ 7: 0];
+                    6'd6 : tx_ram_w_data <= FPGA_MAC[47:40]; // 源 MAC (FPGA)
+                    6'd7 : tx_ram_w_data <= FPGA_MAC[39:32];
+                    6'd8 : tx_ram_w_data <= FPGA_MAC[31:24];
+                    6'd9 : tx_ram_w_data <= FPGA_MAC[23:16];
+                    6'd10: tx_ram_w_data <= FPGA_MAC[15: 8];
+                    6'd11: tx_ram_w_data <= FPGA_MAC[ 7: 0];
                     6'd12: tx_ram_w_data <= 8'h08;            // 类型: ARP (0x0806)
                     6'd13: tx_ram_w_data <= 8'h06;
                     
@@ -65,16 +66,16 @@ module arp_processor (
                     6'd19: tx_ram_w_data <= 8'h04;            // IP 长度: 4
                     6'd20: tx_ram_w_data <= 8'h00;            // 操作码: Reply (2)
                     6'd21: tx_ram_w_data <= 8'h02;
-                    6'd22: tx_ram_w_data <= local_mac[47:40]; // 发送方 MAC (FPGA)
-                    6'd23: tx_ram_w_data <= local_mac[39:32];
-                    6'd24: tx_ram_w_data <= local_mac[31:24];
-                    6'd25: tx_ram_w_data <= local_mac[23:16];
-                    6'd26: tx_ram_w_data <= local_mac[15: 8];
-                    6'd27: tx_ram_w_data <= local_mac[ 7: 0];
-                    6'd28: tx_ram_w_data <= local_ip [31:24]; // 发送方 IP (FPGA)
-                    6'd29: tx_ram_w_data <= local_ip [23:16];
-                    6'd30: tx_ram_w_data <= local_ip [15: 8];
-                    6'd31: tx_ram_w_data <= local_ip [ 7: 0];
+                    6'd22: tx_ram_w_data <= FPGA_MAC[47:40]; // 发送方 MAC (FPGA)
+                    6'd23: tx_ram_w_data <= FPGA_MAC[39:32];
+                    6'd24: tx_ram_w_data <= FPGA_MAC[31:24];
+                    6'd25: tx_ram_w_data <= FPGA_MAC[23:16];
+                    6'd26: tx_ram_w_data <= FPGA_MAC[15: 8];
+                    6'd27: tx_ram_w_data <= FPGA_MAC[ 7: 0];
+                    6'd28: tx_ram_w_data <= FPGA_IP [31:24]; // 发送方 IP (FPGA)
+                    6'd29: tx_ram_w_data <= FPGA_IP [23:16];
+                    6'd30: tx_ram_w_data <= FPGA_IP [15: 8];
+                    6'd31: tx_ram_w_data <= FPGA_IP [ 7: 0];
                     6'd32: tx_ram_w_data <= rem_mac_in[47:40]; // 目标 MAC (电脑)
                     6'd33: tx_ram_w_data <= rem_mac_in[39:32];
                     6'd34: tx_ram_w_data <= rem_mac_in[31:24];

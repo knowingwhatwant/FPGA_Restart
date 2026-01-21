@@ -1,12 +1,12 @@
-Analysis & Synthesis Status : Successful - Wed Jan 21 13:56:02 2026
+Analysis & Synthesis Status : Successful - Wed Jan 21 18:22:18 2026
 Quartus Prime Version : 18.0.0 Build 614 04/24/2018 SJ Standard Edition
 Revision Name : UDP_test1
 Top-level Entity Name : udp_echo_top
 Family : Cyclone IV E
-Total logic elements : 5,397
-    Total combinational functions : 3,155
-    Dedicated logic registers : 3,876
-Total registers : 3886
+Total logic elements : 5,542
+    Total combinational functions : 3,228
+    Dedicated logic registers : 3,948
+Total registers : 3958
 Total pins : 49
 Total virtual pins : 0
 Total memory bits : 241,904
