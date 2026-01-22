@@ -136,6 +136,18 @@
 					"strict" : false
 				},
 				{
+					"name" : "pulse_out[0]",
+					"strict" : false
+				},
+				{
+					"name" : "pulse_out[1]",
+					"strict" : false
+				},
+				{
+					"name" : "pulse_out[2]",
+					"strict" : false
+				},
+				{
 					"name" : "dbg_tx_ready",
 					"strict" : false
 				},

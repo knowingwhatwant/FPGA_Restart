@@ -39,6 +39,11 @@ module udp_echo_top (
     output          dbg_tx_wren,      // 发送使能
     output          dbg_tx_sop,       // 发送帧起始
     output          dbg_tx_eop,       // 发送帧结束
+
+
+    // 脉冲输出
+    output  [2:0]    pulse_out,
+
       
     // 5. 其他关键状态
     // output [15:0]   dbg_phy_id1,      // 读到的 ID1 (0x001C)
@@ -78,6 +83,12 @@ module udp_echo_top (
     wire       tse_tx_wren, tse_tx_sop, tse_tx_eop; // 现在是 wire
     wire       tse_tx_ready;
 
+    wire pulse_valid/* synthesis keep */;
+    wire [15:0] pulse_num[2:0]/* synthesis keep */;
+    wire [7:0] cmd_type ;
+
+    wire busy_x, busy_y, busy_z;
+    assign pulse_busy = busy_x | busy_y | busy_z;
     // =================================================================
 // 1. 时钟生成 (关键点)
 // =================================================================
@@ -209,15 +220,6 @@ assign enet0_tx_clk = clk_tx_out_90deg;
         .address_b(tx_ram_r_addr), .data_b(8'd0),          .wren_b(1'b0),        .rden_b(1'b1), .q_b(tx_ram_r_data)
     );
 
-// 实例化 Pulse Generator
-    pulse_generator u_pulse_gen (
-        .clk          (clk),
-        .rst_n        (rst_n),
-        .start_trig   (pulse_trig_sig),
-        .pulse_num_in (pulse_count_sig), // [新增] 连接数量信号
-        .pulse_out    (pulse_out_pin),
-        .busy         () 
-    );
 
 
   // ... 实例化 tse_packet_processor ...
@@ -234,10 +236,38 @@ assign enet0_tx_clk = clk_tx_out_90deg;
         // TX
         .tse_tx_data(tse_tx_data), .tse_tx_wren(tse_tx_wren),
         .tse_tx_sop(tse_tx_sop), .tse_tx_eop(tse_tx_eop), .tse_tx_ready(tse_tx_ready),
-        // .pulse_start_trig (pulse_trig_sig),
-        // .pulse_target_val (pulse_count_sig),
+        .out_cmd_type(cmd_type),  
+        .out_x_val(pulse_num[2]),     
+        .out_y_val(pulse_num[1]),     
+        .out_z_val(pulse_num[0]),     
+        .out_data_valid(pulse_valid),
         // // --- Debug ---
         .debug_state(dbg_state)
     );
+
+    pulse_generator u_pulse_gen_x (
+        .clk(clk), .rst_n(rst_n),
+        .start_trig(pulse_valid),
+        .pulse_num_in(pulse_num[2]),
+        .pulse_out(pulse_out[2]),
+        .busy(busy_x)
+    );
+
+    pulse_generator u_pulse_gen_y (
+        .clk(clk), .rst_n(rst_n),
+        .start_trig(pulse_valid),
+        .pulse_num_in(pulse_num[1]),
+        .pulse_out(pulse_out[1]),
+        .busy(busy_y)
+    );
+    pulse_generator u_pulse_gen_z (
+        .clk(clk), .rst_n(rst_n),
+        .start_trig(pulse_valid),
+        .pulse_num_in(pulse_num[0]),
+        .pulse_out(pulse_out[0]),
+        .busy(busy_z)
+    );
+
+
 
 endmodule

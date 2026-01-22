@@ -33,6 +33,14 @@ module tse_packet_processor (
     output reg  [10:0] tx_ram_r_addr,
     input  wire [7:0]  tx_ram_r_data,
 
+    // --- 提取出的有效业务数据 (输出给顶层) ---
+    output reg  [7:0]  out_cmd_type,     // 指令类型 (Byte 42)
+    output reg  [15:0] out_x_val,        // X轴数值 (Byte 43-44)
+    output reg  [15:0] out_y_val,        // Y轴数值 (Byte 45-46)
+    output reg  [15:0] out_z_val,        // Z轴数值 (Byte 47-48)
+    output reg         out_data_valid,   // 数据有效标志 (校验通过后拉高一拍)
+
+
     output wire [3:0]  debug_state
 );
 
@@ -62,13 +70,22 @@ module tse_packet_processor (
     wire        chksum_done;
     reg         chksum_start;
 
-    // --- 实时嗅探寄存器 ---
+    // --- 临时寄存器 ---
     reg [47:0] rem_mac_sniff;
     reg [31:0] arp_rem_ip;
     reg [31:0] udp_rem_ip;
     reg [15:0] udp_rem_port;
     reg [15:0] rx_udp_dst_port;
     reg [7:0]  ip_proto;
+
+
+    // 内部临时提取寄存器
+    reg [7:0]  tmp_cmd;
+    reg [15:0] tmp_x, tmp_y, tmp_z;
+    
+
+
+
 
     // --- 子模块连线与仲裁寄存器 ---
     wire [10:0] arp_w_addr, udp_w_addr, udp_r_addr;
@@ -92,11 +109,11 @@ module tse_packet_processor (
         if (!rst_n) begin
             state <= S_IDLE;
             rem_mac_sniff <= 0; arp_rem_ip <= 0; eth_type <= 0;
-            main_tx_w_en <= 0; is_arp <= 0; is_udp <= 0; chksum_start <= 0;
+            main_tx_w_en <= 0; is_arp <= 0; is_udp <= 0; chksum_start <= 0;out_data_valid <= 0;
         end else begin
             case (state)
                 S_IDLE: begin
-                    is_arp <= 0; is_udp <= 0; chksum_start <= 0; main_tx_w_en <= 0;
+                    is_arp <= 0; is_udp <= 0; chksum_start <= 0; main_tx_w_en <= 0;out_data_valid <= 0;
                     if (tse_rx_sop) begin 
                         state <= S_RX; pkt_len_reg <= 11'd1;
                         rem_mac_sniff <= 0; arp_rem_ip <= 0;
@@ -138,6 +155,17 @@ module tse_packet_processor (
                             if (pkt_len_reg[0] == 0) ip_hdr_words[(pkt_len_reg-14)>>1][15:8] <= tse_rx_data;
                             else                     ip_hdr_words[(pkt_len_reg-14)>>1][ 7:0] <= tse_rx_data;
                         end
+                        // --- 核心提取逻辑：从 Byte 42 开始掐尖 ---
+                        case (pkt_len_reg)
+                            11'd42: tmp_cmd      <= tse_rx_data;
+                            11'd43: tmp_x[15:8]  <= tse_rx_data;
+                            11'd44: tmp_x[ 7:0]  <= tse_rx_data;
+                            11'd45: tmp_y[15:8]  <= tse_rx_data;
+                            11'd46: tmp_y[ 7:0]  <= tse_rx_data;
+                            11'd47: tmp_z[15:8]  <= tse_rx_data;
+                            11'd48: tmp_z[ 7:0]  <= tse_rx_data;
+                        endcase
+
                     end
                     if (tse_rx_eop) state <= S_DECIDE;
                 end
@@ -151,12 +179,19 @@ module tse_packet_processor (
                         is_arp <= 1'b0;
                         is_udp <= 1'b1;
                         state  <= S_WORK;
+                        // pulse
+                        out_data_valid <= 1;
+                        out_cmd_type <= tmp_cmd;
+                        out_x_val    <= tmp_x;
+                        out_y_val    <= tmp_y;
+                        out_z_val    <= tmp_z;
                     end else begin
                         state  <= S_IDLE; // 未知或无关协议丢弃
                     end
                 end
 
                 S_WORK: begin
+                    out_data_valid <= 0;
                     if (arp_done || udp_done) begin
                         if (is_udp) begin
                             state <= S_CHKSUM_H;
